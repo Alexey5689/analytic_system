@@ -25,6 +25,8 @@ feature-test-job:       # This job runs in the build stage, which runs first.
   stage: test
   tags:
     - tests_laravel
+  before_script:
+    - apt update
   script:
     - echo "Installing dependencies.."
     - composer install
