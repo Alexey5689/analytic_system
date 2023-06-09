@@ -23,6 +23,8 @@ stages:          # List of stages for jobs, and their order of execution
 
 feature-test-job:       # This job runs in the build stage, which runs first.
   stage: test
+  tags:
+    - tests_laravel
   script:
       echo "Installing dependencies.."
     - composer install
