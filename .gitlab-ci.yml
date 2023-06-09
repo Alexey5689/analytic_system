@@ -26,10 +26,10 @@ feature-test-job:       # This job runs in the build stage, which runs first.
   tags:
     - tests_laravel
   script:
-      echo "Installing dependencies.."
+    - echo "Installing dependencies.."
     - composer install
     - echo "Run feature tests..."
-    - /vendor/bin/sail artisan test
+    - php artisan test
 
 #unit-test-job:   # This job runs in the test stage.
 #  stage: test    # It only starts when the job in the build stage completes successfully.
