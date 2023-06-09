@@ -25,6 +25,9 @@ stages:          # List of stages for jobs, and their order of execution
 build-docker:
   stage: build
   image: docker:stable
+  tags:
+    - tests_laravel
+
   only:
     - main
     - dev
