@@ -1,7 +1,7 @@
 
 import { reactive} from 'vue';
 import axios from 'axios';
-
+import config from "../../vue.config.js";
 
 export function RegTest(){
     const state = reactive({
@@ -14,7 +14,7 @@ export function RegTest(){
         try{
             const response = await axios({
                     method:'POST',
-                    url:'http://192.168.0.35:8080/api/register',
+                    url:config.appBackendURL + ':' + config.appBackendPort + '/api/register',
                     data:{
                         email:state.email,
                         password:state.password,
@@ -25,7 +25,7 @@ export function RegTest(){
             },)
             state.response = response;
             console.log(response);
-        
+
         }catch(err){
             console.log(err.response.data);
         }finally{
@@ -33,9 +33,9 @@ export function RegTest(){
             state.email = '';
             state.isReg = true;
         }
-        
+
         //window.location.href ='/login';
-       
+
     }
     return{state, fetchForm}
 

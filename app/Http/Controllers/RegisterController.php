@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    public function store(Request $request)
+    public function store(ValidateRegisterRequest $request)
     {
-//        $validation_passed = $request->all();
+
         $user = User::create([
             'email' => $request['email'],
             'password' => Hash::make($request['password'])

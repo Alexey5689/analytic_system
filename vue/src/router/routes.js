@@ -8,11 +8,11 @@ export const routes = [
         path: '/',
         component: Register
     },
-    // {
-    //     name: "Reg",
-    //     path: '/registration',
-    //     component: Register
-    // },
+    {
+        name: "Reg",
+        path: '/registration',
+        component: Register
+    },
     {
         name: "Log",
         path: '/login',
