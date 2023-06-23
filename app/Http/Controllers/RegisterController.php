@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidateRegisterRequest;
-use App\Mail\OrderShipped;
+use App\Mail\VerifyMail;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
@@ -21,20 +21,13 @@ class RegisterController extends Controller
             'verify_token' => Str::random(),
             'status' => User::STATUS_INACTIVE,
         ]);
-        Mail::to($user->email)->send(new OrderShipped($user));
+        Mail::to($user->email)->send(new VerifyMail($user));
 
         return response()->json([
-            'message' => "Пользователь успешно зарегистрирован"
+            'message' => "Пользователь успешно зарегистрирован",
+            'status' => true
         ]);
 
-    }
-
-    public function register(ValidateRegisterRequest $request)
-    {
-        event(new Registered($user = $this->create($request->all())));
-
-        return redirect()->route('login')
-            ->with('success', 'Необходимо подтвердить ваш email');
     }
 
     public function verify($token)
@@ -42,14 +35,16 @@ class RegisterController extends Controller
         if (!$user = User::where('verify_token', $token)->first()) {
             return response()->json([
                 'error' => 'Verification failed',
-                'message' => "Пользователь с таким ID не найден"
+                'message' => "Пользователь с таким ID не найден",
+                'status' => false
             ]);
         }
         $user->status = User::STATUS_ACTIVE;
         $user->verify_token = null;
         $user->save();
         return response()->json([
-            'message' => "Email подтвержден"
+            'message' => "Email подтвержден",
+            'status' => true
         ]);
     }
 

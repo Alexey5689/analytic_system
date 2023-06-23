@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class OrderShipped extends Mailable
+class VerifyMail extends Mailable
 {
     use Queueable, SerializesModels;
     public User $user;
@@ -26,7 +26,7 @@ class OrderShipped extends Mailable
     public function build()
     {
         return $this
-            ->subject('Signup Confirmation')
+            ->subject('Подтверждение регистрации')
             ->markdown('email.index');
     }
 

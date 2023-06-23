@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+ use App\Http\Requests\ValidateRegisterRequest;
  use Illuminate\Http\Request;
  use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login(Request $request)
+    public function login(ValidateRegisterRequest $request)
     {
-            $credentials = $request->validate([
-                'email' => ['required', 'email'],
-                'password' => ['required'],
-            ]);
+            $credentials = [
+                'email' => $request['email'],
+                'password' => $request['password'],
+            ];
 
             if (Auth::attempt($credentials)) {
                 return response()->json([
@@ -23,7 +24,7 @@ class LoginController extends Controller
             }
             return response()->json([
                     'status' => false,
-                    'message' => "Fail"
+                    'message' => "Пользователь с таким email не найден"
             ]);
     }
 
