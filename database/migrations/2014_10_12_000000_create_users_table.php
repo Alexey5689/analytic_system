@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -16,10 +18,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('status')->default('active');
+            $table->smallInteger('status')->default(User::STATUS_INACTIVE);
+            $table->string('verify_token')->nullable()->unique();
             $table->rememberToken();
             $table->timestamps();
         });
+        DB::table('users')->update([
+            'status' => User::STATUS_ACTIVE,
+        ]);
     }
 
     /**

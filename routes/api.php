@@ -22,4 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::middleware('auth:sanctum')->post('/login', [LoginController::class, 'check']);
+Route::post('/login', [LoginController::class, 'check']);
+
+
+
+
+
