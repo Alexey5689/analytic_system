@@ -37,7 +37,7 @@ build-docker:
     - main
     - dev
   services:
-    - docker:dind
+    - docker:20.10.16-dind
   before_script:
     - echo "${ACCESS_TOKEN}" | docker login -u Deployer --password-stdin registry.pro-technologii.ru
   script:
