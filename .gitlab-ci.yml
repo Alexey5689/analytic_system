@@ -40,8 +40,8 @@ build-docker:
   before_script:
     - echo "${ACCESS_TOKEN}" | docker login -u Deployer --password-stdin registry.pro-technologii.ru
   script:
-    - docker compose build -t ${DOCKER_ENV_CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} .
-    - docker compose push ${DOCKER_ENV_CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+    - docker build -t ${DOCKER_ENV_CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} .
+    - docker push ${DOCKER_ENV_CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
 
 
 #feature-test-job:       # This job runs in the build stage, which runs first.
