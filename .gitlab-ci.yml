@@ -37,6 +37,7 @@ build-docker:
     - docker:dind
   before_script:
     - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
+    - echo "${ACCESS_TOKEN}" | docker login -u Deployer --password-stdin registry.pro-technologii.ru
   script:
     - docker compose build -t ${DOCKER_ENV_CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} .
     - docker compose push ${DOCKER_ENV_CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
