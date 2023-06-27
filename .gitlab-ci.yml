@@ -35,7 +35,7 @@ build-docker:
     - main
     - dev
   services: 
-    - name: registry.hub.docker.com/library/docker-dind
+    - docker-dind
   before_script:
     - echo "${ACCESS_TOKEN}" | docker login -u Deployer --password-stdin registry.pro-technologii.ru
   script:
