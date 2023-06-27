@@ -1,0 +1,116 @@
+.card-header {
+    justify-content: center;
+    align-self: stretch;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 120%;
+    font-family: 'Montserrat-Bold';
+    padding: 0 10%;
+}
+.form {
+    color: red;
+    background: #646cff;
+}
+button {
+    color: chartreuse;
+}
+.general-block {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.user-name {
+    background: url("../../assets/image/user-icon.svg") no-repeat;
+}
+.user-email {
+    background: url("../../assets/image/mail-icon.svg") no-repeat;
+}
+.user-num {
+    background: url("../../assets/image/phone-icon.svg") no-repeat;
+}
+.user-passw {
+    background: url("../../assets/image/blocked-icon.svg") no-repeat;
+}
+.user-name, .user-email, .user-num, .user-passw, .user-reg, .user-promo {
+    background-size: inherit;
+    background-position-y: center;
+    background-color: #F0F1F3;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-position-x: 16px;
+    padding-left: 3.5rem;
+    border-radius: 9px;
+    outline: none;
+}
+input:hover {
+    background-color: #DBDEE4;
+    transition: ease 1s;
+}
+input {
+    font-family: 'Montserrat-Regular';
+    font-size: 14px;
+    height:34px;
+    margin-bottom: 12px;
+    width: -webkit-fill-available;
+}
+.user-reg, .user-promo {
+    padding-left: 16px;
+}
+.user-promo {
+    margin-bottom: 26px;
+}
+.consent-processing-PD {
+    display: flex;
+    font-size: 12px;
+    gap: 2%;
+    padding-bottom: 20px;
+}
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    height: fit-content;
+    padding: 9%;
+}
+button {
+    background-color: #005BD1;
+    color: white;
+    padding: 0 20%;
+    width: -webkit-fill-available;
+    border-radius: 10px;
+    height: 47px;
+}
+span {
+    color: #005BD1;
+}
+label {
+    font-family: 'Montserrat-Regular';
+    font-size: 12px;
+}
+.scales {
+    display: flex;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #005BD1;
+    border-radius: 3px;
+    appearance: none;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+}
+.scales:checked:before {
+     content: '';
+     background-color: #005BD1;
+     width: 11px;
+     height: 11px;
+     border-radius: 1px;
+     transition: ease 1s;
+ }
+.card-body {
+    margin: 5% 0;
+}
+
