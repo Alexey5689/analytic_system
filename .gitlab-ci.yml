@@ -41,7 +41,7 @@ build-docker:
   before_script:
     - echo "${ACCESS_TOKEN}" | docker login -u Deployer --password-stdin registry.pro-technologii.ru
   script:
-    - docker build -t ${IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} .
+    - docker build -t ${IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} -f ./config/app/Dockerfile .
     - docker push ${IMAGE_NAME}
 
 
