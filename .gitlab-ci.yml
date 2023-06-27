@@ -24,7 +24,7 @@ stages:          # List of stages for jobs, and their order of execution
 
 build-docker:
   stage: build
-  image: docker:stable
+  image: docker:latest
   tags:
     - tests_laravel
   variables:
@@ -36,7 +36,7 @@ build-docker:
     - main
     - dev
   services: 
-    - docker-dind
+    - docker:dind
   before_script:
     - echo "${ACCESS_TOKEN}" | docker login -u Deployer --password-stdin registry.pro-technologii.ru
   script:
