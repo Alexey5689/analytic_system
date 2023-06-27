@@ -23,7 +23,7 @@ class ValidateRegisterRequest extends FormRequest
     {
         return [
             'email' => 'required|unique:users|max:255',
-            'password' => 'required|max:255'
+            'password' => 'required|confirmed|max:255'
         ];
     }
 
@@ -34,6 +34,7 @@ class ValidateRegisterRequest extends FormRequest
             'password.required'  => 'Вы не указали пароль',
             'email.max' => 'Вы указали слишком длинный email',
             'password.max' => 'Вы указали слишком длинный пароль',
+            'password.confirmed' => 'Пароль неверный',
         ];
     }
 }

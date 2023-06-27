@@ -23,7 +23,7 @@ class ValidateLoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email:rfc,dns',
-            'password' => 'required|confirmed'
+            'password' => 'required'
         ];
     }
 
@@ -32,7 +32,6 @@ class ValidateLoginRequest extends FormRequest
             'email.email' => 'Должен быть указан действительный адрес электронной почты',
             'email.required'  => 'Вы не указали email',
             'password.required'  => 'Вы не указали пароль',
-            'password.confirmed' => 'Пароль неверный',
         ];
     }
 }
