@@ -38,6 +38,9 @@ build-docker:
   services:
     - docker:dind
   before_script:
+    - apk update
+    - apk add py-pip python3-dev libffi-dev openssl-dev gcc libc-dev make
+    - pip install docker-compose
     - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
   script:
     - docker build -t ${DOCKER_ENV_CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} .
