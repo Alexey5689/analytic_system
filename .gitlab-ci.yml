@@ -36,8 +36,9 @@ build-docker:
   only:
     - main
     - dev
-  services: 
-    - docker:20.10.16-dind
+  services:
+  - name: registry.hub.docker.com/library/docker:20.10.16-dind
+    alias: docker
   
   before_script:
     - echo "${ACCESS_TOKEN}" | docker login -u Deployer --password-stdin registry.pro-technologii.ru
