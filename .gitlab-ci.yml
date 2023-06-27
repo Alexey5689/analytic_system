@@ -24,19 +24,19 @@ stages:          # List of stages for jobs, and their order of execution
 
 build-docker:
   stage: build
-  image: docker:19.03
+  image: docker:latest
   tags:
     - tests_laravel
   variables:
       # these values may need to be different if using TLS, k8s, etc.
       # You can alternatively set defaults in your runner config
-    DOCKER_HOST: tcp://localhost:2376/
+    DOCKER_HOST: tcp://docker:2376/
     IMAGE_NAME: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
   only:
     - main
     - dev
   services: 
-    - name: registry.hub.docker.com/library/docker:19.03-dind
+    - name: registry.hub.docker.com/library/docker-dind
   before_script:
     - echo "${ACCESS_TOKEN}" | docker login -u Deployer --password-stdin registry.pro-technologii.ru
   script:
