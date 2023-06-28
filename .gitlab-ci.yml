@@ -42,6 +42,7 @@ build-docker:
     - docker push ${IMAGE_NAME}
 
 deploy-app:
+  stage: deploy
   tags:
     - dev
   only:
