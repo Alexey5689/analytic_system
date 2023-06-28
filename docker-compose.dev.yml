@@ -50,7 +50,7 @@ services:
     depends_on:
       - pgsql
       - redis
-      -
+
   pgsql:
     image: 'postgres:15'
     ports:
