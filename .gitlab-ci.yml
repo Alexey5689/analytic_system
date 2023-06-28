@@ -50,11 +50,12 @@ deploy-app:
   - dev
   before_script:
   - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
+  - pwd
   script: 
     - docker stop $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
     - docker rm $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
     - docker volume rm $(docker volume ls | grep ${CONTAINER_PREFIX}_ | awk '{print $2}') || true
-    - docker-compose -p $CONTAINER_PREFIX -f docker-compose.dev.yml up -d
+    - docker compose -p $CONTAINER_PREFIX -f docker-compose.dev.yml up -d
     - docker exec ${CONTAINER_PREFIX}_app composer update
     - docker exec ${CONTAINER_PREFIX}_app composer install
     - docker exec ${CONTAINER_PREFIX}_app php artisan migrate
