@@ -18,7 +18,7 @@
 
 stages:          # List of stages for jobs, and their order of execution
   - build
-  - deploy
+#  - deploy
 
 build-docker:
   stage: build
@@ -29,7 +29,7 @@ build-docker:
       # these values may need to be different if using TLS, k8s, etc.
       # You can alternatively set defaults in your runner config
 #    DOCKER_HOST: tcp://docker:2376
-    IMAGE_NAME: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}"
+    APP_IMAGE_NAME: "${CI_REGISTRY_IMAGE}/app:${CI_COMMIT_SHORT_SHA}"
     REGISTRY: git.pro-technologii.ru/development/analytic-system
   only:
     - main
@@ -38,30 +38,29 @@ build-docker:
   before_script:
     - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
   script:
-    - docker build -t ${IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} -f ./config/app/Dockerfile .
-    - docker push ${IMAGE_NAME}
+    - docker build -t ${APP_IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} -f ./config/app/Dockerfile .
+    - docker push ${APP_IMAGE_NAME}
 
-deploy-app:
-  stage: deploy
-  tags:
-    - dev
-  only:
-  - main
-  - dev
-  before_script:
-  - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
-  - pwd
-  script: 
-    - docker stop $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
-    - docker rm $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
-    - docker volume rm $(docker volume ls | grep ${CONTAINER_PREFIX}_ | awk '{print $2}') || true
-    - docker compose -p $CONTAINER_PREFIX -f docker-compose.dev.yml up -d
-    - docker exec ${CONTAINER_PREFIX}_app composer update
-    - docker exec ${CONTAINER_PREFIX}_app composer install
-    - docker exec ${CONTAINER_PREFIX}_app php artisan migrate
-    - docker exec ${CONTAINER_PREFIX}_app php artisan cache:clear
-    - docker exec ${CONTAINER_PREFIX}_app php artisan config:cache
-    - docker exec ${CONTAINER_PREFIX}_app php artisan route:cache
+#deploy-app:
+#  stage: deploy
+#  tags:
+#    - dev
+#  only:
+#  - main
+#  - dev
+#  before_script:
+#  - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
+#  script: 
+#    - docker stop $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
+#    - docker rm $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
+#    - docker volume rm $(docker volume ls | grep ${CONTAINER_PREFIX}_ | awk '{print $2}') || true
+#    - docker compose -p $CONTAINER_PREFIX -f docker-compose.dev.yml up -d
+#    - docker exec ${CONTAINER_PREFIX}_app composer update
+#    - docker exec ${CONTAINER_PREFIX}_app composer install
+#    - docker exec ${CONTAINER_PREFIX}_app php artisan migrate
+#    - docker exec ${CONTAINER_PREFIX}_app php artisan cache:clear
+#    - docker exec ${CONTAINER_PREFIX}_app php artisan config:cache
+#    - docker exec ${CONTAINER_PREFIX}_app php artisan route:cache
 
 
 
