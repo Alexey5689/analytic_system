@@ -30,7 +30,7 @@ build-docker:
   variables:
       # these values may need to be different if using TLS, k8s, etc.
       # You can alternatively set defaults in your runner config
-    DOCKER_HOST: tcp://docker:2376
+#    DOCKER_HOST: tcp://docker:2376
     IMAGE_NAME: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
     REGISTRY: git.pro-technologii.ru/development/analytic-system
   only:
