@@ -48,6 +48,8 @@ deploy-app:
   only:
   - main
   - dev
+  before_script:
+  - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
   script: 
     - docker stop $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
     - docker rm $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
