@@ -13,7 +13,13 @@
     background: #646cff;
 }
 button {
-    color: chartreuse;
+    font-family: 'Montserrat-Regular';
+    color: white;
+    background-color: #005BD1;
+    padding: 0 20%;
+    width: -webkit-fill-available;
+    border-radius: 10px;
+    height: 47px;
 }
 .general-block {
     display: flex;
@@ -75,14 +81,6 @@ input {
     border-radius: 20px;
     height: fit-content;
     padding: 9%;
-}
-button {
-    background-color: #005BD1;
-    color: white;
-    padding: 0 20%;
-    width: -webkit-fill-available;
-    border-radius: 10px;
-    height: 47px;
 }
 span {
     color: #005BD1;

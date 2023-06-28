@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateRegisterRequest extends FormRequest
+class ValidateLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,19 +22,17 @@ class ValidateRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|unique:users|max:255',
-            'password' => 'required|confirmed|max:255'
+            'email' => 'required|email:rfc,dns',
+            'password' => 'required'
         ];
     }
 
     public function messages(): array {
         return [
-            'email.unique' => 'Вы указали уже существующий email',
+            'email.email' => 'Должен быть указан действительный адрес электронной почты',
             'email.required'  => 'Вы не указали email',
             'password.required'  => 'Вы не указали пароль',
-            'email.max' => 'Вы указали слишком длинный email',
-            'password.max' => 'Вы указали слишком длинный пароль',
-            'password.confirmed' => 'Пароль неверный',
         ];
     }
 }
+
