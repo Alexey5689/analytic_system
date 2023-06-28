@@ -1,38 +1,22 @@
 <template>
-
-    <div class="row">
-
-        <div class="col-sm-4" >
-            <h2 align="center"> Login</h2>
-
-            <form @submit.prevent="LoginData">
-
-                <div class="form-group" align="left">
-                    <label>Email</label>
-                    <input type="email" v-model="student.email" :class="$style.form"  placeholder="Email">
-                </div>
-
-
-                <div class="form-group" align="left">
-                    <label>Password</label>
-                    <input type="password" v-model="student.password" :class="$style.form"  placeholder="Password">
-                </div>
-
-                <button type="submit" class="button">Login</button>
+    <div class="card">
+        <h1 class="card-header">Вход в РосМетрик</h1>
+        <p>Рады вас видеть</p>
+        <div class="card-body">
+            <form class="general-block" @submit.prevent="LoginData">
+                <div><input class="user-email" type="email" placeholder="E-mail*"/></div>
+                <div><input class="user-passw" type="password" placeholder="Пароль*"/></div>
+                <button type="submit" class="button">Войти</button>
             </form>
+            <div class="bottom-block-register">
+                <p>Зарегестрироваться</p>
+                <p>Восстановить пароль</p>
+            </div>
         </div>
     </div>
-
 </template>
 
-<style module>
-.form {
-    color: red;
-    background: #646cff;
-}
-.button {
-    color: chartreuse;
-}
+<style src="../components/compStyle/loginStyle.css" scoped>
 </style>
 
 <script>
@@ -41,17 +25,13 @@ export default {
     data () {
         return {
             result: {},
-            student:{
-                email: '',
-                password: ''
-            }
+
+            email: '',
+            password: ''
+
         }
     },
-    // created() {
-    // },
-    // mounted() {
-    //     console.log("mounted() called.......");
-    // },
+
     methods: {
         LoginData()
         {
