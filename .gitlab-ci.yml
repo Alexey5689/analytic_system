@@ -24,7 +24,6 @@ stages:          # List of stages for jobs, and their order of execution
 
 build-docker:
   stage: build
-  image: docker:20.10.16
   
   tags:
     - tests_laravel
@@ -33,12 +32,11 @@ build-docker:
       # You can alternatively set defaults in your runner config
     DOCKER_HOST: tcp://docker:2376
     IMAGE_NAME: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
+    REGISTRY: git.pro-technologii.ru/development/analytic-system
   only:
     - main
     - dev
-  services:
-  - name: registry.hub.docker.com/library/docker:20.10.16-dind
-    alias: docker
+
   
   before_script:
     - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
