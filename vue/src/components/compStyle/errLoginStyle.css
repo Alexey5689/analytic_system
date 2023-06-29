@@ -1,0 +1,37 @@
+.card-header {
+    justify-content: center;
+    align-self: stretch;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 120%;
+    font-family: 'Montserrat-Bold';
+    margin-bottom: 13px;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    height: fit-content;
+    padding: 8% 5%;
+}
+p{
+    font-size: 16px;
+    font-family: 'Montserrat-Regular';
+    font-weight: 500;
+    line-height: 120%;
+    color: #919399;
+    margin-bottom: 26px;
+}
+.bottom-block-register {
+    text-align: end;
+}
+.bottom-block-register p {
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Montserrat-Bold;
+    margin-bottom: 10px;
+}
+.resend-p {
+    color: #005BD1;
+}
