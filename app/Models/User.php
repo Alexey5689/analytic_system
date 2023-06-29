@@ -15,8 +15,8 @@ class User extends Authenticatable
     use HasUuids;
 
     const STATUS_DELETED = 0;
-    const STATUS_INACTIVE = 9;
-    const STATUS_ACTIVE = 10;
+    const STATUS_INACTIVE = 1;
+    const STATUS_ACTIVE = 2;
 
     /**
      * The attributes that are mass assignable.
@@ -26,10 +26,14 @@ class User extends Authenticatable
     protected $fillable = [
         'id',
         'name',
+        'tel',
         'email',
         'password',
+        'region',
+        'promo',
         'verify_token',
-        'status'
+        'status',
+        'email_verified_at'
     ];
 
     /**

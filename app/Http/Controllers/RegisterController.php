@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ValidateRegisterRequest;
 use App\Mail\VerifyMail;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -16,6 +15,8 @@ class RegisterController extends Controller
     public function store(ValidateRegisterRequest $request)
     {
         $user = User::create([
+            'name' => $request ['name'],
+            'tel' => $request ['tel'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'verify_token' => Str::random(),
@@ -39,6 +40,7 @@ class RegisterController extends Controller
                 'status' => false
             ]);
         }
+        $user->email_verified_at = now();
         $user->status = User::STATUS_ACTIVE;
         $user->verify_token = null;
         $user->save();
