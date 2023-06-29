@@ -34,6 +34,6 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Ссылка для верификации отправлена!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::get('/verify/{token}', [RegisterController::class, 'register.verify'])->name('register.verify');
+Route::get('/verify/{token}', [RegisterController::class, 'verify'])->name('register.verify');
 
 Route::get('/profile', function () {})->middleware('verified');
