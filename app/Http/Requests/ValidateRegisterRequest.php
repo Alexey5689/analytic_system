@@ -25,7 +25,7 @@ class ValidateRegisterRequest extends FormRequest
             'name' => 'min:2|max:255',
             'tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|unique:users|max:255',
-            'password' => 'required|max:255'
+            'password' => 'required|confirmed|max:255'
         ];
     }
 
