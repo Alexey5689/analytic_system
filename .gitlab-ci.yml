@@ -18,30 +18,69 @@
 
 stages:          # List of stages for jobs, and their order of execution
   - build
-  - test
-  - stage
   - deploy
 
 build-docker:
   stage: build
-  image: docker:stable
+  
   tags:
     - tests_laravel
   variables:
       # these values may need to be different if using TLS, k8s, etc.
       # You can alternatively set defaults in your runner config
-    DOCKER_TLS_CERTDIR: ""
-    DOCKER_HOST: "tcp://localhost"
+#    DOCKER_HOST: tcp://docker:2376
+    APP_IMAGE_NAME: "${CI_REGISTRY_IMAGE}/app:${CI_COMMIT_SHORT_SHA}"
+    VUE_IMAGE_NAME: "${CI_REGISTRY_IMAGE}/vue:${CI_COMMIT_SHORT_SHA}"
+    REGISTRY: git.pro-technologii.ru/development/analytic-system
   only:
     - main
     - dev
-  services:
-    - docker:dind
+
   before_script:
-    - echo "${ACCESS_TOKEN}" | docker login -u Deployer --password-stdin registry.pro-technologii.ru
+    - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
   script:
-    - docker compose build -t ${DOCKER_ENV_CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} .
-    - docker compose push ${DOCKER_ENV_CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+    - docker build -t ${APP_IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} -f ./config/app/Dockerfile .
+    - docker push ${APP_IMAGE_NAME}
+    - docker build -t ${VUE_IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} -f ./config/app/Dockerfile .
+    - docker push ${VUE_IMAGE_NAME}
+
+deploy-app:
+  stage: deploy
+  tags:
+    - dev
+  only:
+  - main
+  - dev
+  before_script:
+  - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
+  - ls -la
+  - apt update && apt install -y apt-utils libpq-dev libpng-dev libzip-dev zip unzip git bash curl php8.2 && docker-php-ext-install pdo_mysql && docker-php-ext-install bcmath && docker-php-ext-install gd && docker-php-ext-install zip && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  script: 
+    - docker stop $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
+    - docker rm $(docker ps -a | grep ${CONTAINER_PREFIX}_ | awk '{print $1}') || true
+    - docker volume rm $(docker volume ls | grep ${CONTAINER_PREFIX}_ | awk '{print $2}') || true
+    # Install composer
+    - export COMPOSER_ALLOW_SUPERUSER=1
+    - curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/local/bin
+
+# alias
+    - echo "alias a='artisan'" >> /root/.bashrc
+
+    - curl -fsSL https://deb.nodesource.com/setup_20.x | sh
+    - apt-get install -y nodejs
+
+    - composer install --no-interaction --no-plugins --no-suggest --no-scripts --no-autoloader --prefer-dist
+
+    - composer dump-autoload  --no-scripts --optimize && chown -R root:www-data /var/www && chmod 755 -R /var/www && chmod -R 775 /var/www/storage && chmod -R 775 /var/www/bootstrap/cache
+    
+    - docker-compose -p $CONTAINER_PREFIX -f docker-compose.dev.yml up -d
+    - docker exec ${CONTAINER_PREFIX}_app composer update
+    - docker exec ${CONTAINER_PREFIX}_app composer install
+    - docker exec ${CONTAINER_PREFIX}_app php artisan migrate
+    - docker exec ${CONTAINER_PREFIX}_app php artisan cache:clear
+    - docker exec ${CONTAINER_PREFIX}_app php artisan config:cache
+    - docker exec ${CONTAINER_PREFIX}_app php artisan route:cache
+
 
 
 #feature-test-job:       # This job runs in the build stage, which runs first.
