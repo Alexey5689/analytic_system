@@ -2,6 +2,7 @@
 import Register from '../components/Register.vue'
 import Login from '../components/Login.vue'
 import Recovery from '../components/PassRecovery.vue'
+import Confirm from '../components/confirmPassRecovery.vue'
 
 export const routes = [
     {
@@ -24,6 +25,12 @@ export const routes = [
         name: "Recovery",
         path: '/recovery',
         component: Recovery
+    },
+
+    {
+        name: "Confirm",
+        path: '/confirm-pass',
+        component: Confirm
     },
 
 ]
