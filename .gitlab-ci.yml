@@ -25,6 +25,7 @@ build-docker:
 #  
   tags:
     - tests_laravel
+  image: registry.pro-technologii.ru/development/ecms:latest
 #  variables:
 #      # these values may need to be different if using TLS, k8s, etc.
 #      # You can alternatively set defaults in your runner config
