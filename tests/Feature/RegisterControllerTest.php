@@ -27,11 +27,9 @@ class RegisterControllerTest extends TestCase
         $response = $this->postJson('/api/register',
             [
                 'name' => 'Qwerty',
-                'tel' => '89096096127',
+                'tel' => '89228349999',
                 'email' => 'next@mail.ru',
                 'password' => 'qwerty12',
-                'verify_token' => \Illuminate\Support\Str::random(),
-                'status' => 1,
             ]);
 
         $response->assertStatus(200)
@@ -46,7 +44,7 @@ class RegisterControllerTest extends TestCase
         Mail::fake();
         $this->post('/api/register', [
             'name' => 'Qwerty',
-            'tel' => '89096096127',
+            'tel' => '89228349999',
             'email' => 'next@mail.ru',
             'password' => 'qwerty12'
         ]);
@@ -56,7 +54,7 @@ class RegisterControllerTest extends TestCase
     public function test_verify_token() {
         $this->post('/api/register', [
             'name' => 'Qwerty',
-            'tel' => '89096096127',
+            'tel' => '89228349999',
             'email' => 'next@mail.ru',
             'password' => 'qwerty12',
         ]);
