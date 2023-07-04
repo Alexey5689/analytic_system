@@ -1,5 +1,5 @@
 const config = {
-    appBackendURL: 'http://127.0.0.1',
+    appBackendURL: 'http://192.168.0.35',
     appBackendPort: '8080',
 }
 export default config;

@@ -1,22 +1,21 @@
 <template>
     <div class="card">
-        <h1 class="card-header">Вход в РосМетрик</h1>
-        <p>Рады вас видеть</p>
+        <h1 class="card-header">Восстановление пароля</h1>
+        <p>На эту почту мы вышлем ссылку на восстановление пароля</p>
         <div class="card-body">
             <form class="general-block" @submit.prevent="LoginData">
-                <div><input class="user-email" v-model="student.email" type="email" placeholder="E-mail*"/></div>
-                <div><input class="user-passw" v-model="student.password" type="password" placeholder="Пароль*"/></div>
-                <button type="submit" class="button">Войти</button>
+                <div><input class="user-email" type="email" placeholder="E-mail*"/></div>
+                <button type="submit" class="button">Восстановить</button>
             </form>
             <div class="bottom-block-register">
-                <p>Зарегестрироваться</p>
-                <p>Восстановить пароль</p>
+                <p @click="$router.push('/registration')">Зарегестрироваться</p>
+                <p @click="$router.push('/login')">Войти</p>
             </div>
         </div>
     </div>
 </template>
 
-<style src="../components/compStyle/loginStyle.css" scoped>
+<style src="../components/compStyle/passRecovery.css" scoped>
 </style>
 
 <script>

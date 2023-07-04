@@ -1,14 +1,17 @@
-//import HelloWorld from '../components/HelloWorld.vue'
+import HelloWorld from '../components/HelloWorld.vue'
 import Register from '../components/Register.vue'
 import Login from '../components/Login.vue'
-import confirmRegister from '../components/confirmRegister.vue'
-import endRegister from '../components/endRegister.vue'
+import Recovery from '../components/PassRecovery.vue'
+import Confirm from '../components/confirmPassRecovery.vue'
+import Change from '../components/endChangePass.vue'
+import RegTheEnd from '../components/endRegister.vue'
+
 
 export const routes = [
     {
         name: "Hi",
         path: '/',
-        component: Register
+        component: HelloWorld 
     },
     {
         name: "Reg",
@@ -21,13 +24,25 @@ export const routes = [
         component: Login
     },
     {
-        name: "ConfReg",
-        path: '/confirm-registration',
-        component: confirmRegister
+        name: "Recovery",
+        path: '/recovery',
+        component: Recovery
     },
     {
-        name: "EndReg",
-        path: '/end-registration',
-        component: endRegister
+        name: "Confirm",
+        path: '/confirm-pass',
+        component: Confirm
     },
+
+    {
+        name: "Change",
+        path: '/end-change-pass',
+        component: Change
+    },
+    {
+        name:"RegTheEnd",
+        path:'/RegTheEnd',
+        component:RegTheEnd,
+    }
+
 ]
