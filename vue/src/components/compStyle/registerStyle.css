@@ -115,6 +115,8 @@ label {
 .ruls{
     font-family: 'Montserrat-Regular';
     color: rgb(201, 0, 0);
+    display: flex;
+    flex-direction: column;
 }
 
 

@@ -11,7 +11,7 @@ export function RegTest(){
     const state = reactive({
             email: "",
             password:"",
-            password_conf:"",
+            conf_password:"",
             tel: "",
             name: "",
             reg:  "",
@@ -42,11 +42,11 @@ export function RegTest(){
                 password:{
                     required: helpers.withMessage('Поле обязательно к заполнению', required),
                     minLength:  helpers.withMessage('Не должно содержать меньше 8ми знаков', minLength(8)),
-                    sameAs: helpers.withMessage('Значения не совпадают', sameAs( state.password_conf)),
+                    // sameAs: helpers.withMessage('Значения не совпадают', sameAs( state.password_conf)),
                     maxLength: helpers.withMessage('Не должно содержать больше 23х знаков', maxLength(23)),
                     // bbt: helpers.withMessage('Должен содержать латинские буквы, буквы в верхнем регистре, цифры и символы(!@#$%_)',bbt)
                 },
-                password_conf:{
+                conf_password:{
                     required: helpers.withMessage('Поле обязательно к заполнению', required),
                     sameAs: helpers.withMessage('Значения не совпадают', sameAs(state.password)),
                 },
@@ -80,7 +80,7 @@ export function RegTest(){
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                    
+
             },)
             state.isReg = true;
             console.log(state.name);
@@ -97,7 +97,7 @@ export function RegTest(){
             state.reg = '';
             state.promo = '';
             state.checked = ''
-           
+
         }
 
     }
