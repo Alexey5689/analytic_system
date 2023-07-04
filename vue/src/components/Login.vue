@@ -3,7 +3,7 @@
         <h1 class="card-header">Вход в РосМетрик</h1>
         <p>Рады вас видеть</p>
         <div class="card-body">
-            <div v-if="state.error">
+            <div>
                 {{ state.response }}
             </div>
             <form class="general-block" @submit.prevent="AuthForm">

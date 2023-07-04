@@ -15,7 +15,6 @@ export function AuthValidForm(){
         countErr:5,//небольше 5ти попыток
         response: "",
 
-
     })
 
     const rules= computed(()=>{
