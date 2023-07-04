@@ -7,7 +7,13 @@ import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
 import Cookies from 'js-cookie';
+
+
+
 export function RegTest(){
+    const regName = helpers.regex(/^[a-zA-Zа-яёА-ЯЁ]*$/);
+    const regPass = helpers.regex(/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/);
+    const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
     const state = reactive({
             email: "",
             password:"",
@@ -19,7 +25,7 @@ export function RegTest(){
             isReg: false,
             response: " ",
             emailMessage:'Шаблон почты аааааа@aa.com',
-            cellMessage:'Шаблон почты +7999 999 99 99',
+            cellMessage:'Шаблон телефона +7999 999 99 99',
             checked:"",
     })
     const rules = computed (()=>{
@@ -27,14 +33,14 @@ export function RegTest(){
                 name:{
                     required: helpers.withMessage('Поле обязательно к заполнению', required),
                     minLength: helpers.withMessage('Не должно содержать меньше 3х знаков', minLength(3)),
-                    // alfa: helpers.withMessage('Должно содержать только буквы', alfa),
+                    regName: helpers.withMessage('Должно содержать только буквы', regName),
                     maxLength: helpers.withMessage('Не должно содержать больше 23х знаков', maxLength(23))
                 },
                 tel:{
                     required: helpers.withMessage('Поле обязательно к заполнению', required),
                     minLength:  helpers.withMessage('Не должно содержать меньше 3х знаков', minLength(3)),
                     maxLength: helpers.withMessage('Не должно содержать больше 11ти знаков', maxLength(11)),
-                    // cell: helpers.withMessage('Должен содержать цифры', cell),
+                    regPhone: helpers.withMessage('Должен содержать только цифры', regPhone),
                 },
                 email:{
                     required: helpers.withMessage('Поле обязательно к заполнению', required),
@@ -42,9 +48,8 @@ export function RegTest(){
                 password:{
                     required: helpers.withMessage('Поле обязательно к заполнению', required),
                     minLength:  helpers.withMessage('Не должно содержать меньше 8ми знаков', minLength(8)),
-                    // sameAs: helpers.withMessage('Значения не совпадают', sameAs( state.password_conf)),
                     maxLength: helpers.withMessage('Не должно содержать больше 23х знаков', maxLength(23)),
-                    // bbt: helpers.withMessage('Должен содержать латинские буквы, буквы в верхнем регистре, цифры и символы(!@#$%_)',bbt)
+                    regPass: helpers.withMessage('Должен содержать латинские буквы в верхнем и нижнем регистре, цифры и символы(!@#$%_)',regPass)
                 },
                 conf_password:{
                     required: helpers.withMessage('Поле обязательно к заполнению', required),
@@ -58,7 +63,6 @@ export function RegTest(){
 
     const v$ = useVuelidate(rules, state);
 
-
     async function fetchForm(){
         if(this.v$.$invalid){
             this.v$.$touch();
@@ -71,7 +75,7 @@ export function RegTest(){
                     data:{
                         email:state.email,
                         password:state.password,
-                        password_confirmation:state.password_conf,
+                        password_confirmation:state.conf_password,
                         name:state.name,
                         tel:state.tel,
                         reg:state.reg,
@@ -82,24 +86,21 @@ export function RegTest(){
                     }
 
             },)
+            Cookies.set('reg_token', response.data.token)
             state.isReg = true;
-            console.log(state.name);
             state.response = response.data.message;
-            //console.log(response);
-
         }catch(err){
             state.response = err.response.data.message;
         }finally{
             state.password = '';
+            state.conf_password='';
             state.email = '';
             state.name = '';
             state.tel = '';
             state.reg = '';
             state.promo = '';
             state.checked = ''
-
         }
-
     }
     return{state, fetchForm, v$}
 
