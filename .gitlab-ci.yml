@@ -16,16 +16,16 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
-stages:          # List of stages for jobs, and their order of execution
-  - build
+#stages:          # List of stages for jobs, and their order of execution
+#  - build
 #  - deploy
 
-build-docker:
-  stage: build
+#build-docker:
+#  stage: build
 #  
-  tags:
-    - tests_laravel
-  image: registry.pro-technologii.ru/development/ecms:latest
+#  tags:
+#    - tests_laravel
+#  image: registry.pro-technologii.ru/development/ecms:latest
 #  variables:
 #      # these values may need to be different if using TLS, k8s, etc.
 #      # You can alternatively set defaults in your runner config
@@ -33,13 +33,13 @@ build-docker:
 #    APP_IMAGE_NAME: "${CI_REGISTRY_IMAGE}/app:${CI_COMMIT_SHORT_SHA}"
 #    VUE_IMAGE_NAME: "${CI_REGISTRY_IMAGE}/vue:${CI_COMMIT_SHORT_SHA}"
 #    REGISTRY: git.pro-technologii.ru/development/analytic-system
-  only:
-    - main
-    - dev
+#  only:
+#    - main
+#    - dev
 
-  before_script:
-    - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
-  script:
+#  before_script:
+#    - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
+#  script:
 #    - docker build -t ${APP_IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} -f ./config/app/Dockerfile .
 #    - docker push ${APP_IMAGE_NAME}
 #    - docker build -t ${VUE_IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} -f ./config/app/Dockerfile .
@@ -65,22 +65,22 @@ build-docker:
 #    - curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/local/bin
 
 # alias
-    - echo "alias a='artisan'" >> /root/.bashrc
+#    - echo "alias a='artisan'" >> /root/.bashrc
 
-    - curl -fsSL https://deb.nodesource.com/setup_20.x | sh
-    - apt-get install -y nodejs
+#    - curl -fsSL https://deb.nodesource.com/setup_20.x | sh
+#    - apt-get install -y nodejs
 
-    - composer install --no-interaction --no-plugins --no-suggest --no-scripts --no-autoloader --prefer-dist
+#    - composer install --no-interaction --no-plugins --no-suggest --no-scripts --no-autoloader --prefer-dist
 
-    - composer dump-autoload  --no-scripts --optimize && chown -R root:www-data /var/www && chmod 755 -R /var/www && chmod -R 775 /var/www/storage && chmod -R 775 /var/www/bootstrap/cache
+#    - composer dump-autoload  --no-scripts --optimize && chown -R root:www-data /var/www && chmod 755 -R /var/www && chmod -R 775 /var/www/storage && chmod -R 775 /var/www/bootstrap/cache
     
-    - docker-compose -p $CONTAINER_PREFIX -f docker-compose.dev.yml up -d
-    - docker exec ${CONTAINER_PREFIX}_app composer update
-    - docker exec ${CONTAINER_PREFIX}_app composer install
-    - docker exec ${CONTAINER_PREFIX}_app php artisan migrate
-    - docker exec ${CONTAINER_PREFIX}_app php artisan cache:clear
-    - docker exec ${CONTAINER_PREFIX}_app php artisan config:cache
-    - docker exec ${CONTAINER_PREFIX}_app php artisan route:cache
+#    - docker-compose -p $CONTAINER_PREFIX -f docker-compose.dev.yml up -d
+#    - docker exec ${CONTAINER_PREFIX}_app composer update
+#    - docker exec ${CONTAINER_PREFIX}_app composer install
+#    - docker exec ${CONTAINER_PREFIX}_app php artisan migrate
+#    - docker exec ${CONTAINER_PREFIX}_app php artisan cache:clear
+#    - docker exec ${CONTAINER_PREFIX}_app php artisan config:cache
+#    - docker exec ${CONTAINER_PREFIX}_app php artisan route:cache
 
 
 
