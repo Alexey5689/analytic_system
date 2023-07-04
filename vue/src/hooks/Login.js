@@ -50,8 +50,6 @@ export function AuthValidForm(){
             });
             state.response = response.massage;
         }catch(err){
-            state.error = true
-            console.log(err.response);
             state.response = err.response.massage;
         }finally{
             state.password = '';
