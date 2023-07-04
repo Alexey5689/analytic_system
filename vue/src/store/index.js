@@ -1,13 +1,15 @@
-import {createStore} from "vuex";
-import {Registration} from './regModul';
+import { createStore } from "vuex";
+import { Registration } from './regModul';
 
 
 export default createStore({
     state: ()=>({
-       isAuth:false,
        seconds:60,
        minuts:1
     }),
+    getters:{
+
+    },
     mutations:{
         changeTime(state){
             if(state.minuts > 0){
@@ -17,21 +19,15 @@ export default createStore({
                 state.seconds-= 1;
             }
        },
-        changAuth(state){
-            state.isAuth = true;
-        },
     },
     actions:{
-        startChangeAuth({commit}){
-            commit('changAuth')
-        },
         changeTimeAsync({commit}){
             setInterval(()=>{
                 commit('changeTime')
             },1000);
         },
     },
-    modules:{  
+    modules:{
         Reg: Registration
     }
 

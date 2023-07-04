@@ -1,11 +1,11 @@
-
-import { reactive, computed} from 'vue';
+import { reactive } from 'vue';
 import axios from 'axios';
 import config from "../../vue.config.js";
 import { helpers } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
+import { useStore } from 'vuex';
 import Cookies from 'js-cookie';
 
 
@@ -13,6 +13,7 @@ export function RegForm(){
     const regName = helpers.regex(/^[a-zA-Zа-яёА-ЯЁ]*$/);
     const regPass = helpers.regex(/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
+    const store = useStore();
     const state = reactive({
             email: "",
             password:"",
@@ -21,7 +22,6 @@ export function RegForm(){
             name: "",
             reg:  "",
             promo: "",
-            isReg: false,
             response: " ",
             emailMessage:'Шаблон почты аааааа@aa.com',
             cellMessage:'Шаблон телефона +7999 999 99 99',
@@ -86,7 +86,7 @@ export function RegForm(){
 
             },)
             Cookies.set('reg_token', response.data.token)
-            state.isReg = true;
+            store.commit('Reg/getRegToken', Cookies.get('reg_token'))
             state.response = response.data.message;
         }catch(err){
             state.response = err.response.data.message;

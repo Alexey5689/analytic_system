@@ -1,8 +1,7 @@
 import Cookies from "js-cookie"
 import createPersistedState from "vuex-persistedstate";
 
-const accessTokenReg = Cookies.get("reg_token")
-console.log(accessTokenReg);
+
 export const Registration={
     state: ()=>({
         isReg:""
@@ -17,7 +16,10 @@ export const Registration={
           }
     })],
     mutations:{
-        getRegToken: state => state.isReg = accessTokenReg
+        getRegToken(state, token){
+            state.isReg = token
+        },
+
     },
     namespased: true,
 }

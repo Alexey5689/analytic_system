@@ -1,5 +1,5 @@
 <template>
-    <div v-if="state.isReg" >
+    <div v-if="isReg" >
         <confReg/>
     </div>
     <div v-else class="card">
@@ -79,7 +79,8 @@
 
 <script>
 import confReg from '../components/confirmRegister.vue'
-import {RegForm} from '../hooks/Registration.js';
+import { RegForm } from '../hooks/Registration.js';
+import { mapState } from 'vuex'
 export default {
     components:{
         confReg
@@ -92,6 +93,12 @@ export default {
             v$
         }
     },
+    computed: {
+        ...mapState({
+            isReg: state =>state.Reg.state.isReg,
+        }),
+    },
+
 }
 </script>
 

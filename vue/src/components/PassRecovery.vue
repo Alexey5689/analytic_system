@@ -19,39 +19,10 @@
 </style>
 
 <script>
-import axios from 'axios';
+
 export default {
-    data () {
-        return {
-            result: {},
+    setup(props){
 
-            email: '',
-            password: ''
-
-        }
-    },
-
-    methods: {
-        LoginData()
-        {
-            axios.post("http://app/api/login", this.student)
-                .then(
-                    ({data})=>{
-                        console.log(data);
-                        try {
-                            if (data.status === true) {
-                                alert("Login Successfully");
-                                this.$router.push({ name: 'HelloWorld' })
-                            } else {
-                                alert("Login failed")
-                            }
-
-                        } catch (err) {
-                            alert("Error, please try again");
-                        }
-                    }
-                )
-        }
     }
 }
 </script>
