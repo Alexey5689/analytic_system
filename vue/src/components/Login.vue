@@ -6,7 +6,7 @@
             <div v-if="state.error">
                 {{ state.response }}
             </div>
-            <form class="general-block" @submit.prevent="LoginData">
+            <form class="general-block" @submit.prevent="AuthForm">
                 <div>
                     <small class="ruls" v-for="errors in v$.email.$errors ">{{ errors.$message }}</small>
                     <input
@@ -41,10 +41,10 @@
 </style>
 
 <script>
-
+import {AuthValidForm} from '../hooks/Login.js';
 export default {
     setup(props){
-        const {state, AuthForm, logOut, v$} = RegTest();
+        const {state, AuthForm, logOut, v$} = AuthValidForm();
         return{
             state,
             AuthForm,

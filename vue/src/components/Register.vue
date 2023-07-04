@@ -1,17 +1,15 @@
 <template>
-    <div v-if="state.isReg" >
-        {{ state.response.data.message}}
-    </div>
-    <div v-else class="card">
+
+    <div class="card">
         <h1 class="card-header">Регистрация в РосМетрик</h1>
         <div class="card-body">
             <form class="general-block" @submit.prevent="fetchForm">
                 <div><input class="user-name" type="text" placeholder="ФИО"/></div>
                 <div><input class="user-num" type="tel" placeholder="Номер телефона*"/></div>
-                <div><input class="user-email" type="email" v-model="state.email" placeholder="E-mail*"/></div>
-                <div><input class="user-passw" type="password" v-model="state.password" placeholder="Пароль*"/></div>
+                <div><input class="user-email" type="email"  placeholder="E-mail*"/></div>
+                <div><input class="user-passw" type="password"  placeholder="Пароль*"/></div>
 <!--                проверка пароля, изменить-->
-                <div><input class="user-passw" type="password" v-model="state.password" placeholder="Подтвеждение пароля*"/></div>
+                <div><input class="user-passw" type="password"  placeholder="Подтвеждение пароля*"/></div>
                 <div><input class="user-reg" type="text" placeholder="Регион"/></div>
                 <div><input class="user-promo" type="text" placeholder="Промокод"/></div>
             </form>
@@ -28,15 +26,9 @@
 </style>
 
 <script>
-import {RegTest} from '../hooks/Registration.js';
+
 export default {
-    setup(props){
-        const {state,fetchForm} = RegTest();
-        return{
-            state,
-            fetchForm
-        }
-    },
+
 }
 </script>
 

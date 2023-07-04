@@ -1,7 +1,7 @@
-//import HelloWorld from '../components/HelloWorld.vue'
+import HelloWorld from '../components/HelloWorld.vue'
 import Register from '../components/Register.vue'
 import Login from '../components/Login.vue'
-import confirmRegister from '../components/confirmRegister.vue'
+//import confirmRegister from '../components/confirmRegister.vue'
 // import endRegister from '../components/endRegister.vue'
 // import errLogin from '../components/errorLogin.vue'
 
@@ -9,7 +9,7 @@ export const routes = [
     {
         name: "Hi",
         path: '/',
-        component: Register
+        component: HelloWorld
     },
     {
         name: "Reg",
@@ -19,13 +19,14 @@ export const routes = [
     {
         name: "Log",
         path: '/login',
-        component: Login
+        component: Login,
+        meta: { reg: true}
     },
-    {
-        name: "ConfReg",
-        path: '/confirm-registration',
-        component: confirmRegister
-    },
+    // {
+    //     name: "ConfReg",
+    //     path: '/confirm-registration',
+    //     component: confirmRegister
+    // },
     // {
     //     name: "EndReg",
     //     path: '/end-registration',
