@@ -71,7 +71,7 @@ export function RegTest(){
                     data:{
                         email:state.email,
                         password:state.password,
-                        password_conf:state.password_conf,
+                        password_confirmation:state.password_conf,
                         name:state.name,
                         tel:state.tel,
                         reg:state.reg,
