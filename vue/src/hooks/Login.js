@@ -4,9 +4,10 @@ import Cookies from 'js-cookie'
 import { reactive, computed} from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers} from '@vuelidate/validators'
+import {useStore} from 'vuex';
 
 export function AuthValidForm(){
-
+    const store = useStore();
     const state = reactive({
         email: "",
         password:"",
@@ -16,6 +17,7 @@ export function AuthValidForm(){
 
 
     })
+
     const rules= computed(()=>{
         return{
             email:{
@@ -47,8 +49,10 @@ export function AuthValidForm(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
+
             });
             state.response = response.massage;
+            store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
         }catch(err){
             state.response = err.response.massage;
         }finally{
@@ -57,6 +61,7 @@ export function AuthValidForm(){
         }
     }
     const logOut = () =>{
+        store.commit('lostAuthToken');
         Cookies.remove('XSRF-TOKEN');
     }
     return{

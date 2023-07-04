@@ -1,10 +1,9 @@
 import Cookies from "js-cookie"
 import createPersistedState from "vuex-persistedstate";
 
-const accessToken = Cookies.get("XSRF-TOKEN")
 export const Authtorisation={
     state: ()=>({
-        isAuth:false
+        isAuth:''
     }),
     plugins: [createPersistedState({
         key:"XSRF-TOKEN",
@@ -16,8 +15,11 @@ export const Authtorisation={
           }
     })],
     mutations:{
-        getAuthToken(state){
-            state.isAuth = accessToken
+        getAuthToken(state, token){
+            state.isAuth = token
+        },
+        LostAuthToken(state){
+            state.isAuth = ''
         },
     },
     namespased: true,
