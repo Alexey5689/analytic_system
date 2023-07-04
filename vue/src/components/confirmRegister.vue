@@ -22,9 +22,7 @@
             }),
         },
         methods:{
-            ...mapMutations({
-            changeTime: "changeTime",
-            }),
+
             ...mapActions({
                 changeTimeAsync: "changeTimeAsync",
             }),

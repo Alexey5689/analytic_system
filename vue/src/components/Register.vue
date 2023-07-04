@@ -95,7 +95,7 @@ export default {
     },
     computed: {
         ...mapState({
-            isReg: state =>state.Reg.state.isReg,
+            isReg: state =>state.Reg.isReg,
         }),
     },
 
