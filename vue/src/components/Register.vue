@@ -79,13 +79,13 @@
 
 <script>
 import confReg from '../components/confirmRegister.vue'
-import {RegTest} from '../hooks/Registration.js';
+import {RegForm} from '../hooks/Registration.js';
 export default {
     components:{
         confReg
     },
     setup(props){
-        const {state,fetchForm, v$} = RegTest();
+        const {state,fetchForm, v$} = RegForm();
         return{
             state,
             fetchForm,

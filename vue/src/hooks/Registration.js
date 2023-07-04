@@ -9,7 +9,7 @@ import { sameAs } from '@vuelidate/validators';
 import Cookies from 'js-cookie';
 
 
-export function RegTest(){
+export function RegForm(){
     const regName = helpers.regex(/^[a-zA-Zа-яёА-ЯЁ]*$/);
     const regPass = helpers.regex(/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
