@@ -27,11 +27,11 @@ export function AuthTest(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
-                
+
             });
         }catch(err){
             console.log(err.response);
-            
+
         }finally{
             state.password = '';
             state.email = '';
@@ -41,11 +41,11 @@ export function AuthTest(){
         Cookies.remove('XSRF-TOKEN');
         changAuth('flase')
     }
-    
+
     return{
         state,
         AuthForm,
         logOut,
-       
+
     }
 }
