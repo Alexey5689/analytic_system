@@ -48,9 +48,7 @@ class RegisterControllerTest extends TestCase
             'name' => 'Qwerty',
             'tel' => '89096096127',
             'email' => 'next@mail.ru',
-            'password' => 'qwerty12',
-            'verify_token' => \Illuminate\Support\Str::random(),
-            'status' => 1,
+            'password' => 'qwerty12'
         ]);
         Mail::assertSent(VerifyMail::class);
     }
@@ -61,8 +59,6 @@ class RegisterControllerTest extends TestCase
             'tel' => '89096096127',
             'email' => 'next@mail.ru',
             'password' => 'qwerty12',
-            'verify_token' => \Illuminate\Support\Str::random(),
-            'status' => 1,
         ]);
         $token = User::first()->verify_token;
         $route = route('register.verify', ['token' => $token]);
