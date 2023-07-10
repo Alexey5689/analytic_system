@@ -1,15 +1,19 @@
 <template>
-    <div class="card">
+    <div v-if="state.isRec" >
+        <confRec/>
+    </div>
+
+    <div v-else class="card">
         <h1 class="card-header">Восстановление пароля</h1>
         <p>На эту почту мы вышлем ссылку на восстановление пароля</p>
         <div class="card-body">
-            <form class="general-block" @submit.prevent="LoginData">
-                <div><input class="user-email" type="email" placeholder="E-mail*"/></div>
+            <form class="general-block" @submit.prevent="Recovery">
+                <div><input class="user-email" type="email" v-model="state.email" placeholder="E-mail*"/></div>
                 <button type="submit" class="button">Восстановить</button>
             </form>
             <div class="bottom-block-register">
-                <p>Зарегестрироваться</p>
-                <p>Войти</p>
+                <p @click="$router.push('/registration')">Зарегестрироваться</p>
+                <p @click="$router.push('/login')">Войти</p>
             </div>
         </div>
     </div>
@@ -19,39 +23,33 @@
 </style>
 
 <script>
-import axios from 'axios';
-export default {
-    data () {
-        return {
-            result: {},
 
-            email: '',
-            password: ''
+
+import {RecForm}  from '../hooks/PassRecovery.js';
+import confRec from '../components/confirmPassRecovery.vue'
+
+export default {
+    components:{
+            confRec
+        },
+
+    setup(props){
+        const {state, Recovery} = RecForm();
+        return{
+            state,
+            Recovery,
 
         }
     },
 
-    methods: {
-        LoginData()
-        {
-            axios.post("http://app/api/login", this.student)
-                .then(
-                    ({data})=>{
-                        console.log(data);
-                        try {
-                            if (data.status === true) {
-                                alert("Login Successfully");
-                                this.$router.push({ name: 'HelloWorld' })
-                            } else {
-                                alert("Login failed")
-                            }
+    // methods: {
+    //     async Recovery()
+    //     {
+    //         const response = await axios.post("http://localhost:8080/api/forget-password", {
+    //             email: this.email
+    //         });
+    //     }
+    // },
 
-                        } catch (err) {
-                            alert("Error, please try again");
-                        }
-                    }
-                )
-        }
-    }
 }
 </script>

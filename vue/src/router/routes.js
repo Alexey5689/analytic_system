@@ -24,8 +24,8 @@ export const routes = [
 
     {
         name: "Recovery",
-        path: '/recovery',
-        component: Recovery
+        path: '/reset-password',
+        component: Recovery,
     },
 
     {
@@ -36,7 +36,7 @@ export const routes = [
 
     {
         name: "Change",
-        path: '/end-change-pass',
+        path: '/reset-password/:token',
         component: Change
     },
 
