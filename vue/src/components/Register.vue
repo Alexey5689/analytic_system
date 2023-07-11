@@ -43,7 +43,7 @@
                     <small class="ruls" v-for="errors in v$.conf_password.$errors ">{{ errors.$message }}</small>
                     <input
                         class="user-passw"
-                        type="password"
+                         type="password"
                         v-model="state.conf_password"
                         placeholder="Подтвеждение пароля*"/>
                 </div>
