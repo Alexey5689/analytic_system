@@ -84,23 +84,17 @@
 <script>
 import confReg from '../components/confirmRegister.vue'
 import { RegForm } from '../hooks/Registration.js';
-//import { mapState } from 'vuex'
 export default {
     components:{
         confReg
     },
     setup(props){
-        const {state,fetchForm, v$} = RegForm();
+        const {state, fetchForm, v$} = RegForm();
         return{
             state,
             fetchForm,
             v$
         }
-    },
-    computed: {
-        // ...mapState({
-        //     isReg: state =>state.Reg.isReg,
-        // }),
     },
 
 }

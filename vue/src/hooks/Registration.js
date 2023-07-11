@@ -5,17 +5,14 @@ import { helpers } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
-//import { useStore } from 'vuex';
-//import Cookies from 'js-cookie';
+
 
 
 export function RegForm(){
 
     const regName = helpers.regex(/^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/);
-    //const regPass = helpers.regex(/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/);
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
-    //const store = useStore();
     const state = reactive({
             isReg: false,
             email: "",
@@ -23,11 +20,10 @@ export function RegForm(){
             conf_password:"",
             tel: "",
             name: "",
-            reg:  "",
             promo: "",
             response: " ",
             emailMessage:'Шаблон почты аааааа@aa.com',
-            cellMessage:'Шаблон телефона +7999 999 99 99',
+            cellMessage:'Шаблон телефона 8999 999 99 99',
             checked:"",
     })
     const rules = computed (()=>{
@@ -62,9 +58,7 @@ export function RegForm(){
                 }
             }
     })
-
     const v$ = useVuelidate(rules, state);
-
     async function fetchForm(){
         if(this.v$.$invalid){
             this.v$.$touch();
@@ -80,7 +74,6 @@ export function RegForm(){
                         password_confirmation:state.conf_password,
                         name:state.name,
                         tel:state.tel,
-                        reg:state.reg,
                         promo:state.promo,
                     },
                     headers: {
@@ -89,9 +82,6 @@ export function RegForm(){
 
             },)
             state.isReg = true;
-            // Cookies.set('reg_token', response.data.token);
-            // store.commit('getRegToken', Cookies.get('reg_token'));
-            state.response = response.data.message;
         }catch(err){
             state.response = err.response;
         }finally{
