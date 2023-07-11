@@ -14,7 +14,7 @@ export function RegForm(){
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
     const state = reactive({
-            isReg: false,
+            isReg:true,
             email: "",
             password:"",
             conf_password:"",
@@ -79,20 +79,19 @@ export function RegForm(){
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
-
             },)
             state.isReg = true;
         }catch(err){
             state.response = err.response;
         }finally{
-            state.password = '';
-            state.conf_password='';
-            state.email = '';
-            state.name = '';
-            state.tel = '';
-            state.reg = '';
-            state.promo = '';
-            state.checked = ''
+            // state.password = '';
+            // state.conf_password='';
+            // state.email = '';
+            // state.name = '';
+            // state.tel = '';
+            // state.reg = '';
+            // state.promo = '';
+            // state.checked = ''
         }
     }
     return{state, fetchForm, v$}

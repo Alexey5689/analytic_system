@@ -7,15 +7,22 @@
             <div class="bottom-block-register">
                 <p>Не пришло письмо?</p>
                 <p v-if="seconds>0" class=" ">Отправить повторно</p>
-                <p v-else class="resend-p" @click="" >Отправить повторно</p>
+                <p v-else class="resend-p" @click="getEmail" >Отправить повторно</p>
             </div>
-            <p>{{minuts<1?'00':'0'+minuts}}:{{minuts === 1?'00':seconds<10?'0'+ seconds:seconds}}</p>
+            <p>{{minuts<1?'00':'0'+minuts}}:{{minuts===1?'00':seconds<10?'0'+seconds:seconds}}</p>
         </div>
     </div>
 </template>
 <script>
     import { mapActions, mapState } from 'vuex';
+    import { confEmail } from '../hooks/confirmReg';
     export default{
+        setup(props){
+            const { getEmail }=confEmail()
+            return {
+                getEmail
+            }
+        },
         computed: {
             ...mapState({
                 minuts: state => state.minuts,

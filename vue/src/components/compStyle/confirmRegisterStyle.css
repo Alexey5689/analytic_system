@@ -62,4 +62,5 @@ h3 {
 }
 .resend-p {
     color: #005BD1;
+    cursor: pointer;
 }

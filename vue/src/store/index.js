@@ -5,7 +5,8 @@ import { Registration } from './regModul';
 export default createStore({
     state: ()=>({
        seconds:60,
-       minuts:1
+       minuts:1,
+       isReg:"zfafd"
     }),
     getters:{
 

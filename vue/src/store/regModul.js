@@ -3,12 +3,17 @@ import createPersistedState from "vuex-persistedstate";
 
 
 export const Registration={
-    state: ()=>({
-        isReg:""
+    state: () =>({
+        IsRegistration:'',
     }),
+    getters:{
+        token(state){
+            return state.IsRegistration
+        }
+    },
     plugins: [createPersistedState({
         key:"reg_token",
-        // paths:['user'],
+        //paths:['user'],
         storage: {
             getItem: key => Cookies.get(key),
             setItem: (key, value) => Cookies.set(key, value),
@@ -17,9 +22,14 @@ export const Registration={
     })],
     mutations:{
         getRegToken(state, token){
-            state.isReg = token
+            state.IsRegistration = token;
         },
 
     },
+    // actions:{
+    //     getToken({commit}){
+    //         commit('getRegToken');
+    //     }
+    // },
     namespased: true,
 }

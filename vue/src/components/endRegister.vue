@@ -5,14 +5,26 @@
 </template>
 <script>
 import { confEmail } from '../hooks/confirmReg';
+import { mapState } from 'vuex';
 export default{
 
     setup(props){
-        const { sendMail } = confEmail();
+        const { sendMail,getEmail } = confEmail();
         return{
-            sendMail
+            sendMail,
+            getEmail
         }
+    },
+    mounted(){
+        this.sendMail(this.$route.params.token);
+        this.getEmail();
+    },
+    computed:{
+        ...mapState({
+            reg: state => state.Reg.IsRegistration,
+        })
     }
+
 }
 
 </script>
