@@ -14,7 +14,7 @@ export function confEmail(){
                 method: "GET",
                 url:config.appBackendURL + ':' + config.appBackendPort + '/api/verify/',
                 params: {
-                    token: Cookies.set('reg_token'),
+                    token: Cookies.get('reg_token'),
                   }
             },)
         }catch(err){
