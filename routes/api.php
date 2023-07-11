@@ -24,6 +24,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,60');
 
+Route::get('/verify/{token}', [RegisterController::class, 'verify'])->name('register.verify');
+
 
 
 
