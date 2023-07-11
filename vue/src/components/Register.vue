@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isReg" >
+    <div v-if="state.isReg" >
         <confReg/>
     </div>
     <div v-else class="card">
@@ -94,9 +94,9 @@ export default {
         }
     },
     computed: {
-        ...mapState({
-            isReg: state =>state.Reg.isReg,
-        }),
+        // ...mapState({
+        //     isReg: state =>state.Reg.isReg,
+        // }),
     },
 
 }

@@ -4,9 +4,14 @@
     </div>
 </template>
 <script>
+import { confEmail } from '../hooks/confirmReg';
 export default{
-    setup(props){
 
+    setup(props){
+        const { sendMail } = confEmail();
+        return{
+            sendMail
+        }
     }
 }
 

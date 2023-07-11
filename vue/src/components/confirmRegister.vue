@@ -15,21 +15,29 @@
 </template>
 <script>
     import { mapActions, mapState } from 'vuex';
+    import {confEmail} from '../hooks/confirmReg';
     export default{
+        setup(props){
+            const { sendMail } = confEmail();
+            return{
+                sendMail
+            }
+        },
         computed: {
             ...mapState({
                 minuts: state => state.minuts,
                 seconds: state => state.seconds,
+                // isReg: state => state.Reg.isReg,
             }),
         },
         methods:{
-
             ...mapActions({
                 changeTimeAsync: "changeTimeAsync",
             }),
         },
         mounted() {
             this.changeTimeAsync();
+            this.sendMail;
         },
     }
 </script>
