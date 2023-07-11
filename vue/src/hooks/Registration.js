@@ -1,4 +1,4 @@
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
 import axios from 'axios';
 import config from "../../vue.config.js";
 import { helpers } from '@vuelidate/validators';
@@ -11,7 +11,8 @@ import Cookies from 'js-cookie';
 
 export function RegForm(){
     const regName = helpers.regex(/^[a-zA-Zа-яёА-ЯЁ]*$/);
-    const regPass = helpers.regex(/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/);
+    //const regPass = helpers.regex(/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/);
+    const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
     const store = useStore();
     const state = reactive({
@@ -85,11 +86,12 @@ export function RegForm(){
                     }
 
             },)
+            localStorage.setItem('email', state.email)
             Cookies.set('reg_token', response.data.token)
             store.commit('Reg/getRegToken', Cookies.get('reg_token'))
             state.response = response.data.message;
         }catch(err){
-            state.response = err.response.data.message;
+            state.response = err.response;
         }finally{
             state.password = '';
             state.conf_password='';

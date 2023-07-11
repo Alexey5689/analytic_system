@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-    import { mapActions, mapMutations, mapState } from 'vuex';
+    import { mapActions, mapState } from 'vuex';
     export default{
         computed: {
             ...mapState({
