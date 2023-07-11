@@ -3,8 +3,8 @@
         <h1 class="card-header">Смените пароль</h1>
         <div class="card-body">
             <form class="general-block" @submit.prevent="ChangeSubmit">
-                <div><input class="user-passw" type="password" placeholder="Новый пароль*"/></div>
-                <div><input class="user-passw" v-model="password_confirm" type="password" placeholder="Подтверждение пароля*"/></div>
+                <div><input class="user-passw" v-model="state.password" type="password" placeholder="Новый пароль*"/></div>
+                <div><input class="user-passw" v-model="state.password_confirm" type="password" placeholder="Подтверждение пароля*"/></div>
                 <button type="submit" class="button">Поменять пароль</button>
             </form>
         </div>
@@ -15,29 +15,15 @@
 </style>
 
 <script>
-import axios from 'axios';
+import {endChangePass} from '../hooks/endChangePass.js';
 export default {
-    data () {
-        return {
-            password: '',
-            password_confirm: ''
+    setup(props){
+        const {state, ChangeSubmit} = endChangePass();
+        return{
+            state,
+            ChangeSubmit,
 
         }
     },
-
-    methods: {
-        async ChangeSubmit()
-        {
-            const response = await axios.post("/reset-password",
-                {
-                    password: this.password,
-                    password_confirm: this.password_confirm,
-                    token: this.$route.params.token
-                });
-            console.log(response);
-            this.$router.push('/login');
-
-        }
-    }
 }
 </script>

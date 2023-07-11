@@ -41,15 +41,5 @@ export default {
 
         }
     },
-
-    // methods: {
-    //     async Recovery()
-    //     {
-    //         const response = await axios.post("http://localhost:8080/api/forget-password", {
-    //             email: this.email
-    //         });
-    //     }
-    // },
-
 }
 </script>
