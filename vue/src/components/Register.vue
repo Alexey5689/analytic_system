@@ -11,7 +11,7 @@
                     <input
                         class="user-name"
                         type="text"
-                        v-model="state.name"
+                        v-model.trim="state.name"
                         placeholder="ФИО"/></div>
                 <div>
                     <small class="ruls" v-for="errors in v$.tel.$errors ">{{ errors.$message }}</small>
@@ -43,7 +43,7 @@
                     <small class="ruls" v-for="errors in v$.conf_password.$errors ">{{ errors.$message }}</small>
                     <input
                         class="user-passw"
-                        type="password-conf"
+                         type="password"
                         v-model="state.conf_password"
                         placeholder="Подтвеждение пароля*"/>
                 </div>
