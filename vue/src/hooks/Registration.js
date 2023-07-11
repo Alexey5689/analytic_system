@@ -86,9 +86,8 @@ export function RegForm(){
                     }
 
             },)
-            localStorage.setItem('email', state.email)
-            Cookies.set('reg_token', response.data.token)
-            store.commit('Reg/getRegToken', Cookies.get('reg_token'))
+            Cookies.set('reg_token', response.data.token);
+            store.commit('getRegToken', Cookies.get('reg_token'));
             state.response = response.data.message;
         }catch(err){
             state.response = err.response;
