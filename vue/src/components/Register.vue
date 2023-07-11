@@ -1,7 +1,11 @@
 <template>
+    <div>
+        {{ state.response.message }}
+    </div>
     <div v-if="state.isReg" >
         <confReg/>
     </div>
+
     <div v-else class="card">
         <h1 class="card-header">Регистрация в РосМетрик</h1>
         <div class="card-body">
@@ -80,7 +84,7 @@
 <script>
 import confReg from '../components/confirmRegister.vue'
 import { RegForm } from '../hooks/Registration.js';
-import { mapState } from 'vuex'
+//import { mapState } from 'vuex'
 export default {
     components:{
         confReg
