@@ -36,7 +36,7 @@ export function RegForm(){
                     required: helpers.withMessage('Поле обязательно к заполнению', required),
                     minLength: helpers.withMessage('Не должно содержать меньше 3х знаков', minLength(3)),
                     regName: helpers.withMessage('Должно содержать только буквы', regName),
-                    maxLength: helpers.withMessage('Не должно содержать больше 23х знаков', maxLength(23))
+                    maxLength: helpers.withMessage('Не должно содержать больше 255х знаков', maxLength(255))
                 },
                 tel:{
                     required: helpers.withMessage('Поле обязательно к заполнению', required),
