@@ -3,7 +3,7 @@
 <br/>
 Пожалуйста, проследуйте по ссылке для подтверждения эл. почты:
 
-@component('mail::button', ['color' => 'success', 'text-decoration' => 'none', 'url' => route('register.verify', ['token' => $user->verify_token])])
+@component('mail::button', ['color' => 'success', 'text-decoration' => 'none', 'url' => url( config('app.url').':'.config('app.frontend_port')."/end-register/", ['token' => $user->verify_token])])
     Подтвердить Email
 @endcomponent
 
