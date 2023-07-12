@@ -1,6 +1,6 @@
 <template>
 
-    <div v-if="Register || state.isReg">
+    <div v-if="IsRegistration || state.isReg">
         <confReg/>
     </div>
 

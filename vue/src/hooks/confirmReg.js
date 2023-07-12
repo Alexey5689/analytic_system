@@ -1,7 +1,6 @@
 import { useStore } from 'vuex';
 import Cookies from 'js-cookie';
 
-
 export function confEmail(){
     const store = useStore();
     const sendMail = (token) => {
@@ -12,15 +11,13 @@ export function confEmail(){
         try{
             const response = await axios({
                 method: "GET",
-                url:config.appBackendURL + ':' + config.appBackendPort + '/api/verify/',
+                url:config.appBackendURL + ':' + config.appBackendPort + '/api/verify',
                 params: {
-                    token: Cookies.get('reg_token'),
-                  }
+                    _token: Cookies.get('reg_token'),
+                }
             },)
         }catch(err){
-            state.response = err.response;
         }finally{
-
         }
     }
     return{ sendMail, getEmail }
