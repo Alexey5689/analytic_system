@@ -56,7 +56,7 @@
                     <input
                         class="user-reg"
                         type="text"
-                        placeholder="Регион"/>
+                        placeholder="Город"/>
                 </div>
                 <div>
                     <input
