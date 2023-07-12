@@ -50,10 +50,10 @@ export function AuthValidForm(){
                 },);
 
             });
-            state.response = response.massage;
+            state.response = response.message;
             store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
         }catch(err){
-            state.response = err.response.massage;
+            state.response = err.response.message;
         }finally{
             state.password = '';
             state.email = '';
