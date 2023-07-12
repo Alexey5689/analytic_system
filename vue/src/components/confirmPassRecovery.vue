@@ -7,10 +7,30 @@
                 <p>Не пришло письмо?</p>
                 <p class="resend-p">Отправить повторно</p>
             </div>
-            <p class="time">1:00</p>
+            <p class="time">{{minuts<1?'00':minuts}}:{{seconds<10?'0'+seconds:seconds}}</p>
         </div>
     </div>
 </template>
+<script>
+    import { mapActions, mapMutations, mapState } from 'vuex';
+    export default{
+        computed: {
+            ...mapState({
+                minuts: state => state.minuts,
+                seconds: state => state.seconds,
+            }),
+        },
+        methods:{
+            ...mapActions({
+                changeTimeAsync: "changeTimeAsync",
+            }),
+        },
+        mounted() {
+            this.changeTimeAsync();
+        },
+    }
+
+</script>
 
 <style src="../components/compStyle/confirmPassRecovery.css" scoped>
 </style>

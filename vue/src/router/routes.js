@@ -1,4 +1,3 @@
-//import HelloWorld from '../components/HelloWorld.vue'
 import Register from '../components/Register.vue'
 import Login from '../components/Login.vue'
 import Recovery from '../components/PassRecovery.vue'
@@ -6,11 +5,6 @@ import Confirm from '../components/confirmPassRecovery.vue'
 import Change from '../components/endChangePass.vue'
 
 export const routes = [
-    {
-        name: "Hi",
-        path: '/',
-        component: Register
-    },
     {
         name: "Reg",
         path: '/registration',

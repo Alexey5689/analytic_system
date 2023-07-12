@@ -1,16 +1,34 @@
-import {createStore} from "vuex";
+import { createStore } from "vuex";
+import { Registration } from './regModul';
+
 
 export default createStore({
     state: ()=>({
-       isReg: false,
+       seconds:60,
+       minuts:1
     }),
     getters:{
+
     },
     mutations:{
+        changeTime(state){
+            if(state.minuts > 0){
+                state.minuts-=1
+            }
+            if(state.seconds > 0){
+                state.seconds-= 1;
+            }
+       },
     },
-    actions:{ 
+    actions:{
+        changeTimeAsync({commit}){
+            setInterval(()=>{
+                commit('changeTime')
+            },1000);
+        },
     },
-    modules:{  
+    modules:{
+        Reg: Registration
     }
 
 })

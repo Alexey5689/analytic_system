@@ -1,12 +1,11 @@
 @component('mail::message')
-    # Email Confirmation
+Добрый день, {{$user->name}}!
+<br/>
+Пожалуйста, проследуйте по ссылке для подтверждения эл. почты:
 
-    Пожалуйста, проследуйте по ссылке для подтверждения эл. почты:
+@component('mail::button', ['color' => 'success', 'text-decoration' => 'none', 'url' => route('register.verify', ['token' => $user->verify_token])])
+    Подтвердить Email
+@endcomponent
 
-    @component('mail::button', ['url' => route('register.verify', ['token' => $user->verify_token])])
-        Подтвердить Email
-    @endcomponent
-
-    Thanks,<br>
-    {{ config('app.name') }}
+{{ config('app.name') }}
 @endcomponent
