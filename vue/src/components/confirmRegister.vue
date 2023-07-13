@@ -6,12 +6,32 @@
                 <p>На вашу почту была отправлена ссылка подтверждения регистрации. Перейдите по ссылке в письме для подтверждения</p>
             <div class="bottom-block-register">
                 <p>Не пришло письмо?</p>
-                <p class="resend-p">Отправить повторно</p>
+                <p class="resend-p" :disabled="seconds>0">Отправить повторно</p>
             </div>
-            <p>1:00</p>
+            <p>{{minuts<1?'00':minuts}}:{{seconds<10?'0'+seconds:seconds}}</p>
         </div>
     </div>
 </template>
+<script>
+    import { mapActions, mapMutations, mapState } from 'vuex';
+    export default{
+        computed: {
+            ...mapState({
+                minuts: state => state.minuts,
+                seconds: state => state.seconds,
+            }),
+        },
+        methods:{
+
+            ...mapActions({
+                changeTimeAsync: "changeTimeAsync",
+            }),
+        },
+        mounted() {
+            this.changeTimeAsync();
+        },
+    }
+</script>
 
 <style src="../components/compStyle/confirmRegisterStyle.css" scoped>
 </style>
