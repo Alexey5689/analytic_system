@@ -40,12 +40,12 @@ class ForgotPasswordController extends Controller
         {
             $request->validate([
                 'token' => 'required',
-                'email' => 'required|email',
                 'password' => 'required|confirmed',
             ]);
 
+
             $status = Password::reset(
-                $request->only('email', 'password', 'password_confirmation', 'token'),
+                $request->only( 'password', 'password_confirmation', 'token'),
                 function (User $user, string $password) {
                     $user->forceFill([
                         'password' => Hash::make($password)
@@ -60,7 +60,7 @@ class ForgotPasswordController extends Controller
             if ($status === Password::PASSWORD_RESET) {
                 return response()->json([
                     'message' => "Оk",
-                    'status' => true
+                    'status' => true,
                 ]);
             } else {
                 return response()->json([
@@ -68,8 +68,6 @@ class ForgotPasswordController extends Controller
                     'status' => false
                 ]);
             }
-
-
         }
 
 }

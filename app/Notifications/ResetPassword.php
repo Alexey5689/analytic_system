@@ -52,7 +52,7 @@ class ResetPassword extends ResetPasswordNotification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'token' => $this->token
         ];
     }
 }

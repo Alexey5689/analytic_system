@@ -7,6 +7,7 @@ export function endChangePass(){
     const state = reactive({
             password: "",
             password_confirm: '',
+            token: '',
             response: ''
     })
     const ChangeSubmit = async () =>{
@@ -15,6 +16,7 @@ export function endChangePass(){
                     method:'POST',
                     url:config.appBackendURL + ':' + config.appBackendPort + '/api/reset',
                     data:{
+                        token:state.token,
                         password:state.password,
                         password_confirm:state.password_confirm
                     },
@@ -30,6 +32,7 @@ export function endChangePass(){
         }finally{
             state.password = '';
             state.password_confirm= '';
+            state.token = '';
         }
 
     }
