@@ -18,17 +18,24 @@ class LoginController extends Controller
             'password' => $request['password'],
         ];
 
-        if (Auth::attempt($credentials)) {
+        if (!Auth::attempt($credentials)) {
             return response()->json([
-                'status' => true,
-                'message' => "Success",
-                'token' => $request->user()->createToken('sa_token')->plainTextToken
+                'status' => false,
+                'message' => "Неверный логин или пароль"
+            ]);
+        }
+        if(User::where('email', $request->email)->get()->value('status') != 2) {
+            return response()->json([
+                'status' => false,
+                'message' => "Пользователь не активен"
             ]);
         }
         return response()->json([
-            'status' => false,
-            'message' => "Неверный логин или пароль"
+            'status' => true,
+            'message' => "Success",
+            'token' => $request->user()->createToken('sa_token')->plainTextToken
         ]);
+
     }
 
     public function reset_password($token) {
