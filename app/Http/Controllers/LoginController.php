@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ValidateLoginRequest;
 use App\Mail\ResetPasswordMail;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -38,9 +39,15 @@ class LoginController extends Controller
 
     }
 
-    public function reset_password($token) {
-        Mail::to(User::where('verify_token', $token)->email)->send(new ResetPasswordMail(User::where('verify_token')->name));
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Вы вышли из системы',
+        ]);
     }
-
-
 }
