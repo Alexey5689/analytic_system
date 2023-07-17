@@ -23,7 +23,7 @@ export function RegForm(){
             promo: "",
             response: " ",
             cities:[],
-            serchTown:"",
+            searchTown: "",
             emailMessage:'Шаблон почты аааааа@aa.com',
             cellMessage:'Шаблон телефона 8999 999 99 99',
             checked:"",
@@ -75,6 +75,7 @@ export function RegForm(){
                         password:state.password,
                         password_confirmation:state.conf_password,
                         name:state.name,
+                        cities: state.cities,
                         tel:state.tel,
                         promo:state.promo,
                     },
@@ -102,7 +103,12 @@ export function RegForm(){
 
         }
     }
-    return{state, fetchForm, v$, getCities}
+    return{
+        state,
+        fetchForm,
+        v$,
+        getCities
+    }
 }
 
 

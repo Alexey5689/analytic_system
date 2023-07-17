@@ -54,14 +54,14 @@
                 </div>
                 <div>
                     <input
-                        v-model="state.serchTown"
+                        v-model="state.searchTown"
                         class="user-reg"
                         type="text"
                         placeholder="Город"/>
                 </div>
-                <ul v-for="town in serchCity" :key="town.id">
+                <ul v-for="town in searchCity" :key="town.id">
                     <li @click = select(town)>
-                        {{ town.city }}
+                        {{ town.cities }}
                     </li>
                 </ul>
                 <div>
@@ -97,20 +97,21 @@ export default {
         confReg
     },
     setup(props){
-        const {state, fetchForm, v$} = RegForm();
+        const {state, fetchForm, v$, getCities} = RegForm();
         return{
             state,
             fetchForm,
-            v$
+            v$,
+            getCities
         }
     },
     computed:{
         ...mapState({
             IsRegistration: state => state.Reg.IsRegistration,
         }),
-        serchCity() {
+        searchCity() {
             return this.state.cities.filter(city => {
-                return city.cities.toLowerCase().includes(this.state.serchTown.toLowerCase());
+                return city.cities.toLowerCase().includes(this.state.searchTown.toLowerCase());
             })
         },
         created(){
