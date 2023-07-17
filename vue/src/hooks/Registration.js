@@ -22,6 +22,8 @@ export function RegForm(){
             name: "",
             promo: "",
             response: " ",
+            cities:[],
+            serchTown:"",
             emailMessage:'Шаблон почты аааааа@aa.com',
             cellMessage:'Шаблон телефона 8999 999 99 99',
             checked:"",
@@ -84,17 +86,23 @@ export function RegForm(){
         }catch(err){
             state.response = err.response;
         }finally{
-            // state.password = '';
-            // state.conf_password='';
-            // state.email = '';
-            // state.name = '';
-            // state.tel = '';
-            // state.reg = '';
-            // state.promo = '';
-            // state.checked = ''
         }
     }
-    return{state, fetchForm, v$}
+    const getCities = async()=> {
+        try{
+            const response = await axios({
+                method:'GET',
+                url:config.appBackendURL + ':' + config.appBackendPort + '/api/city',
+            },)
+            console.log(response.data);
+            state.cities = response.data;
+        }catch(err){
+            console.log(err.response);
+        }finally{
+
+        }
+    }
+    return{state, fetchForm, v$, getCities}
 }
 
 

@@ -54,10 +54,16 @@
                 </div>
                 <div>
                     <input
+                        v-model="state.serchTown"
                         class="user-reg"
                         type="text"
                         placeholder="Город"/>
                 </div>
+                <ul v-for="town in serchCity" :key="town.id">
+                    <li @click = select(town)>
+                        {{ town.city }}
+                    </li>
+                </ul>
                 <div>
                     <input
                         class="user-promo"
@@ -102,6 +108,14 @@ export default {
         ...mapState({
             IsRegistration: state => state.Reg.IsRegistration,
         }),
+        serchCity() {
+            return this.state.cities.filter(city => {
+                return city.cities.toLowerCase().includes(this.state.serchTown.toLowerCase());
+            })
+        },
+        created(){
+            this.getCities()
+        },
     },
 
 

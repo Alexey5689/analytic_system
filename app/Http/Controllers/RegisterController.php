@@ -20,6 +20,7 @@ class RegisterController extends Controller
             'tel' => $request ['tel'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'city' => $request['city'],
             'verify_token' => Str::random(),
             'status' => User::STATUS_INACTIVE,
         ]);
@@ -52,7 +53,7 @@ class RegisterController extends Controller
     }
 
     public function city() {
-        $citys = [
+        $city = [
             '1' => "Абаза", '2' => "Абакан", '3' => "Абдулино", '4' => "Абинск", '5' => "Агидель", '6' => "Агрыз",
             '7' => "Адыгейск", '8' => "Азнакаево", '9' => "Азов", '10' => "Ак-Довурак", '11' => "Аксай", '12' => "Алагир",
             '13' => "Алапаевск", '14' => "Алатырь", '15' => "Алдан", '16' => "Алейск", '17' => "Александров", '18' => "Александровск",
@@ -265,6 +266,6 @@ class RegisterController extends Controller
             '1097' => "Юрьев-Польский", '1098' => "Юрьевец", '1099' => "Юрюзань", '1100' => "Юхнов", '1101' => "Ядрин",
             '1102' => "Якутск", '1103' => "Ялта", '1104' => "Ялуторовск", '1105' => "Янаул", '1106' => "Яранск", '1107' => "Яровое",
             '1108' => "Ярославль", '1109' => "Ярцево", '1110' => "Ясногорск", '1111' => "Ясный", '1112' => "Яхрома" ];
-        return response()->json($citys);
+        return response()->json($city);
     }
 }

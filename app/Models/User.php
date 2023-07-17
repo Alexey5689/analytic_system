@@ -33,6 +33,7 @@ class User extends Authenticatable
         'promo',
         'verify_token',
         'status',
+        'city',
         'email_verified_at'
     ];
 
