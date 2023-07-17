@@ -22,7 +22,6 @@ class ForgotPasswordController extends Controller
             $request->only('email')
         );
 
-
         if($status === Password::RESET_LINK_SENT)
         {
             return response()->json([
@@ -36,21 +35,15 @@ class ForgotPasswordController extends Controller
         ]);
     }
 
-    public function reset(Request $request)
+    public function reset(ResetPasswordRequest $request)
         {
-            $request->validate([
-                'token' => 'required',
-                'password' => 'required|confirmed',
-            ]);
-
-
             $status = Password::reset(
-                $request->only( 'password', 'password_confirmation', 'token'),
+                $request->only( 'password', 'password_confirmation', 'token', 'email'),
                 function (User $user, string $password) {
+
                     $user->forceFill([
                         'password' => Hash::make($password)
                     ])->setRememberToken(Str::random(60));
-
                     $user->save();
 
                     event(new PasswordReset($user));
