@@ -40,10 +40,7 @@ button {
     font-family: 'Montserrat-Regular'
 
 }
-input:hover {
-    background-color: #528FDF;
-    transition: ease 1s;
-}
+
 input {
     font-family: 'Montserrat-Regular';
     font-size: 14px;
@@ -52,6 +49,7 @@ input {
     width: -webkit-fill-available;
 }
 .user-email {
+    background: url("../../assets/image/mail-icon.svg") no-repeat;
     background-size: inherit;
     background-position-y: center;
     background-color: #F0F1F3;

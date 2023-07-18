@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +42,10 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/verify/{token}', [RegisterController::class, 'verify'])->name('register.verify');
 
 Route::get('/profile', function () {})->middleware('verified');
+
+
+
+
+
+
+
