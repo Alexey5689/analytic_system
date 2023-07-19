@@ -6,6 +6,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, helpers} from '@vuelidate/validators'
 import {useStore} from 'vuex';
 
+
 export function AuthValidForm(){
     const store = useStore();
     const state = reactive({
@@ -34,10 +35,10 @@ export function AuthValidForm(){
         if(this.v$.$invalid){
             this.v$.$touch();
             return;
-        };
+        }
         try{
-           const response = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie').then(async response => {
-                await axios({
+           // const response = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie').then(async response => {
+            const response =  await axios({
                     method: 'POST',
                     url: config.appBackendURL+':'+config.appBackendPort+'/api/login',
                     data: {
@@ -48,12 +49,14 @@ export function AuthValidForm(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
-
-            });
-            state.response = response.message;
+            Cookies.set('XSRF-TOKEN', response.data.token);
+            //state.response = response;
+            console.log(response)
             store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
+            window.location.href = '/';
         }catch(err){
-            state.response = err.response.message;
+
+            console.log(err)
         }finally{
             state.password = '';
             state.email = '';
