@@ -35,7 +35,7 @@ services:
         tty: true
         working_dir: /var/www
         volumes:
-            - './vue:/var/www'
+            - './vue:/var/www:delegated'
         networks:
             - sail
 
