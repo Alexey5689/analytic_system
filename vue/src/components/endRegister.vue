@@ -15,15 +15,16 @@ export default{
             getEmail
         }
     },
-    mounted(){
+    created(){
         this.sendMail(this.$route.params.token);
+    },
+    mounted(){
         this.getEmail();
     },
-    computed:{
-        ...mapState({
+    computed:mapState({
             reg: state => state.Reg.IsRegistration,
-        })
-    }
+    })
+
 
 }
 

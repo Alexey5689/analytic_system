@@ -6,7 +6,6 @@ export default createStore({
     state: ()=>({
        seconds:60,
        minuts:1,
-       isReg:"zfafd"
     }),
     getters:{
 
@@ -31,5 +30,6 @@ export default createStore({
     modules:{
         Reg: Registration
     }
+
 
 })

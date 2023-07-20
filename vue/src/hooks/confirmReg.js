@@ -3,12 +3,11 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import config from "../../vue.config.js";
 
+
+
 export function confEmail(){
+
     const store = useStore();
-    const sendMail = (token) => {
-        Cookies.set('reg_token', token)
-        store.commit('getRegToken', token);
-    }
 
     const getEmail = async()=>{
         try{
@@ -24,6 +23,12 @@ export function confEmail(){
             console.error(err)
         }finally{
         }
+    }
+    const sendMail = (token) => {
+        console.log(token);
+        Cookies.set('reg_token', token)
+        store.commit('getRegToken', token);
+
     }
     return{ sendMail, getEmail }
 }

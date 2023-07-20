@@ -24,6 +24,7 @@ export function RegForm(){
             response: " ",
             cities:[],
             searchTown: "",
+            cityId:"",
             emailMessage:'Шаблон почты аааааа@aa.com',
             cellMessage:'Шаблон телефона 8999 999 99 99',
             checked:"",
@@ -66,41 +67,40 @@ export function RegForm(){
             this.v$.$touch();
             return;
         }
+
         try{
             const response = await axios({
                     method:'POST',
-                    url:config.appBackendURL + ':' + config.appBackendPort + '/api/register',
+                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/register',
                     data:{
                         email:state.email,
                         password:state.password,
                         password_confirmation:state.conf_password,
                         name:state.name,
-                        cities: state.cities,
                         tel:state.tel,
                         promo:state.promo,
+                        city:state.cityId,
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-            state.isReg = true;
-        }catch(err){
-            state.response = err.response;
-        }finally{
-        }
-    }
-    const getCities = async()=> {
-        try{
-            const response = await axios({
-                method:'GET',
-                url:config.appBackendURL + ':' + config.appBackendPort + '/api/city',
-            },)
+
             console.log(response.data);
-            state.cities = response.data;
         }catch(err){
             console.log(err.response);
         }finally{
+        }
+    }
 
+    const getCities = async()=> {
+        try{
+            const response = await axios.get(config.applocalhostURL + ':' + config.appBackendPort +'/api/city')
+
+            state.cities = response.data;
+            console.log(state.cities);
+        }catch(err){
+            console.log(err);
         }
     }
     return{

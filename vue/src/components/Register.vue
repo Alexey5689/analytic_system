@@ -1,17 +1,17 @@
 <template>
 
-    <div v-if="IsRegistration || state.isReg">
+    <!-- <div v-if="IsRegistration || state.isReg">
         <confReg/>
-    </div>
+    </div> -->
 
-    <div v-else class="card">
+    <div  class="card">
         <h1 class="card-header">Регистрация в РосМетрик</h1>
         <div class="card-body">
             <form class="general-block" @submit.prevent="fetchForm">
                 <div>
-                    <div class="ruls">
-                        {{ state.response.data}}
-                    </div>
+                    <!-- <div class="ruls">
+                        {{ state.response.data }}
+                    </div> -->
                     <small class="ruls" v-for="errors in v$.name.$errors ">{{ errors.$message }}</small>
                     <input
                         class="user-name"
@@ -57,13 +57,15 @@
                         v-model="state.searchTown"
                         class="user-reg"
                         type="text"
-                        placeholder="Город"/>
+                        placeholder="Город"
+                        />
+                    <cityList
+                        v-if="state.searchTown && this.srch"
+                        :serchCity="serchCity"
+                        @select="getCity"
+                    />
                 </div>
-                <ul v-for="town in searchCity" :key="town.id">
-                    <li @click = select(town)>
-                        {{ town.cities }}
-                    </li>
-                </ul>
+
                 <div>
                     <input
                         class="user-promo"
@@ -94,7 +96,12 @@ import { RegForm } from '../hooks/Registration.js';
 import { mapState } from 'vuex';
 export default {
     components:{
-        confReg
+        confReg,
+    },
+    data(){
+        return{
+            srch:true,
+        }
     },
     setup(props){
         const {state, fetchForm, v$, getCities} = RegForm();
@@ -105,18 +112,29 @@ export default {
             getCities
         }
     },
+
     computed:{
-        ...mapState({
-            IsRegistration: state => state.Reg.IsRegistration,
-        }),
-        searchCity() {
-            return this.state.cities.filter(city => {
-                return city.cities.toLowerCase().includes(this.state.searchTown.toLowerCase());
+        // ...mapState({
+        //     Reg: state => state.Reg.IsRegistration,
+        // }),
+        serchCity() {
+                return this.state.cities.filter(elem =>{return elem.name.toLowerCase().includes(this.state.searchTown.toLowerCase())
             })
         },
-        created(){
-            this.getCities()
+
+    },
+    methods:{
+        getCity(city){
+            this.state.searchTown = city.name;
+            console.log(city.id);
+            this.state.cityId = city.id;
+            this.srch = false
         },
+
+
+    },
+    created(){
+        this.getCities()
     },
 
 

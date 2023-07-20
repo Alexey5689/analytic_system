@@ -7,13 +7,11 @@ export const Registration={
         IsRegistration:'',
     }),
     getters:{
-        token(state){
-            return state.IsRegistration
-        }
+
     },
     plugins: [createPersistedState({
         key:"reg_token",
-        //paths:['user'],
+        //paths:['IsRegistration'],
         storage: {
             getItem: key => Cookies.get(key),
             setItem: (key, value) => Cookies.set(key, value),
@@ -26,10 +24,5 @@ export const Registration={
         },
 
     },
-    // actions:{
-    //     getToken({commit}){
-    //         commit('getRegToken');
-    //     }
-    // },
     namespased: true,
 }
