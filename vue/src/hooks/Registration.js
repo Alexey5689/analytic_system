@@ -7,26 +7,27 @@ import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
 
 export function RegForm(){
-
+    //регулярные выражения
     const regName = helpers.regex(/^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/);
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
     const state = reactive({
-            isReg:false,
+            isReg:false,//флаг меняющий компонент регитсрации на компоннент подтверждения регистрации
             email: "",
             password:"",
             conf_password:"",
             tel: "",
             name: "",
             promo: "",
-            response: " ",
-            cities:[],
-            searchTown: "",
-            cityId:"",
+            response: " ",//ответ с бэка
+            cities:[],//массив городов
+            searchTown: "",//поле ввода города
+            cityId:"", //id города
             emailMessage:'Шаблон почты аааааа@aa.com',
             cellMessage:'Шаблон телефона 8999 999 99 99',
-            checked:"",
+            checked:"",//checkbox
     })
+    //валидация
     const rules = computed (()=>{
       return{
                 name:{
@@ -59,13 +60,15 @@ export function RegForm(){
                 }
             }
     })
+    //валидация
     const v$ = useVuelidate(rules, state);
     async function fetchForm(){
+        //ошибки валидации
         if(this.v$.$invalid){
             this.v$.$touch();
             return;
         }
-
+        //регистрация
         try{
             const response = await axios({
                     method:'POST',
@@ -82,20 +85,20 @@ export function RegForm(){
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
-<<<<<<< HEAD
+
 
             },)
+            //  смена регистрации на подтверждение
             state.isReg = true;
-=======
-            },)
->>>>>>> fe9fed6cfaf23aa5f1fd5e3602b240c0d9bd5818
             console.log(response.data);
         }catch(err){
-            state.response = err;
+            console.log(err);
+            //ошибка регистрации вывод в компоненте
+            state.response = err.message;
         }finally{
         }
     }
-
+    //получение массива городов
     const getCities = async()=> {
         try{
             const response = await axios.get(config.appBackendURL + ':' + config.appBackendPort +'/api/city')
@@ -103,8 +106,11 @@ export function RegForm(){
             console.log(state.cities);
         }catch(err){
             console.log(err);
+            //ошибка запроса
+            state.response = err.message;
         }
     }
+
     return{
         state,
         fetchForm,

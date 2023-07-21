@@ -1176,10 +1176,7 @@ class RegisterController extends Controller
             [ "id" => 1116, "name" => "Ясный"],
             [ "id" => 1117, "name" => "Яхрома"],
         ];
-<<<<<<< HEAD
 
-=======
->>>>>>> fe9fed6cfaf23aa5f1fd5e3602b240c0d9bd5818
         return response()->json($cities);
     }
 }
