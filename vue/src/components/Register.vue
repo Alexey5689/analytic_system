@@ -1,17 +1,16 @@
 <template>
 
-    <!-- <div v-if="IsRegistration || state.isReg">
+    <div v-if="state.isReg">
         <confReg/>
-    </div> -->
-
-    <div  class="card">
+    </div>
+    <div v-else  class="card">
         <h1 class="card-header">Регистрация в РосМетрик</h1>
         <div class="card-body">
             <form class="general-block" @submit.prevent="fetchForm">
                 <div>
-                    <!-- <div class="ruls">
-                        {{ state.response.data }}
-                    </div> -->
+                    <div class="ruls">
+                        {{ state.response.data.message }}
+                    </div>
                     <small class="ruls" v-for="errors in v$.name.$errors ">{{ errors.$message }}</small>
                     <input
                         class="user-name"
