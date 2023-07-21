@@ -10,7 +10,6 @@ export const routes = [
         path: '/',
         component: Register
     },
-
     {
         name: "EndReg",
         path: '/end-register/:token',

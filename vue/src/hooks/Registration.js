@@ -6,6 +6,7 @@ import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
 
+
 export function RegForm(){
     //регулярные выражения
     const regName = helpers.regex(/^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/);
@@ -29,39 +30,40 @@ export function RegForm(){
     })
     //валидация
     const rules = computed (()=>{
-      return{
-                name:{
-                    required: helpers.withMessage('Поле обязательно к заполнению', required),
-                    minLength: helpers.withMessage('Не должно содержать меньше 3х знаков', minLength(3)),
-                    regName: helpers.withMessage('Должно содержать только буквы', regName),
-                    maxLength: helpers.withMessage('Не должно содержать больше 255х знаков', maxLength(255))
-                },
-                tel:{
-                    required: helpers.withMessage('Поле обязательно к заполнению', required),
-                    minLength:  helpers.withMessage('Не должно содержать меньше 3х знаков', minLength(3)),
-                    maxLength: helpers.withMessage('Не должно содержать больше 11ти знаков', maxLength(11)),
-                    regPhone: helpers.withMessage('Должен содержать только цифры', regPhone),
-                },
-                email:{
-                    required: helpers.withMessage('Поле обязательно к заполнению', required),
-                    email: helpers.withMessage('Не корректный email',email)},
-                password:{
-                    required: helpers.withMessage('Поле обязательно к заполнению', required),
-                    minLength:  helpers.withMessage('Не должно содержать меньше 8ми знаков', minLength(8)),
-                    maxLength: helpers.withMessage('Не должно содержать больше 23х знаков', maxLength(23)),
-                    regPass: helpers.withMessage('Должен содержать латинские буквы в верхнем и нижнем регистре, цифры и символы(!@#$%_)',regPass)
-                },
-                conf_password:{
-                    required: helpers.withMessage('Поле обязательно к заполнению', required),
-                    sameAs: helpers.withMessage('Значения не совпадают', sameAs(state.password)),
-                },
-                checked:{
-                    required: helpers.withMessage('Примите условие соглашения', required),
+        return  {
+                    name:{
+                        required: helpers.withMessage('Поле обязательно к заполнению', required),
+                        minLength: helpers.withMessage('Не должно содержать меньше 3х знаков', minLength(3)),
+                        regName: helpers.withMessage('Должно содержать только буквы', regName),
+                        maxLength: helpers.withMessage('Не должно содержать больше 255х знаков', maxLength(255))
+                    },
+                    tel:{
+                        required: helpers.withMessage('Поле обязательно к заполнению', required),
+                        minLength:  helpers.withMessage('Не должно содержать меньше 3х знаков', minLength(3)),
+                        maxLength: helpers.withMessage('Не должно содержать больше 11ти знаков', maxLength(11)),
+                        regPhone: helpers.withMessage('Должен содержать только цифры', regPhone),
+                    },
+                    email:{
+                        required: helpers.withMessage('Поле обязательно к заполнению', required),
+                        email: helpers.withMessage('Не корректный email',email)},
+                    password:{
+                        required: helpers.withMessage('Поле обязательно к заполнению', required),
+                        minLength:  helpers.withMessage('Не должно содержать меньше 8ми знаков', minLength(8)),
+                        maxLength: helpers.withMessage('Не должно содержать больше 23х знаков', maxLength(23)),
+                        regPass: helpers.withMessage('Должен содержать латинские буквы в верхнем и нижнем регистре, цифры и символы(!@#$%_)',regPass)
+                    },
+                    conf_password:{
+                        required: helpers.withMessage('Поле обязательно к заполнению', required),
+                        sameAs: helpers.withMessage('Значения не совпадают', sameAs(state.password)),
+                    },
+                    checked:{
+                        required: helpers.withMessage('Примите условие соглашения', required),
+                    }
                 }
-            }
     })
     //валидация
     const v$ = useVuelidate(rules, state);
+
     async function fetchForm(){
         //ошибки валидации
         if(this.v$.$invalid){
@@ -85,11 +87,10 @@ export function RegForm(){
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
-
-
             },)
             //  смена регистрации на подтверждение
             state.isReg = true;
+
             console.log(response.data);
         }catch(err){
             console.log(err);
@@ -118,5 +119,4 @@ export function RegForm(){
         getCities
     }
 }
-
 

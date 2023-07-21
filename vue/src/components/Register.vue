@@ -1,4 +1,5 @@
 <template>
+
     <div v-if="state.isReg">
         <confReg/>
     </div>
@@ -7,9 +8,11 @@
         <div class="card-body">
             <form class="general-block" @submit.prevent="fetchForm">
                 <div>
+
                     <div class="ruls">
                         {{ state.response }}
                     </div>
+
                     <small class="ruls" v-for="errors in v$.name.$errors ">{{ errors.$message }}</small>
                     <input
                         class="user-name"
