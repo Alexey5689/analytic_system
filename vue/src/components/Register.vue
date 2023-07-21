@@ -1,5 +1,4 @@
 <template>
-
     <div v-if="state.isReg">
         <confReg/>
     </div>
@@ -90,7 +89,6 @@
 <script>
 import confReg from '../components/confirmRegister.vue'
 import { RegForm } from '../hooks/Registration.js';
-
 export default {
     components:{
         confReg,
@@ -115,7 +113,6 @@ export default {
                 return this.state.cities.filter(elem =>{return elem.name.toLowerCase().includes(this.state.searchTown.toLowerCase())
             })
         },
-
     },
     methods:{
         getCity(city){
@@ -123,14 +120,10 @@ export default {
             this.state.cityId = city.id;
             this.srch = false
         },
-
-
     },
     created(){
         this.getCities()
     },
-
-
 }
 </script>
 

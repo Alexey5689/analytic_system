@@ -6,8 +6,6 @@ import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
 
-
-
 export function RegForm(){
 
     const regName = helpers.regex(/^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/);
@@ -85,7 +83,6 @@ export function RegForm(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-
             console.log(response.data);
         }catch(err){
             console.log(err.response);
@@ -95,8 +92,7 @@ export function RegForm(){
 
     const getCities = async()=> {
         try{
-            const response = await axios.get(config.applocalhostURL + ':' + config.appBackendPort +'/api/city')
-
+            const response = await axios.get(config.appBackendURL + ':' + config.appBackendPort +'/api/city')
             state.cities = response.data;
             console.log(state.cities);
         }catch(err){
