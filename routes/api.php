@@ -20,13 +20,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [RegisterController::class, 'store']);//повторная отправка письма
+Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,60');
 
 Route::get('/city', [RegisterController::class, 'city']);
 
 Route::get('/verify', [RegisterController::class, 'verify']);
+
+Route::post('/register-mail-again', [RegisterController::class, 'again']);
+
 
 
 

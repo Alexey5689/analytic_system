@@ -30,7 +30,11 @@ class RegisterController extends Controller
             'message' => "Пользователь успешно зарегистрирован",
             'status' => true
         ]);
+    }
 
+    public function again(Request $request) {
+        $user = User::where('email', $request->email);
+        Mail::to([$request->email])->send(new VerifyMail($user));
     }
 
     public function verify(Request $request)
