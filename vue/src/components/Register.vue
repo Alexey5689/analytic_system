@@ -1,17 +1,14 @@
 <template>
 
-    <!-- <div v-if="IsRegistration || state.isReg">
+    <div v-if="state.isReg">
         <confReg/>
-    </div> -->
+    </div>
 
-    <div  class="card">
+    <div v-else class="card">
         <h1 class="card-header">Регистрация в РосМетрик</h1>
         <div class="card-body">
             <form class="general-block" @submit.prevent="fetchForm">
                 <div>
-                    <!-- <div class="ruls">
-                        {{ state.response.data }}
-                    </div> -->
                     <small class="ruls" v-for="errors in v$.name.$errors ">{{ errors.$message }}</small>
                     <input
                         class="user-name"
@@ -93,7 +90,7 @@
 <script>
 import confReg from '../components/confirmRegister.vue'
 import { RegForm } from '../hooks/Registration.js';
-import { mapState } from 'vuex';
+
 export default {
     components:{
         confReg,
@@ -114,9 +111,6 @@ export default {
     },
 
     computed:{
-        // ...mapState({
-        //     Reg: state => state.Reg.IsRegistration,
-        // }),
         serchCity() {
                 return this.state.cities.filter(elem =>{return elem.name.toLowerCase().includes(this.state.searchTown.toLowerCase())
             })
@@ -126,7 +120,6 @@ export default {
     methods:{
         getCity(city){
             this.state.searchTown = city.name;
-            console.log(city.id);
             this.state.cityId = city.id;
             this.srch = false
         },
