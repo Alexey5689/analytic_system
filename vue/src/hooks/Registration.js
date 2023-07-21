@@ -6,8 +6,6 @@ import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
 
-
-
 export function RegForm(){
 
     const regName = helpers.regex(/^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/);
@@ -84,9 +82,13 @@ export function RegForm(){
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
+<<<<<<< HEAD
 
             },)
             state.isReg = true;
+=======
+            },)
+>>>>>>> fe9fed6cfaf23aa5f1fd5e3602b240c0d9bd5818
             console.log(response.data);
         }catch(err){
             state.response = err;

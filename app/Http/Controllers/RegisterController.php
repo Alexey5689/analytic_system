@@ -30,7 +30,11 @@ class RegisterController extends Controller
             'message' => "Пользователь успешно зарегистрирован",
             'status' => true
         ]);
+    }
 
+    public function again(Request $request) {
+        $user = User::where('email', $request->email);
+        Mail::to([$request->email])->send(new VerifyMail($user));
     }
 
     public function verify(Request $request)
@@ -1172,7 +1176,10 @@ class RegisterController extends Controller
             [ "id" => 1116, "name" => "Ясный"],
             [ "id" => 1117, "name" => "Яхрома"],
         ];
+<<<<<<< HEAD
 
+=======
+>>>>>>> fe9fed6cfaf23aa5f1fd5e3602b240c0d9bd5818
         return response()->json($cities);
     }
 }

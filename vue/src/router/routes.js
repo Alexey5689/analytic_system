@@ -1,6 +1,7 @@
 import Register from '../components/Register.vue'
 import EndRegister from "../components/endRegister.vue";
 import Change from '../components/endChangePass.vue';
+import ConfReg from '../components/confirmRegister.vue';
 
 export const routes = [
     {
@@ -19,5 +20,11 @@ export const routes = [
         path: '/reset-password/:token?',
         component: Change
     },
+    {
+        name: "ConfReg",
+        path: '/conf-reg',
+        component: ConfReg
+    },
+
 
 ]
