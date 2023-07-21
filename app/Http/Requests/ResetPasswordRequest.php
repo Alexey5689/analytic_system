@@ -34,6 +34,9 @@ class ResetPasswordRequest extends FormRequest
             'password.max' => 'Вы указали слишком длинный пароль',
             'password.required' => 'Вы не указали пароль',
             'password.confirmed' => 'Введите подтверждение пароля',
+            'email.email' => 'Должен быть указан действительный адрес электронной почты',
+            'email.required'  => 'Вы не указали email',
+
         ];
     }
 }

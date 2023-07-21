@@ -2,8 +2,7 @@
     <div class="card">
         <h1 class="card-header">Смените пароль</h1>
         <div class="card-body">
-            <form class="general-block" @submit.prevent="ChangeSubmit">
-                <div><input type="hidden" name="token" class="user-email" v-model="state.token"/></div>
+            <form class="general-block" @submit.prevent="ChangeSubmit(this.$route.params.token, this.$route.params.email)">
                 <div><input class="user-passw" v-model="state.password" type="password" placeholder="Новый пароль*"/></div>
                 <div><input class="user-passw" v-model="state.password_confirm" type="password" placeholder="Подтверждение пароля*"/></div>
                 <button type="submit" class="button">Поменять пароль</button>
