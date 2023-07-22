@@ -7,9 +7,6 @@ export default createStore({
        seconds:60,
        minuts:1,
     }),
-    getters:{
-
-    },
     mutations:{
         changeTime(state){
             if(state.minuts > 0){

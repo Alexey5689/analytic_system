@@ -1,10 +1,8 @@
 import axios from 'axios';
 import config from "../../vue.config.js";
 import { reactive } from 'vue';
-import { useStore } from 'vuex';
 
 export function Repeated(){
-    const store = useStore();
     const state = reactive({
         respose: "",
     })
@@ -27,8 +25,6 @@ export function Repeated(){
             }catch(err){
                 console.log(err);
                 state.response = err.message;
-                console.log(localStorage.getItem('repEmail'));
-
             }
         }
     return {

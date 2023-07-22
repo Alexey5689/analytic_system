@@ -9,15 +9,16 @@
             {{ city.name }}
         </div>
 
-
     </div>
 
 </template>
 
 <script>
-    import { RegForm } from '../../hooks/Registration.js';
+
     export default{
+
         name:'cityList',
+
         props:{
             serchCity:{
                 type:Array,
@@ -29,6 +30,8 @@
                 this.$emit('select', city);
             },
         }
+
+
     }
 
 
