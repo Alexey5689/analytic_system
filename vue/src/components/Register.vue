@@ -58,13 +58,15 @@
                         v-model="state.searchTown"
                         class="user-reg"
                         type="text"
+                        autocomplete="off"
                         placeholder="Город"
                         />
                     <cityList
-                        v-if="state.searchTown && this.srch"
+                        v-if="state.searchTown && this.optionVisible"
                         :serchCity="serchCity"
                         @select="getCity"
                     />
+
                 </div>
 
                 <div>
@@ -85,7 +87,7 @@
             <button type="submit">Продолжить</button>
             </form>
         </div>
-        <button @click="testReg" type="submit">Продолжить</button>
+
     </div>
 </template>
 
@@ -101,17 +103,16 @@ export default {
     },
     data(){
         return{
-            srch:true,
+            optionVisible:true,
         }
     },
     setup(props){
-        const {state, fetchForm, v$, getCities, testReg} = RegForm();
+        const {state, fetchForm, v$, getCities} = RegForm();
         return{
             state,
             fetchForm,
             v$,
             getCities,
-            testReg,
         }
     },
 
@@ -126,8 +127,9 @@ export default {
         getCity(city){
             this.state.searchTown = city.name;
             this.state.cityId = city.id;
-            this.srch = false
+            this.optionVisible = false;
         },
+
     },
     created(){
         this.getCities()
