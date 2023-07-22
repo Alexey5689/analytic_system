@@ -36,8 +36,8 @@ export function AuthValidForm(){
             return;
         };
         try{
-           const response = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie').then(async response => {
-                await axios({
+           //const response = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie').then(async response => {});
+            const response =    await axios({
                     method: 'POST',
                     url: config.appBackendURL+':'+config.appBackendPort+'/api/login',
                     data: {
@@ -49,18 +49,19 @@ export function AuthValidForm(){
                     },
                 },);
 
-            });
-            state.response = response.massage;
-            store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
+
+
+            store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'), {root:true})
         }catch(err){
-            state.response = err.response.massage;
+            console.log(err);
+            state.response = err.message;
         }finally{
             state.password = '';
             state.email = '';
         }
     }
     const logOut = () =>{
-        store.commit('lostAuthToken');
+        store.commit('lostAuthToken', {root: true});
         Cookies.remove('XSRF-TOKEN');
     }
     return{

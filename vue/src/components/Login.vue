@@ -30,8 +30,8 @@
                 </button>
             </form>
             <div class="bottom-block-register">
-                <p @click="$router.push('/registration')">Зарегестрироваться</p>
-                <p @click="$router.push('/')">Восстановить пароль</p>
+                <p class="redir" @click="$router.push('/registration')">Зарегестрироваться</p>
+                <p class="redir" @click="$router.push('/')">Восстановить пароль</p>
             </div>
         </div>
     </div>

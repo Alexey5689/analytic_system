@@ -20,21 +20,5 @@ export const routes = [
         name: "Log",
         path: '/login',
         component: Login,
-        meta: { reg: true}
     },
-    // {
-    //     name: "ConfReg",
-    //     path: '/confirm-registration',
-    //     component: confirmRegister
-    // },
-    // {
-    //     name: "EndReg",
-    //     path: '/end-registration',
-    //     component: endRegister
-    // },
-    // {
-    //     name: "ErrLog",
-    //     path: '/error-login',
-    //     component: errLogin
-    // }
 ]

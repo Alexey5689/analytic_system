@@ -25,6 +25,9 @@ p{
     line-height: 120%;
     color: #919399;
 }
+.redir{
+    cursor: pointer;
+}
 .card-body {
     margin: 5% 0;
     width: -webkit-fill-available;
