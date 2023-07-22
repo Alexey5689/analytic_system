@@ -85,6 +85,7 @@
             <button type="submit">Продолжить</button>
             </form>
         </div>
+        <button @click="testReg" type="submit">Продолжить</button>
     </div>
 </template>
 
@@ -104,12 +105,13 @@ export default {
         }
     },
     setup(props){
-        const {state, fetchForm, v$, getCities} = RegForm();
+        const {state, fetchForm, v$, getCities, testReg} = RegForm();
         return{
             state,
             fetchForm,
             v$,
-            getCities
+            getCities,
+            testReg,
         }
     },
 

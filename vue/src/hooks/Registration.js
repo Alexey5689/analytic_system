@@ -5,9 +5,10 @@ import { helpers } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
-
+import { useStore } from 'vuex';
 
 export function RegForm(){
+    const store = useStore();
     //регулярные выражения
     const regName = helpers.regex(/^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/);
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
@@ -90,12 +91,13 @@ export function RegForm(){
             },)
             //  смена регистрации на подтверждение
             state.isReg = true;
-
             console.log(response.data);
+
         }catch(err){
             console.log(err);
             //ошибка регистрации вывод в компоненте
             state.response = err.message;
+            localStorage.setItem('repeatEmail', state.email);
         }finally{
         }
     }
@@ -112,11 +114,16 @@ export function RegForm(){
         }
     }
 
+    function testReg(){
+        localStorage.setItem('repEmail', state.email);
+    }
+
     return{
         state,
         fetchForm,
         v$,
-        getCities
+        getCities,
+        testReg,
     }
 }
 

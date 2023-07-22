@@ -5,6 +5,7 @@ import createPersistedState from "vuex-persistedstate";
 export const Registration={
     state: () =>({
         IsRegistration:'',
+        repeatEmail:" "
     }),
     getters:{
 
@@ -22,7 +23,10 @@ export const Registration={
         getRegToken(state, token){
             state.IsRegistration = token;
         },
+    },
+    actions:{
 
     },
+
     namespased: true,
 }

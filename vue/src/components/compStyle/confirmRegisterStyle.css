@@ -64,3 +64,9 @@ h3 {
     color: #005BD1;
     cursor: pointer;
 }
+.ruls{
+    font-family: 'Montserrat-Regular';
+    color: rgb(201, 0, 0);
+    display: flex;
+    flex-direction: column;
+}

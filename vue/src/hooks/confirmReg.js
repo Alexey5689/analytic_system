@@ -3,10 +3,8 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import config from "../../vue.config.js";
 
-
-
 export function confEmail(){
-
+    //vuexподключение
     const store = useStore();
 
     const getEmail = async()=>{
@@ -18,6 +16,7 @@ export function confEmail(){
                     _token: Cookies.get('reg_token'),
                 }
             },)
+            localStorage.removeItem('repeatEmail');
             console.log(response);
         }catch(err){
             console.error(err)
@@ -27,8 +26,9 @@ export function confEmail(){
     const sendMail = (token) => {
         console.log(token);
         Cookies.set('reg_token', token)
-        store.commit('getRegToken', token);
+        store.commit('getRegToken', token, { root:true });
 
     }
+
     return{ sendMail, getEmail }
 }
