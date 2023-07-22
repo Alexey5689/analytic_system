@@ -33,8 +33,19 @@ class RegisterController extends Controller
     }
 
     public function again(Request $request) {
-        $user = User::where('email', $request->email);
+        if(!$user = User::where('email', $request->email)) {
+            return response()->json([
+                'error' => 'Verification failed',
+                'message' => "Пользователь с таким email не найден",
+                'status' => false
+            ]);
+        }
+        
         Mail::to([$request->email])->send(new VerifyMail($user));
+        return response()->json([
+            'message' => "Письмо отправлено",
+            'status' => true
+        ]);
     }
 
     public function verify(Request $request)
