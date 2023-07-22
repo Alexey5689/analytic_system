@@ -17,21 +17,7 @@
 <script>
     import { RegForm } from '../../hooks/Registration.js';
     export default{
-        setup(props){
-            const {state, fetchForm, v$, getCities} = RegForm();
-            return{
-                state,
-                fetchForm,
-                v$,
-                getCities
-            }
-        },
         name:'cityList',
-        data(){
-            return{
-                srch:true,
-            }
-        },
         props:{
             serchCity:{
                 type:Array,
@@ -43,8 +29,6 @@
                 this.$emit('select', city);
             },
         }
-
-
     }
 
 
