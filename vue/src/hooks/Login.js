@@ -6,13 +6,14 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, helpers} from '@vuelidate/validators'
 import {useStore} from 'vuex';
 
+
 export function AuthValidForm(){
     const store = useStore();
     const state = reactive({
         email: "",
         password:"",
         emailMessage:'Шаблон почты аааааа@aa.com',
-        countErr:5,//небольше 5ти попыток
+        countErr:0,//небольше 5ти попыток
         response: "",
 
     })
@@ -34,10 +35,10 @@ export function AuthValidForm(){
         if(this.v$.$invalid){
             this.v$.$touch();
             return;
-        };
+        }
         try{
-           //const response = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie').then(async response => {});
-            const response =    await axios({
+           // const response = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie').then(async response => {
+            const response =  await axios({
                     method: 'POST',
                     url: config.appBackendURL+':'+config.appBackendPort+'/api/login',
                     data: {
@@ -48,13 +49,12 @@ export function AuthValidForm(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
-
-
-
-            store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'), {root:true})
+                Cookies.set('XSRF-TOKEN', response.data.token);
+                store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'), {root:true})
         }catch(err){
             console.log(err);
             state.response = err.message;
+            state.countErr+=1;
         }finally{
             state.password = '';
             state.email = '';

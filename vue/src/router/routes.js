@@ -1,9 +1,7 @@
 import HelloWorld from '../components/HelloWorld.vue'
 import Register from '../components/Register.vue'
 import Login from '../components/Login.vue'
-//import confirmRegister from '../components/confirmRegister.vue'
-// import endRegister from '../components/endRegister.vue'
-// import errLogin from '../components/errorLogin.vue'
+import errLogin from '../components/errorLogin.vue'
 
 export const routes = [
     {

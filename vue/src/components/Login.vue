@@ -1,5 +1,8 @@
 <template>
-    <div class="card">
+    <div v-if="state.countErr < 5">
+        <ErrLog/>
+    </div>
+    <div v-else class="card">
         <h1 class="card-header">Вход в РосМетрик</h1>
         <p>Рады вас видеть</p>
         <div class="card-body">
@@ -41,8 +44,12 @@
 </style>
 
 <script>
+import ErrLog from '../components/errorLogin.vue';
 import {AuthValidForm} from '../hooks/Login.js';
 export default {
+    components:{
+        ErrLog,
+    },
     setup(props){
         const {state, AuthForm, logOut, v$} = AuthValidForm();
         return{
