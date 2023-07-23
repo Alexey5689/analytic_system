@@ -1,15 +1,17 @@
 <template>
-    <div class="cityList" >
-        <div
-            v-for="city in serchCity"
-            :key="city.id"
-            @click="select(city)"
-            class="city"
-        >
-            {{ city.name }}
+    <div class="cityListWrapper">
+        <div class="cityList" >
+            <div
+                v-for="city in serchCity"
+                :key="city.id"
+                @click="select(city)"
+                class="city"
+            >
+                {{ city.name }}
+            </div>
         </div>
-
     </div>
+
 
 </template>
 

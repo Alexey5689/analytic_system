@@ -104,7 +104,7 @@ export function RegForm(){
     //получение массива городов
     const getCities = async()=> {
         try{
-            const response = await axios.get( config.appBackendURL + ':' + config.appBackendPort +'/api/city')
+            const response = await axios.get( config.appLocalHost + ':' + config.appBackendPort +'/api/city')
             state.cities = response.data;
             console.log(state.cities);
         }catch(err){
