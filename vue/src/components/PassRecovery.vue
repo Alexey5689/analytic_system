@@ -1,12 +1,16 @@
 <template>
-    <div class="card">
+    <div v-if="state.isRec" >
+        <confRec/>
+    </div>
+    <div v-else class="card">
         <h1 class="card-header">Восстановление пароля</h1>
         <div class="ruls">
             {{ state.response }}
         </div>
         <p>На эту почту мы вышлем ссылку на восстановление пароля</p>
         <div class="card-body">
-            <form class="general-block" @submit.prevent="reqPassRecovery">
+
+            <form class="general-block" @submit.prevent="Recovery">
                 <div>
                     <small class="ruls" v-for="errors in v$.email.$errors ">{{ errors.$message }}</small>
                     <input
@@ -29,15 +33,19 @@
 </style>
 
 <script>
-import { passRecovery }  from '../hooks/passRecovery.js';
-export default {
-    setup(props){
-        const {state, v$, reqPassRecovery} = passRecovery();
-        return{
-            v$,
-            state,
-            reqPassRecovery,
-        }
-    },
-}
+    import { RecForm }  from '../hooks/PassRecovery.js';
+    import confRec from '../components/confirmPassRecovery.vue'
+    export default {
+        components:{
+                confRec
+        },
+        setup(props){
+            const {state, Recovery, v$} = RecForm();
+            return{
+                v$,
+                state,
+                Recovery,
+            }
+        },
+    }
 </script>

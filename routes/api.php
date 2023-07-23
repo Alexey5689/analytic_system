@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,10 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,60');
 
+Route::post('/forget-password', [ForgotPasswordController::class, 'forget']);
+
+Route::get('/reset', [ForgotPasswordController::class, 'reset']);
+Route::post('/reset', [ForgotPasswordController::class, 'reset']);
 
 
 

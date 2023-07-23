@@ -1,9 +1,8 @@
 <template>
     <div class="card">
-        <h1 class="card-header">Подтверждение регистрации</h1>
-        <h3>Спасибо за регистрацию!</h3>
+        <h1 class="card-header">Подтвердите смену пароля</h1>
         <div class="card-body">
-                <p>На вашу почту была отправлена ссылка подтверждения регистрации. Перейдите по ссылке в письме для подтверждения</p>
+            <p>На вашу почту была отправлена ссылка для смены пароля. Перейдите по ссылке в письме для подтверждения.</p>
             <div class="bottom-block-register">
                 <p>Не пришло письмо?</p>
                 <p v-if="seconds>0" >Отправить повторно</p>
@@ -14,7 +13,7 @@
     </div>
 </template>
 <script>
-    import { mapActions,  mapState } from 'vuex';
+    import { mapActions, mapState } from 'vuex';
     export default{
         computed: {
             ...mapState({
@@ -23,7 +22,6 @@
             }),
         },
         methods:{
-
             ...mapActions({
                 changeTimeAsync: "changeTimeAsync",
             }),
@@ -32,8 +30,9 @@
             this.changeTimeAsync();
         },
     }
+
 </script>
 
-<style src="../components/compStyle/confirmRegisterStyle.css" scoped>
+<style src="../components/compStyle/confirmPassRecovery.css" scoped>
 </style>
 

@@ -1,17 +1,10 @@
-//import HelloWorld from '../components/HelloWorld.vue'
 import Register from '../components/Register.vue'
 import Login from '../components/Login.vue'
 import Recovery from '../components/PassRecovery.vue'
-import confirmRegister from '../components/confirmRegister.vue'
-// import endRegister from '../components/endRegister.vue'
-// import errLogin from '../components/errorLogin.vue'
+import Confirm from '../components/confirmPassRecovery.vue'
+import Change from '../components/endChangePass.vue'
 
 export const routes = [
-    {
-        name: "Hi",
-        path: '/',
-        component: Register
-    },
     {
         name: "Reg",
         path: '/registration',
@@ -22,24 +15,23 @@ export const routes = [
         path: '/login',
         component: Login
     },
+
     {
         name: "Recovery",
-        path: '/recovery',
-        component: Recovery
+        path: '/reset-password',
+        component: Recovery,
     },
+
     {
-        name: "ConfReg",
-        path: '/confirm-registration',
-        component: confirmRegister
+        name: "Confirm",
+        path: '/confirm-pass',
+        component: Confirm
     },
-    // {
-    //     name: "EndReg",
-    //     path: '/end-registration',
-    //     component: endRegister
-    // },
-    // {
-    //     name: "ErrLog",
-    //     path: '/error-login',
-    //     component: errLogin
-    // }
+
+    {
+        name: "Change",
+        path: '/reset-password/:token',
+        component: Change
+    },
+
 ]

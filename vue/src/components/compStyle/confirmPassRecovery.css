@@ -1,0 +1,67 @@
+.card-header {
+    justify-content: center;
+    align-self: stretch;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 120%;
+    font-family: 'Montserrat-Bold';
+    margin-bottom: 32px;
+}
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    height: fit-content;
+    padding: 8% 5%;
+}
+p{
+    font-size: 16px;
+    font-family: 'Montserrat-Regular';
+    font-weight: 500;
+    line-height: 120%;
+    color: #919399;
+}
+.card-body {
+    width: -webkit-fill-available;
+}
+.card-body p {
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-family: Montserrat-Regular;
+}
+.time {
+    margin-left: 10px;
+}
+.general-block {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.bottom-block-register {
+    display: flex;
+    margin-left: 10px;
+    gap:10px;
+}
+.bottom-block-register p {
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Montserrat-Bold;
+    margin-bottom: 10px;
+}
+
+h3 {
+    justify-content: center;
+    align-self: stretch;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 120%;
+    font-family: 'Montserrat-Bold';
+    margin-bottom: 13px;
+}
+.resend-p {
+    color: #005BD1;
+}

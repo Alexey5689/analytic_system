@@ -2,9 +2,6 @@
 import { reactive } from 'vue';
 import axios from 'axios';
 import config from "../../vue.config.js";
-import { useVuelidate } from '@vuelidate/core';
-import { required, email } from '@vuelidate/validators';
-
 
 export function RecForm(){
     const state = reactive({
@@ -12,17 +9,6 @@ export function RecForm(){
             isRec: false,
             response: ''
     })
-    const rules = computed (()=>{
-        return  {
-            email:{
-                required: helpers.withMessage('Поле обязательно к заполнению', required),
-                email: helpers.withMessage('Не корректный email',email)
-            },
-        }
-    })
-
-    const v$ = useVuelidate(rules, state);
-
     const Recovery = async () =>{
         try{
             const response = await axios({
@@ -35,16 +21,18 @@ export function RecForm(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
+            state.response = response.status;
             console.log(response);
             state.isRec = true;
+
         }catch(err){
-            state.response = err.message;
+            console.log(err.response.data);
         }finally{
             state.email = '';
         }
 
     }
-    return{state, Recovery, v$}
+    return{state, Recovery, }
 
 }
 
