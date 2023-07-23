@@ -25,6 +25,9 @@ p{
     line-height: 120%;
     color: #919399;
 }
+.link{
+    color:005BD1;
+}
 .card-body {
     margin: 5% 0;
     width: -webkit-fill-available;
@@ -37,7 +40,9 @@ button {
     border-radius: 10px;
     height: 47px;
     margin-bottom: 26px;
-    font-family: 'Montserrat-Regular'
+    font-family: 'Montserrat-Regular';
+    cursor: pointer;
+
 
 }
 input:hover {
@@ -77,4 +82,12 @@ input {
     font-weight: bold;
     font-size: 14px;
 }
+.ruls{
+    font-family: 'Montserrat-Regular';
+    color: rgb(201, 0, 0);
+    display: flex;
+    flex-direction: column;
+}
+
+
 

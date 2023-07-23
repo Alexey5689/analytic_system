@@ -1,15 +1,25 @@
 <template>
     <div class="card">
         <h1 class="card-header">Восстановление пароля</h1>
+        <div class="ruls">
+            {{ state.response }}
+        </div>
         <p>На эту почту мы вышлем ссылку на восстановление пароля</p>
         <div class="card-body">
-            <form class="general-block" @submit.prevent="LoginData">
-                <div><input class="user-email" type="email" placeholder="E-mail*"/></div>
+            <form class="general-block" @submit.prevent="reqPassRecovery">
+                <div>
+                    <small class="ruls" v-for="errors in v$.email.$errors ">{{ errors.$message }}</small>
+                    <input
+                        v-model.trim="state.email"
+                        class="user-email"
+                        type="email"
+                        placeholder="E-mail*"/>
+                </div>
                 <button type="submit" class="button">Восстановить</button>
             </form>
             <div class="bottom-block-register">
-                <p>Зарегестрироваться</p>
-                <p>Войти</p>
+                <p class="link" @click="$router.push('/registration')">Зарегестрироваться</p>
+                <p class="link" @click="$router.push('/login')" >Войти</p>
             </div>
         </div>
     </div>
@@ -19,39 +29,15 @@
 </style>
 
 <script>
-import axios from 'axios';
+import { passRecovery }  from '../hooks/passRecovery.js';
 export default {
-    data () {
-        return {
-            result: {},
-
-            email: '',
-            password: ''
-
+    setup(props){
+        const {state, v$, reqPassRecovery} = passRecovery();
+        return{
+            v$,
+            state,
+            reqPassRecovery,
         }
     },
-
-    methods: {
-        LoginData()
-        {
-            axios.post("http://app/api/login", this.student)
-                .then(
-                    ({data})=>{
-                        console.log(data);
-                        try {
-                            if (data.status === true) {
-                                alert("Login Successfully");
-                                this.$router.push({ name: 'HelloWorld' })
-                            } else {
-                                alert("Login failed")
-                            }
-
-                        } catch (err) {
-                            alert("Error, please try again");
-                        }
-                    }
-                )
-        }
-    }
 }
 </script>
