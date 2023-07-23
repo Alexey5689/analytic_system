@@ -10,14 +10,13 @@ export function endChangePass(){
             token: '',
             response: ''
     })
-    const ChangeSubmit = async (token, email) =>{
-        console.log(token)
-        console.log(email)
+    const ChangeSubmit = async (token) =>{
         try{
             const response = await axios({
                     method:'POST',
                     url:config.appBackendURL + ':' + config.appBackendPort + '/api/reset',
                     data:{
+                        email:localStorage.getItemItem('repeatEmailChangePass'),
                         token:token,
                         password:state.password,
                         password_confirmation: state.password_confirm
@@ -26,11 +25,11 @@ export function endChangePass(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-            state.response = response.status;
+            state.response = response.data.message;
             console.log(response);
-
+            localStorage.removeItem('repeatEmailChangePass');
         }catch(err){
-            console.log(err.response.data);
+            state.response = response.message;
         }finally{
             state.password = '';
             state.password_confirm= '';

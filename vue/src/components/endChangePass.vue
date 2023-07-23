@@ -1,8 +1,11 @@
 <template>
     <div class="card">
         <h1 class="card-header">Смените пароль</h1>
+        <div class="ruls">
+            {{ state.response }}
+        </div>
         <div class="card-body">
-            <form class="general-block" @submit.prevent="ChangeSubmit(this.$route.params.token, this.$route.params.email)">
+            <form class="general-block" @submit.prevent="ChangeSubmit(this.$route.params.token )">
                 <div><input class="user-passw" v-model="state.password" type="password" placeholder="Новый пароль*"/></div>
                 <div><input class="user-passw" v-model="state.password_confirm" type="password" placeholder="Подтверждение пароля*"/></div>
                 <button type="submit" class="button">Поменять пароль</button>
@@ -22,7 +25,6 @@ export default {
         return{
             state,
             ChangeSubmit,
-
         }
     },
 }

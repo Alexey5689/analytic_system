@@ -37,6 +37,7 @@ export function RecForm(){
             },)
             console.log(response);
             state.isRec = true;
+            localStorage.setItem('repeatEmailChangePass', state.email);
         }catch(err){
             state.response = err.message;
         }finally{
