@@ -33,7 +33,7 @@
 </style>
 
 <script>
-    import { RecForm }  from '../hooks/PassRecovery.js';
+    import { RecForm }  from '../hooks/PassRecover.js';
     import confRec from '../components/confirmPassRecovery.vue'
     export default {
         components:{
