@@ -3,7 +3,8 @@
     <div v-if="state.isReg">
         <confReg/>
     </div>
-    <div v-else  class="card">
+    <div v-else class="container">
+        <div class="card">
         <h1 class="card-header">Регистрация в РосМетрик</h1>
         <div class="card-body">
             <form class="general-block" @submit.prevent="fetchForm">
@@ -87,7 +88,7 @@
             <button type="submit">Продолжить</button>
             </form>
         </div>
-
+        </div>
     </div>
 </template>
 

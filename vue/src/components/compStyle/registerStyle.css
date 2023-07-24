@@ -1,12 +1,24 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
+}
 .card-header {
     justify-content: center;
-    align-self: stretch;
     text-align: center;
     font-size: 32px;
     font-weight: 700;
     line-height: 120%;
     font-family: 'Montserrat-Bold';
-    padding: 0 10%;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
 }
 .form {
     color: red;
@@ -16,8 +28,6 @@ button {
     font-family: 'Montserrat-Regular';
     color: white;
     background-color: #005BD1;
-    padding: 0 20%;
-    width: -webkit-fill-available;
     border-radius: 10px;
     height: 47px;
 }
@@ -43,8 +53,7 @@ button {
     background-size: inherit;
     background-position-y: center;
     background-color: #F0F1F3;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    height: 56px;
     background-position-x: 16px;
     padding-left: 3.5rem;
     border-radius: 9px;
@@ -79,8 +88,8 @@ input {
     flex-direction: column;
     background-color: white;
     border-radius: 20px;
-    height: fit-content;
-    padding: 9%;
+    padding: 42px 32px;
+    width: 454px;
 }
 span {
     color: #005BD1;
@@ -109,7 +118,7 @@ label {
      transition: ease 1s;
  }
 .card-body {
-    margin: 5% 0;
+    margin-top: 32px;
 }
 
 .ruls{
@@ -133,6 +142,9 @@ ul{
     border-radius: 20px;
     width: 390px;
     height: 268px;
+}
+#app {
+    width: 454px;
 }
 
 
