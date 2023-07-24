@@ -3,9 +3,10 @@
         <div class="flex_column">
             <MenuSa />
             <div class="content">
-                <HeaderSa />
+                <!-- <HeaderSa />
                 <Settings />
-                <FooterSa />
+                <FooterSa /> -->
+                <router-view></router-view>
             </div>
         </div>
     </div>
@@ -16,9 +17,9 @@
 
 <script setup>
     import MenuSa from './MenuSa.vue'
-    import HeaderSa from './HeaderSa.vue'
-    import FooterSa from './FooterSa.vue'
-    import Settings from "./Settings.vue";
+    // import HeaderSa from './HeaderSa.vue'
+    // import FooterSa from './FooterSa.vue'
+    // import Settings from "./Settings.vue";
 </script>
 
 

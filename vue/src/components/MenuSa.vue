@@ -1,10 +1,22 @@
 <script>
 export default {
-    methods: {
-        homePage() {
-            return this.$route.path == "/analytics";
+    data(){
+        return{
+            homePage: this.$route.path
         }
-    }
+    },
+    methods: {
+        changeHomePageAnnalytics() {
+            this.homePage = "/main/";
+        },
+        changeHomePageSettings() {
+            this.homePage = "/main/settings";
+        },
+        // homePage(){
+        //     return this.$route.path == "/analytics";
+        // }
+    },
+
 }
 </script>
 
@@ -16,17 +28,18 @@ import { RouterLink } from 'vue-router';
     <aside>
         <img src="../assets/image/logo.svg" alt="Logo">
         <div class="menu">
-            <h2 v-if="homePage()">Аналитика</h2>
-            <h2 v-else="homePage()">Настройки</h2>
+            <!-- <h2 v-if="homePage">Аналитика</h2>
+            <h2 v-else="homePage">Настройки</h2> -->
+            <h2>{{ homePage === "/main/" ? 'Аналитика' : 'Настройки'}}</h2>
             <ul>
                 <li>
-                    <RouterLink to="/">
+                    <RouterLink @click="changeHomePageAnnalytics" :to="{name:'Analitics'}">
                         <img src="../assets/image/analytics.svg" alt="analytics">
                         Аналитика
                     </RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/settings">
+                    <RouterLink @click="changeHomePageSettings" :to="{name:'Settings'}">
                         <img src="../assets/image/settings.svg" alt="settings">
                         Настройки
                     </RouterLink>

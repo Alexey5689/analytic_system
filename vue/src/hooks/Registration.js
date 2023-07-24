@@ -1,4 +1,4 @@
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
 import axios from 'axios';
 import config from "../../vue.config.js";
 import { helpers } from '@vuelidate/validators';

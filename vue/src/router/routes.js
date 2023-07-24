@@ -1,32 +1,37 @@
 import Register from '../components/Register.vue'
-import Main from '../components/MainPage.vue'
+import MainPage from '../components/MainPage.vue'
 import Analytics from '../components/Analytics.vue'
 import Settings from '../components/Settings.vue'
 
 
 export const routes = [
     {
+        name: "Main",
+        path: '/main/',
+        component: MainPage,
+        children:[
+            {
+                name: 'Analitics',
+                path: '',
+                component: Analytics
+            },
+            {
+                name: 'Settings',
+                path: 'settings',
+                component: Settings
+            }
+        ]
+    },
+    {
         name: "Reg",
-        path: '/registration',
+        path: '/',
         component: Register
     },
 
-    {
-        name: "Main",
-        path: '/main',
-        component: Main
-    },
 
-    {
-        name: 'Аналитика',
-        path: '/analytics',
-        component: Analytics
-    },
-    {
-        name: 'Настройки',
-        path: '/settings',
-        component: Settings
-    }
+
+
+
 ]
 
 
