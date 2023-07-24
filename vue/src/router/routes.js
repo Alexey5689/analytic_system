@@ -1,4 +1,8 @@
 import Register from '../components/Register.vue'
+import Main from '../components/MainPage.vue'
+import Analytics from '../components/Analytics.vue'
+import Settings from '../components/Settings.vue'
+
 
 export const routes = [
     {
@@ -7,4 +11,22 @@ export const routes = [
         component: Register
     },
 
+    {
+        name: "Main",
+        path: '/main',
+        component: Main
+    },
+
+    {
+        name: 'Аналитика',
+        path: '/analytics',
+        component: Analytics
+    },
+    {
+        name: 'Настройки',
+        path: '/settings',
+        component: Settings
+    }
 ]
+
+
