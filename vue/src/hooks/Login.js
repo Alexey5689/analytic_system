@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import { reactive, computed} from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers} from '@vuelidate/validators'
-import {useStore} from 'vuex';
+import { useStore } from 'vuex';
 
 
 export function AuthValidForm(){
@@ -13,7 +13,7 @@ export function AuthValidForm(){
         email: "",
         password:"",
         emailMessage:'Шаблон почты аааааа@aa.com',
-        countErr:0,//небольше 5ти попыток
+        countErr: 0 ,//небольше 5ти попыток
         response: "",
 
     })
@@ -49,15 +49,19 @@ export function AuthValidForm(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
+
                 Cookies.set('XSRF-TOKEN', response.data.token);
                 store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'), {root:true})
         }catch(err){
             console.log(err);
             state.response = err.message;
             state.countErr+=1;
+            if(state.email === 6){
+                localStorage.setItem('repeatEmail', state.email);
+            }
         }finally{
-            state.password = '';
-            state.email = '';
+            // state.password = '';
+            // state.email = '';
         }
     }
     const logOut = () =>{

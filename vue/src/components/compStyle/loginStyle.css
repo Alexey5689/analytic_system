@@ -32,7 +32,7 @@ p{
     margin: 5% 0;
     width: -webkit-fill-available;
 }
-button {
+.buttonLog {
     background-color: #005BD1;
     color: white;
     padding: 0 20%;
@@ -40,8 +40,8 @@ button {
     border-radius: 10px;
     height: 47px;
     margin-bottom: 26px;
-    font-family: 'Montserrat-Regular'
-
+    font-family: 'Montserrat-Regular';
+    cursor: pointer;
 }
 input:hover {
     background-color: #DBDEE4;
@@ -84,6 +84,7 @@ input {
 .bottom-block-register p {
     color: #005BD1;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .ruls{
@@ -92,5 +93,6 @@ input {
     display: flex;
     flex-direction: column;
 }
+
 
 

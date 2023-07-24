@@ -1,5 +1,5 @@
 <template>
-    <div v-if="state.countErr < 5">
+    <div v-if="state.countErr > 5">
         <ErrLog/>
     </div>
     <div v-else class="card">
@@ -29,7 +29,7 @@
                 </div>
                 <button
                     type="submit"
-                    class="button">Войти
+                    class="buttonLog">Войти
                 </button>
             </form>
             <div class="bottom-block-register">
@@ -45,7 +45,7 @@
 
 <script>
 import ErrLog from '../components/errorLogin.vue';
-import {AuthValidForm} from '../hooks/Login.js';
+import { AuthValidForm } from '../hooks/Login.js';
 export default {
     components:{
         ErrLog,
