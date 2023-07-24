@@ -1,3 +1,17 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
+}
 .card-header {
     justify-content: center;
     align-self: stretch;
@@ -15,8 +29,8 @@
     flex-direction: column;
     background-color: white;
     border-radius: 20px;
-    height: fit-content;
-    padding: 8% 5%;
+    padding: 42px 32px;
+    width: 454px;
 }
 p{
     font-size: 16px;
@@ -29,7 +43,6 @@ p{
     width: -webkit-fill-available;
 }
 .card-body p {
-    margin-bottom: 30px;
     font-size: 12px;
     font-family: Montserrat-Bold;
 }
@@ -40,14 +53,19 @@ p{
 }
 .bottom-block-register {
     display: flex;
-    margin-left: 10px;
     gap:10px;
 }
 .bottom-block-register p {
     font-weight: bold;
     font-size: 14px;
     font-family: Montserrat-Bold;
-    margin-bottom: 10px;
+    padding: 10px;
+}
+.main-text {
+    padding-bottom: 16px;
+}
+.time {
+    margin-left: 10px;
 }
 
 h3 {
