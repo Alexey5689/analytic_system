@@ -15,19 +15,22 @@ body {
 .card-header {
     justify-content: center;
     align-self: stretch;
+    text-align: center;
     font-size: 32px;
     font-weight: 700;
     line-height: 120%;
     font-family: 'Montserrat-Bold';
-    margin-bottom: 13px;
+    margin-bottom: 32px;
 }
 .card {
     display: flex;
+    align-items: center;
     flex-direction: column;
     background-color: white;
     border-radius: 20px;
     height: fit-content;
     padding: 42px 32px;
+    width: 454px;
 }
 p{
     font-size: 16px;
@@ -36,16 +39,46 @@ p{
     line-height: 120%;
     color: #919399;
 }
+.card-body {
+    width: -webkit-fill-available;
+}
+.card-body p {
+    font-family: Montserrat-Regular;
+}
+.time {
+    margin-left: 10px;
+}
+.general-block {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
 .bottom-block-register {
-    text-align: end;
+    display: flex;
+    gap:10px;
+    margin-top: 16px;
+    padding: 10px;
 }
 .bottom-block-register p {
     font-weight: bold;
-    font-size: 14px;
     font-family: Montserrat-Bold;
+    font-size: 14px;
+}
+
+h3 {
+    justify-content: center;
+    align-self: stretch;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 120%;
+    font-family: 'Montserrat-Bold';
+    margin-bottom: 13px;
 }
 .resend-p {
     color: #005BD1;
+}
+.time {
     font-weight: bold;
-    margin-top: 6px;
+    font-size: 12px;
 }
