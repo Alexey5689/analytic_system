@@ -12,9 +12,6 @@ const toggle = ref(true),
 <style src="../components/compStyle/main.css" scoped></style>
 
 <template>
-    <header>
-        <Header />
-    </header>
     <article>
         <ul class="filter">
             <li>
