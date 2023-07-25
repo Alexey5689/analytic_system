@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
@@ -63,4 +64,18 @@ class ForgotPasswordController extends Controller
             }
         }
 
+    public function again(Request $request) {
+        if(!$user = User::where('email', $request->email)) {
+            return response()->json([
+                'error' => 'Failed',
+                'status' => false
+            ]);
+        }
+        $user = $user->firstOrFail();
+        event(new PasswordReset($user));
+        return response()->json([
+            'message' => "Письмо отправлено",
+            'status' => true
+        ]);
+    }
 }
