@@ -2,7 +2,8 @@
     <div v-if="state.countErr > 5">
         <ErrLog/>
     </div>
-    <div v-else class="card">
+    <div v-else class="container">
+        <div class="card">
         <h1 class="card-header">Вход в РосМетрик</h1>
         <p>Рады вас видеть</p>
         <div class="card-body">
@@ -36,6 +37,7 @@
                 <p class="redir" @click="$router.push('/registration')">Зарегестрироваться</p>
                 <p class="redir" @click="$router.push('/')">Восстановить пароль</p>
             </div>
+        </div>
         </div>
     </div>
 </template>
