@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\DataYandexController;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -12,7 +13,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+       $schedule->call(function () {
+            $controller = new DataYandexController();
+            $controller->__invoke(); // Замените `yourMethod` на метод контроллера, который вы хотите выполнить
+        })->everyMinute()->appendOutputTo('scheduler.log');
     }
 
     /**
