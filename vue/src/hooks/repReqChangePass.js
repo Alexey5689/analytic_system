@@ -11,7 +11,7 @@ export function Repeated(){
             try{
                 const response = await axios({
                     method:'POST',
-                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/register-mail-again',
+                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/recovery-email-again',
                     data:{
                         email: localStorage.setItem('repeatEmailChangePass'),
                     },
@@ -19,12 +19,12 @@ export function Repeated(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-                state.respone = response.data;
+                state.respose = response.data;
                 console.log(response);
                 location.reload();
             }catch(err){
                 console.log(err);
-                state.response = err.message;
+                state.respose = err.message;
             }
         }
     return {

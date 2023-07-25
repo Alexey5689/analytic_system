@@ -9,14 +9,14 @@
             <div class="bottom-block-register">
                 <p>Не пришло письмо?</p>
                 <p v-if="seconds>0" >Отправить повторно?</p>
-                <p v-else class="resend-p" @click="repeatReqest">Отправить повто?</p>
+                <p v-else class="resend-p" @click="repeatReqest">Отправить повторно?</p>
             </div>
             <p class="time">{{minuts<1?'00':'0'+minuts}}:{{minuts===1?'00':seconds<10?'0'+seconds:seconds}}</p>
         </div>
     </div>
 </template>
 <script>
-    import {Repeated} from '../hooks/repReqChangePass.js';
+    import { Repeated } from '../hooks/repReqChangePass.js';
     import { mapActions, mapState } from 'vuex';
     export default{
         setup(props){
