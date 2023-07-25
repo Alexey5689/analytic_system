@@ -9,6 +9,7 @@ export const routes = [
         name: "Log",
         path: '/',
         component: Login,
+        meta: { auth: false}
     },
     {
         name: "Reg",
