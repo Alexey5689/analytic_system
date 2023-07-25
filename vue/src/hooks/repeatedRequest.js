@@ -19,13 +19,13 @@ export function Repeated(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-                state.respone = response.data;
+                state.respose = response.data;
                 console.log(response);
                 localStorage.removeItem('repeatEmail');
                 location.reload();
             }catch(err){
                 console.log(err);
-                state.response = err.message;
+                state.respose = err.message;
             }
         }
     return {

@@ -46,6 +46,7 @@
 <script>
 import ErrLog from '../components/errorLogin.vue';
 import { AuthValidForm } from '../hooks/Login.js';
+import { mapState} from 'vuex';
 export default {
     components:{
         ErrLog,
@@ -57,6 +58,7 @@ export default {
             AuthForm,
             logOut,
             v$,
+
         }
     },
 }

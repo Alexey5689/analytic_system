@@ -49,9 +49,9 @@ export function AuthValidForm(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
-
+                window.location.href ='/main/'
                 Cookies.set('XSRF-TOKEN', response.data.token);
-                store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'), {root:true})
+                store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
         }catch(err){
             console.log(err);
             state.response = err.message;
@@ -65,7 +65,7 @@ export function AuthValidForm(){
         }
     }
     const logOut = () =>{
-        store.commit('lostAuthToken', {root: true});
+        store.commit('lostAuthToken');
         Cookies.remove('XSRF-TOKEN');
     }
     return{
