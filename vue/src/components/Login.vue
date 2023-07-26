@@ -35,7 +35,7 @@
             </form>
             <div class="bottom-block-register">
                 <p class="redir" @click="$router.push('/registration')">Зарегестрироваться</p>
-                <p class="redir" @click="$router.push('/')">Восстановить пароль</p>
+                <p class="redir" @click="$router.push('/reset-password')">Восстановить пароль</p>
             </div>
         </div>
         </div>

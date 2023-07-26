@@ -20,7 +20,6 @@ body {
     font-weight: 700;
     line-height: 120%;
     font-family: 'Montserrat-Bold';
-    padding: 0 10%;
     margin-bottom: 13px;
 }
 .card {
@@ -44,7 +43,7 @@ p{
     cursor: pointer;
 }
 .card-body {
-    margin: 5% 0;
+    margin-top: 24px;
     width: -webkit-fill-available;
 }
 .buttonLog {
