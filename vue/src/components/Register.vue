@@ -1,5 +1,5 @@
 <template>
-    <div v-if="state.isReg&&state.reg">
+    <div v-if="state.isReg">
         <confReg/>
     </div>
     <div v-else class="container">
@@ -83,9 +83,13 @@
                     class="scales"
                     name="scales"/>
                 <label for="scales">Отправляя сведения через электронную форму вы соглашаетесь с условиями <span>оферты</span> и даете согласие на обработку персональных данных на условиях <span>Политики</span>.</label>
+
             </div>
-            <button type="submit">Продолжить</button>
+            <button
+
+            type="submit">Продолжить</button>
             </form>
+
         </div>
         </div>
     </div>
@@ -108,7 +112,7 @@ export default {
         }
     },
     setup(props){
-        const {state, fetchForm, v$, getCities} = RegForm();
+        const {state, fetchForm, v$, getCities } = RegForm();
         return{
             state,
             fetchForm,

@@ -6,7 +6,7 @@ import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
 import { useStore } from 'vuex';
-const regPass = JSON.parse(localStorage.getItem('reg'))
+const reg = JSON.parse(localStorage.getItem('reg'))
 export function RegForm(){
     const store = useStore();
     //регулярные выражения
@@ -14,8 +14,7 @@ export function RegForm(){
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
     const state = reactive({
-            isReg: regPass,//флаг меняющий компонент регитсрации на компоннент подтверждения регистрации
-            reg:true,
+            isReg: reg ,//флаг меняющий компонент регитсрации на компоннент подтверждения регистрации
             email: "",
             password:"",
             conf_password:"",
@@ -72,7 +71,7 @@ export function RegForm(){
             this.v$.$touch();
             return;
         }
-        //регистрация
+        регистрация
         try{
             const response = await axios({
                     method:'POST',
@@ -92,7 +91,8 @@ export function RegForm(){
             },)
             //  смена регистрации на подтверждение
             console.log(response.data);
-            localStorage.setItem('reg', true)
+            localStorage.setItem('reg', true);
+            location.reload();
         }catch(err){
             console.log(err);
             //ошибка регистрации вывод в компоненте
