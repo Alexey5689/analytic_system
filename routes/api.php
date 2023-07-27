@@ -29,7 +29,6 @@ Route::get('/city', [RegisterController::class, 'city']);
 Route::get('/verify', [RegisterController::class, 'verify']);
 
 Route::post('/register-mail-again', [RegisterController::class, 'again']);
-Route::post('/register-mail-again', [RegisterController::class, 'again']);
 
 
 
