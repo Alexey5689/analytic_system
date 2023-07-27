@@ -1,5 +1,5 @@
 <script setup>
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
     const response = ref('')
     async function GetInfo(){
         try{
@@ -7,10 +7,9 @@
                 method:'GET',
                     url:config.appBackendURL + ':' + config.appBackendPort + '/api/format_campaigns_data',
             })
-            response = response;
             console.log(response);
         }catch(err){
-            response = err.response;
+            console.log(err);
         }
     }
     onMounted(() => {
