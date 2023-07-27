@@ -15,11 +15,21 @@ export default{
             getEmail
         }
     },
+
+    methods:{
+        setInterval(){
+            setTimeout(function(){
+                window.location = '/main/';
+            }, 3000)
+        }
+
+    },
     created(){
         this.sendMail(this.$route.params.token);
     },
     mounted(){
         this.getEmail();
+        this.setInterval();
     },
     computed:mapState({
             reg: state => state.Reg.IsRegistration,

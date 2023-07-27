@@ -24,10 +24,7 @@ export function confEmail(){
         }
     }
     const sendMail = (token) => {
-        console.log(token);
-        Cookies.set('reg_token', token)
-        store.commit('getRegToken', token, { root:true });
-
+        store.commit('getRegToken', token);
     }
 
     return{ sendMail, getEmail }
