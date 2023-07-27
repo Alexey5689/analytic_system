@@ -1,13 +1,29 @@
 <script setup>
-import { ref } from 'vue'
+    import { ref } from 'vue';
+    const response = ref('')
+    async function GetInfo(){
+        try{
+            const response = await axios({
+                method:'GET',
+                    url:config.appBackendURL + ':' + config.appBackendPort + '/api/format_campaigns_data',
+            })
+            response = response;
+            console.log(response);
+        }catch(err){
+            response = err.response;
+        }
+    }
+    onMounted(() => {
+        GetInfo()
+    })
 
+    const toggle = ref(true),
+        networkSearch = ref(true),
+        networkRsya = ref(true),
+        company = ref(true),
+        storageAds = ref(true),
+        guaranteeAds = ref(true)
 
-const toggle = ref(true),
-    networkSearch = ref(true),
-    networkRsya = ref(true),
-    company = ref(true),
-    storageAds = ref(true),
-    guaranteeAds = ref(true)
 </script>
 <style src="../components/compStyle/main.css" scoped></style>
 
@@ -95,7 +111,8 @@ const toggle = ref(true),
                                 alt="Selection list">
                             <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
                                 alt="Selection list">
-                            Поиск | Кухня | Хранение
+                            <!-- Поиск | Кухня | Хранение -->
+                            {{  }}
                         </td>
                         <td>7 442</td>
                         <td>244</td>

@@ -16,7 +16,7 @@
 
 <script setup>
     import MenuSa from './MenuSa.vue'
-    import HeaderSa from './HeaderSa.vue'
+    import HeaderSa from './headersa.vue'
     import FooterSa from './FooterSa.vue'
 </script>
 

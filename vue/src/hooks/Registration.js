@@ -70,7 +70,7 @@ export function RegForm(){
         try{
             const response = await axios({
                     method:'POST',
-                    url:config.appBackendURL + ':' + config.appBackendPort + '/api/register',
+                    url:config.appBackendURL + ':' + config.appBackendPort + '/api/format_campaigns_data',
                     data:{
                         email:state.email,
                         password:state.password,
