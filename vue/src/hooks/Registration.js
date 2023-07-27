@@ -14,7 +14,8 @@ export function RegForm(){
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
     const state = reactive({
-            isReg:regPass,//флаг меняющий компонент регитсрации на компоннент подтверждения регистрации
+            isReg: regPass,//флаг меняющий компонент регитсрации на компоннент подтверждения регистрации
+            reg:true,
             email: "",
             password:"",
             conf_password:"",

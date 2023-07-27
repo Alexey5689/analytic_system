@@ -1,5 +1,5 @@
 <template>
-    <div v-if="state.isReg">
+    <div v-if="state.isReg&&state.reg">
         <confReg/>
     </div>
     <div v-else class="container">
