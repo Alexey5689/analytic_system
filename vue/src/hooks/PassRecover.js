@@ -3,14 +3,16 @@ import { reactive, computed } from 'vue';
 import axios from 'axios';
 import config from "../../vue.config.js";
 import { useVuelidate } from '@vuelidate/core';
+
 import { helpers } from "@vuelidate/validators";
 import { required, email } from '@vuelidate/validators';
 
 
+const pass = JSON.parse(localStorage.getItem('Pass'))
 export function RecForm(){
     const state = reactive({
             email: "",
-            isRec: false,
+            isRec: pass ,
             response: ''
     })
     const rules = computed (()=>{
@@ -37,8 +39,8 @@ export function RecForm(){
                     }
             },)
             console.log(response);
-            state.isRec = true;
             localStorage.setItem('repeatEmailChangePass', state.email);
+            localStorage.setItem('Pass', true);
         }catch(err){
             state.response = err.data.message;
         }finally{
@@ -46,6 +48,8 @@ export function RecForm(){
         }
 
     }
+
+
     return{state, Recovery, v$}
 
 }
