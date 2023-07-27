@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
     {
        $schedule->call(function () {
             $controller = new DataYandexController();
-            $controller->__invoke(); // Замените `yourMethod` на метод контроллера, который вы хотите выполнить
+            $controller->get_campaign(); // Замените `yourMethod` на метод контроллера, который вы хотите выполнить
         })->everyMinute()->appendOutputTo('scheduler.log');
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataYandexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
@@ -23,6 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,60');
+
+Route::get('/campaign', [DataYandexController::class, 'get_campaign']);
+
+Route::get('/ads_group', [DataYandexController::class, 'get_ads_group']);
 
 
 
