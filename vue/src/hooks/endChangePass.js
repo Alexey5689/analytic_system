@@ -16,7 +16,7 @@ export function endChangePass(){
                     method:'POST',
                     url:config.appBackendURL + ':' + config.appBackendPort + '/api/reset',
                     data:{
-                        email:localStorage.getItemItem('repeatEmailChangePass'),
+                        email:localStorage.getItem('repeatEmailChangePass'),
                         token:token,
                         password:state.password,
                         password_confirmation: state.password_confirm
@@ -29,7 +29,7 @@ export function endChangePass(){
             console.log(response);
             localStorage.removeItem('repeatEmailChangePass');
         }catch(err){
-            state.response = response.message;
+            state.response = err.message;
         }finally{
             state.password = '';
             state.password_confirm= '';

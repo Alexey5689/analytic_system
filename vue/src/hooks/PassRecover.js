@@ -1,8 +1,9 @@
 
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
 import axios from 'axios';
 import config from "../../vue.config.js";
 import { useVuelidate } from '@vuelidate/core';
+import { helpers } from "@vuelidate/validators";
 import { required, email } from '@vuelidate/validators';
 
 
@@ -39,7 +40,7 @@ export function RecForm(){
             state.isRec = true;
             localStorage.setItem('repeatEmailChangePass', state.email);
         }catch(err){
-            state.response = err.message;
+            state.response = err.data.message;
         }finally{
             state.email = '';
         }
