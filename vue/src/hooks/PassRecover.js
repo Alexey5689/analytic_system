@@ -1,9 +1,9 @@
 
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
 import axios from 'axios';
 import config from "../../vue.config.js";
 import { useVuelidate } from '@vuelidate/core';
-import { required, email } from '@vuelidate/validators';
+import { required, email, helpers } from '@vuelidate/validators';
 
 
 export function RecForm(){
