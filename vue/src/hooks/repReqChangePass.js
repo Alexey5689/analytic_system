@@ -13,7 +13,7 @@ export function Repeated(){
                     method:'POST',
                     url:config.appBackendURL + ':' + config.appBackendPort +'/api/recovery-email-again',
                     data:{
-                        email: localStorage.setItem('repeatEmailChangePass'),
+                        email: localStorage.getItem('repeatEmailChangePass'),
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'

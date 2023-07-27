@@ -28,6 +28,7 @@ export function endChangePass(){
             state.response = response.data.message;
             console.log(response);
             localStorage.removeItem('repeatEmailChangePass');
+            localStorage.removeItem('Pass')
         }catch(err){
             state.response = err.message;
         }finally{
