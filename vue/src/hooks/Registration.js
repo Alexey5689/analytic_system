@@ -71,7 +71,7 @@ export function RegForm(){
             this.v$.$touch();
             return;
         }
-        регистрация
+
         try{
             const response = await axios({
                     method:'POST',
