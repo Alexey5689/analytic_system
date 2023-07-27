@@ -13,7 +13,7 @@ export function AuthValidForm(){
         email: "",
         password:"",
         emailMessage:'Шаблон почты аааааа@aa.com',
-        countErr: 0 ,//небольше 5ти попыток
+        errLog: false,
         response: "",
 
     })
@@ -49,16 +49,20 @@ export function AuthValidForm(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
-                window.location.href ='/main/'
-                Cookies.set('XSRF-TOKEN', response.data.token);
-                store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
+                console.log(response.data)
+                if(response.data.status === true){
+                    window.location.href ='/main/';
+                    Cookies.set('XSRF-TOKEN', response.data.token);
+                    store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
+                }
+           // state.response=response.data.message;
         }catch(err){
             console.log(err);
-            state.response = err.message;
-            state.countErr+=1;
-            if(state.email === 6){
+            if(err.response.status === 429){
+                state.errLog = true;
                 localStorage.setItem('repeatEmail', state.email);
             }
+            state.response = err.response;
         }finally{
             // state.password = '';
             // state.email = '';

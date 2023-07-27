@@ -1,5 +1,5 @@
 <template>
-    <div v-if="state.countErr > 5">
+    <div v-if="state.errLog">
         <ErrLog/>
     </div>
     <div v-else class="container">
