@@ -9,19 +9,19 @@ export const routes = [
         name: "Main",
         path: '/main/',
         component: MainPage,
-        meta: { auth: true},
+        //meta: { auth: true},
         children:[
             {
                 name: 'Analitics',
                 path: '',
                 component: Analytics,
-                meta: { auth: true},
+               // meta: { auth: true},
             },
             {
                 name: 'Settings',
                 path: 'settings',
                 component: Settings,
-                meta: { auth: true},
+                //meta: { auth: true},
             }
         ]
     },
