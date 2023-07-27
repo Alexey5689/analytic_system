@@ -1,18 +1,27 @@
 <script setup>
-    import { ref } from 'vue';
-    const response = ref('')
+    //import { AnalyticsInfo } from '../hooks/AnalGetInform.js';
+    // export default{
+    //     setup(props){
+    //         const {state} = AnalyticsInfo();
+                // return{
+                //     state,
+                // }
+    //     }
+    // }
+    import { ref, onMounted } from 'vue';
+
     async function GetInfo(){
         try{
             const response = await axios({
                 method:'GET',
                     url:config.appBackendURL + ':' + config.appBackendPort + '/api/format_campaigns_data',
             })
-            response = response;
             console.log(response);
         }catch(err){
-            response = err.response;
+            console.log(err);
         }
     }
+    const response = ref('')
     onMounted(() => {
         GetInfo()
     })
