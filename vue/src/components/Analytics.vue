@@ -1,6 +1,15 @@
 <script setup>
+    //import { AnalyticsInfo } from '../hooks/AnalGetInform.js';
+    // export default{
+    //     setup(props){
+    //         const {state} = AnalyticsInfo();
+                // return{
+                //     state,
+                // }
+    //     }
+    // }
     import { ref, onMounted } from 'vue';
-    const response = ref('')
+
     async function GetInfo(){
         try{
             const response = await axios({
@@ -12,6 +21,7 @@
             console.log(err);
         }
     }
+    const response = ref('')
     onMounted(() => {
         GetInfo()
     })
