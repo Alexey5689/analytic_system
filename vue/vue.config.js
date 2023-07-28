@@ -1,5 +1,5 @@
 const config = {
-    appBackendURL: 'http://192.168.0.35',
+    appBackendURL: 'http://localhost',
     appBackendPort: '8080',
     appLocalHost: 'http://localhost'
 }
