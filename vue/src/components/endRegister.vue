@@ -9,21 +9,27 @@
 import { ThisIsTheEnd } from '../hooks/EndRegister.js';
 
 export default{
+
     setup(props){
         const { EndReg } = ThisIsTheEnd();
         return{
             EndReg
         }
     },
+
     methods:{
         setInterval(){
             setTimeout(function(){
                 window.location = '/main/';
             }, 3000)
         }
+
+    },
+    created(){
+        this.sendMail(this.$route.params.token);
     },
     mounted(){
-        this.EndReg();
+        this.getEmail();
         this.setInterval();
     },
 
