@@ -1,4 +1,3 @@
-
 import { useStore } from 'vuex';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -18,7 +17,6 @@ export function confEmail(){
                 }
             },)
             localStorage.removeItem('repeatEmail');
-            localStorage.removeItem('reg');
             console.log(response);
         }catch(err){
             console.error(err)
@@ -31,15 +29,3 @@ export function confEmail(){
 
     return{ sendMail, getEmail }
 }
-
-
-
-
-
-
-
-
-
-
-
-
