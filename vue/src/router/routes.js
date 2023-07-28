@@ -1,37 +1,35 @@
 import Register from '../components/Register.vue'
-import Login from '../components/Login.vue'
-import Recovery from '../components/PassRecovery.vue'
-import Confirm from '../components/confirmPassRecovery.vue'
-import Change from '../components/endChangePass.vue'
+import EndRegister from "../components/endRegister.vue";
+import Change from '../components/endChangePass.vue';
+import ConfReg from '../components/confirmRegister.vue';
+import ConfPassRec from '../components/confirmPassRecovery.vue';
 
 export const routes = [
     {
         name: "Reg",
-        path: '/registration',
+        path: '/',
         component: Register
     },
     {
-        name: "Log",
-        path: '/login',
-        component: Login
+        name: "EndReg",
+        path: '/end-register/:token',
+        component: EndRegister
     },
-
     {
-        name: "Recovery",
-        path: '/reset-password',
-        component: Recovery,
+        name: "ConfReg",
+        path: '/conf-reg',
+        component: ConfReg
     },
-
     {
-        name: "Confirm",
-        path: '/confirm-pass',
-        component: Confirm
-    },
-
-    {
-        name: "Change",
-        path: '/reset-password/:token',
+        name: "Change ",
+        path: '/change',
         component: Change
     },
+    {
+        name: "ConfPassRec",
+        path: '/conf-pass',
+        component: ConfPassRec
+    },
+
 
 ]

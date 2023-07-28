@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->uuid('id')->primary();
             $table->string('name')->nullable();
             $table->bigInteger('tel');
-            $table->string('region')->nullable();
+            $table->integer('city')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

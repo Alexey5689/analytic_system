@@ -26,9 +26,13 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,60');
 
-Route::post('/forget-password', [ForgotPasswordController::class, 'forget']);
+Route::get('/city', [RegisterController::class, 'city']);
 
-Route::post('/reset', [ForgotPasswordController::class, 'reset']);
+Route::get('/verify', [RegisterController::class, 'verify']);
+
+Route::post('/register-mail-again', [RegisterController::class, 'again']);
+
+
 
 
 
