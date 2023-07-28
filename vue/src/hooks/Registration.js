@@ -71,6 +71,10 @@ export function RegForm(){
             this.v$.$touch();
             return;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3221aa33138e7f350f9a16328b198c5fb15f5517
         try{
             const response = await axios({
                     method:'POST',

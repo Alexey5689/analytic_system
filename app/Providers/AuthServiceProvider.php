@@ -6,6 +6,7 @@ namespace App\Providers;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,11 +24,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
-            return (new MailMessage)
-                ->subject('Подтверждение email на сайте ...')
-                ->line('Нажмите кнопку ниже для подтверждения email-адреса.')
-                ->action('Подтвердить', $url);
-        });
+//        voidVerifyEmail::toMailUsing(function (object $notifiable, string $url) {
+//            return (new MailMessage)
+//                ->subject('Подтверждение email на сайте ...')
+//                ->line('Нажмите кнопку ниже для подтверждения email-адреса.')
+//                ->action('Подтвердить', $url);
+//        });
+//        $this->registerPolicies();
+//
+//        ResetPassword::createUrlUsing(function ($user, string $token) {
+//            return 'https://localhost:8080/reset-password/'.$token;
+//        });
     }
 }
