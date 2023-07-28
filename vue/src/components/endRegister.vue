@@ -9,7 +9,7 @@
 </template>
 <script>
 import { confEmail } from '../hooks/EndRegister.js';
-import { mapState } from 'vuex';
+
 export default{
 
     setup(props){
@@ -32,12 +32,10 @@ export default{
         this.sendMail(this.$route.params.token);
     },
     mounted(){
-        this.getEmail();
+        this.getEmail(this.$route.params.token);
         this.setInterval();
     },
-    computed:mapState({
-            reg: state => state.Reg.IsRegistration,
-    })
+
 
 
 }
@@ -47,6 +45,5 @@ export default{
 <style src="../components/compStyle/endRegisterStyle.css" scoped>
 </style>
 
-<style src="../components/compStyle/endRegisterStyle.css" scoped>
-</style>
+
 
