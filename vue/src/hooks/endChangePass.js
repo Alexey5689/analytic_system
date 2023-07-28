@@ -14,7 +14,7 @@ export function endChangePass(){
         try{
             const response = await axios({
                     method:'POST',
-                    url:config.appLocalHost + ':' + config.appBackendPort + '/api/reset',
+                    url:config.appBackendURL + ':' + config.appBackendPort + '/api/reset',
                     data:{
                         token:state.token,
                         password:state.password,

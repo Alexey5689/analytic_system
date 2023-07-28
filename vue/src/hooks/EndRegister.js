@@ -6,7 +6,7 @@ export function confEmail(){
         try{
             const response = await axios({
                 method: "GET",
-                url:config.appLocalHost + ':' + config.appBackendPort + '/api/verify',
+                url:config.appBackendURL + ':' + config.appBackendPort + '/api/verify',
                 params: {
                     _token: token,
                 }

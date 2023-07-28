@@ -75,7 +75,7 @@ export function RegForm(){
         try{
             const response = await axios({
                     method:'POST',
-                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/register',
+                    url:config.appLocalHost + ':' + config.appBackendPort +'/api/register',
                     data:{
                         email:state.email,
                         password:state.password,
@@ -106,7 +106,6 @@ export function RegForm(){
         try{
             const response = await axios.get( config.appLocalHost + ':' + config.appBackendPort +'/api/city')
             state.cities = response.data;
-            console.log(state.cities);
         }catch(err){
             console.log(err);
             //ошибка запроса
