@@ -10,9 +10,9 @@ import { ThisIsTheEnd } from '../hooks/EndRegister.js';
 
 export default{
     setup(props){
-        const { EndReg } = ThisIsTheEnd();
+        const { getEmail } = ThisIsTheEnd();
         return{
-            EndReg
+            getEmail
         }
     },
     methods:{
@@ -23,7 +23,6 @@ export default{
         }
     },
     mounted(){
-        this.EndReg();
         this.setInterval();
     },
 
