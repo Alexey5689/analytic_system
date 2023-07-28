@@ -14,7 +14,7 @@ export function RegForm(){
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
     const state = reactive({
-            isReg: reg ,//флаг меняющий компонент регитсрации на компоннент подтверждения регистрации
+            isReg: reg ,//флаг меняющий компонент регитсрации на компонент подтверждения регистрации
             email: "",
             password:"",
             conf_password:"",
@@ -71,7 +71,6 @@ export function RegForm(){
             this.v$.$touch();
             return;
         }
-        регистрация
         try{
             const response = await axios({
                     method:'POST',
@@ -96,7 +95,7 @@ export function RegForm(){
         }catch(err){
             console.log(err);
             //ошибка регистрации вывод в компоненте
-            state.response = err.message;
+            state.response = err.response.data.message;
             localStorage.setItem('repeatEmail', state.email);
         }finally{
         }
@@ -113,9 +112,6 @@ export function RegForm(){
             state.response = err.message;
         }
     }
-
-
-
     return{
         state,
         fetchForm,
