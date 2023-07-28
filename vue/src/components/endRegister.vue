@@ -1,5 +1,4 @@
 
-
 <template>
     <div class="container">
         <div class="card">
@@ -13,20 +12,18 @@ import { confEmail } from '../hooks/EndRegister.js';
 export default{
 
     setup(props){
-        const { sendMail,getEmail } = confEmail();
+        const { getEmail } = confEmail();
         return{
             sendMail,
-            getEmail
+
         }
     },
-
     methods:{
         setInterval(){
             setTimeout(function(){
                 window.location = '/main/';
             }, 3000)
         }
-
     },
 
     mounted(){
