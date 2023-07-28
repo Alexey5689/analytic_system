@@ -1,3 +1,5 @@
+
+
 <template>
     <div class="container">
         <div class="card">
@@ -6,14 +8,15 @@
     </div>
 </template>
 <script>
-import { ThisIsTheEnd } from '../hooks/EndRegister.js';
-
+import { confEmail } from '../hooks/EndRegister.js';
+import { mapState } from 'vuex';
 export default{
 
     setup(props){
-        const { EndReg } = ThisIsTheEnd();
+        const { sendMail,getEmail } = confEmail();
         return{
-            EndReg
+            sendMail,
+            getEmail
         }
     },
 
@@ -32,12 +35,17 @@ export default{
         this.getEmail();
         this.setInterval();
     },
-
+    computed:mapState({
+            reg: state => state.Reg.IsRegistration,
+    })
 
 
 }
 
 </script>
+
+<style src="../components/compStyle/endRegisterStyle.css" scoped>
+</style>
 
 <style src="../components/compStyle/endRegisterStyle.css" scoped>
 </style>
