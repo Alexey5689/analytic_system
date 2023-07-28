@@ -106,7 +106,6 @@ export function RegForm(){
         try{
             const response = await axios.get( config.appLocalHost + ':' + config.appBackendPort +'/api/city')
             state.cities = response.data;
-            console.log(state.cities);
         }catch(err){
             console.log(err);
             //ошибка запроса
