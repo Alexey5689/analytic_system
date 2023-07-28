@@ -1,12 +1,8 @@
-
-
 import axios from 'axios';
 import config from "../../vue.config.js";
 
 export function confEmail(){
     //vuexподключение
-
-
     const getEmail = async(token)=>{
         try{
             const response = await axios({
@@ -26,7 +22,7 @@ export function confEmail(){
     }
 
 
-    return{ sendMail, getEmail }
+    return{ getEmail }
 }
 
 
