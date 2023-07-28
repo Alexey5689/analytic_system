@@ -10,9 +10,10 @@ import { ThisIsTheEnd } from '../hooks/EndRegister.js';
 
 export default{
     setup(props){
-        const { getEmail } = ThisIsTheEnd();
+        const { getEmail, sendMail } = ThisIsTheEnd();
         return{
-            getEmail
+            getEmail,
+            sendMail
         }
     },
     methods:{
@@ -21,6 +22,9 @@ export default{
                 window.location = '/main/';
             }, 3000)
         }
+    },
+    created(){
+        this.sendMail(this.$route.params.token);
     },
     mounted(){
         this.setInterval();

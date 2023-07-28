@@ -20,8 +20,12 @@ export function ThisIsTheEnd(){
         }finally{
         }
     }
+    const sendMail = (token) => {
+        store.commit('getRegToken', token);
+    }
     return{
-        getEmail
+        getEmail,
+        sendMail
     }
 }
 
