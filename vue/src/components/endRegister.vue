@@ -14,8 +14,7 @@ export default{
     setup(props){
         const { getEmail } = confEmail();
         return{
-            sendMail,
-
+            getEmail,
         }
     },
     methods:{
