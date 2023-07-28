@@ -6,6 +6,8 @@ use App\Http\Requests\ValidateRegisterRequest;
 use App\Mail\VerifyMail;
 use App\Models\User;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -56,7 +58,7 @@ class RegisterController extends Controller
                 'status' => false
             ]);
         }
-        $user->email_verified_at = now();
+        $user->email_verified_at = Carbon::now();
         $user->status = User::STATUS_ACTIVE;
         $user->verify_token = null;
         $user->save();
