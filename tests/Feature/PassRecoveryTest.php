@@ -6,13 +6,16 @@ use App\Mail\VerifyMail;
 use App\Models\User;
 use App\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class PassRecoveryTest extends TestCase
 {
     use DatabaseMigrations;
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      */
@@ -25,26 +28,31 @@ class PassRecoveryTest extends TestCase
 
     public function test_function_pass_recovery(): void
     {
-        Mail::fake();
-        $this->postJson('/api/register',
-            [
-                'name' => 'Qwerty',
-                'tel' => '89096096127',
-                'email' => 'next@mail.ru',
-                'password' => 'qwerty12',
-            ]);
-      $response = $this->post('/api/forget-password',
-            [
-                'email' => 'next@mail.ru',
-            ]);
-        Mail::assertSent(ResetPassword::class);
+        Notification::fake();
+
+        $this->post('/api/register', [
+            'name' => 'Qwerty',
+            'tel' => '89096096127',
+            'email' => 'next@mail.ru',
+            'password' => 'qwerty12',
+            'password_confirmation' => 'qwerty12'
+        ]);
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'next@mail.ru',
+        ]);
+
+        $response = $this->post('/api/forget-password', [
+            'email' => 'next@mail.ru',
+        ]);
+
+        Notification::assertSentTo(User::where('email', 'next@mail.ru')->first(), ResetPassword::class);
 
         $response->assertStatus(200)
-            ->assertJsonStructure(
-                [
-                    'message',
-                    'status',
-                ]);
+            ->assertJsonStructure([
+                'message',
+                'status',
+            ]);
     }
 
     public function test_function_reset_pass_recovery(): void
@@ -56,14 +64,12 @@ class PassRecoveryTest extends TestCase
                 'email' => 'next@mail.ru',
                 'password' => 'qwerty12',
             ]);
-        $user = User::where('email', 'next@mail.ru')->firstOrFail()->id;
-        $token = DB::table('password_reset_tokens')->where('id', '=', '$user');
         $response = $this->post('/api/reset',
             [
                 'email' => 'next@mail.ru',
                 'password' => 'qweQWE1!',
                 'password_confirmation' => 'qweQWE1!',
-                'token' => $token,
+                'token' => 'fgyiuguougcgfhyu123fdsfreter2',
             ]);
 
         $response->assertStatus(200)
