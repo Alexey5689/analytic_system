@@ -14,7 +14,7 @@ export function RegForm(){
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
     const state = reactive({
-            isReg: reg ,//флаг меняющий компонент регитсрации на компонент подтверждения регистрации
+            isReg: reg ,//флаг меняющий компонент на компонент подтверждения регистрации
             email: "",
             password:"",
             conf_password:"",
@@ -71,10 +71,7 @@ export function RegForm(){
             this.v$.$touch();
             return;
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 3221aa33138e7f350f9a16328b198c5fb15f5517
         try{
             const response = await axios({
                     method:'POST',
@@ -113,7 +110,7 @@ export function RegForm(){
         }catch(err){
             console.log(err);
             //ошибка запроса
-            state.response = err.message;
+            state.response = err.response.data.message;
         }
     }
     return{
