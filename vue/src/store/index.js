@@ -4,42 +4,43 @@ import Cookies from 'js-cookie';
 
 export default createStore({
     state: ()=>({
-       seconds:60,
-       minuts:1,
-       IsRegistration: '',
-    }),
+        seconds:60,
+        minuts:1,
+        isAuth: '',
+     }),
     plugins: [createPersistedState({
-        key:"reg_token",
-        paths:['IsRegistration'],
+        key:"XSRF-TOKEN",
+        paths:['isAuth'],
         storage: {
             getItem: key => Cookies.get(key),
             setItem: (key, value) => Cookies.set(key, value),
             removeItem: key => Cookies.remove(key)
           }
     })],
+
     mutations:{
-        getRegToken(state, token){
-            state.IsRegistration = token;
+        getAuthToken(state, token){
+            state.isAuth = token
+        },
+        lostAuthToken(state){
+            state.isAuth ="";
         },
         changeTime(state){
-            if(state.minuts > 0){
-                state.minuts-=1
-            }
-            if(state.seconds > 0){
-                state.seconds-= 1;
-            }
-       },
-    },
-    actions:{
-        changeTimeAsync({commit}){
-            setInterval(()=>{
-                commit('changeTime')
-            },1000);
+             if(state.minuts > 0){
+                 state.minuts-=1
+             }
+             if(state.seconds > 0){
+                 state.seconds-= 1;
+             }
         },
+     },
+    actions:{
+         changeTimeAsync({commit}){
+             setInterval(()=>{
+                 commit('changeTime')
+             },1000);
+         },
     },
     modules:{
-
     }
-
-
 })

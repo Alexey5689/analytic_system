@@ -20,7 +20,7 @@ body {
     font-weight: 700;
     line-height: 120%;
     font-family: 'Montserrat-Bold';
-    margin-bottom: 13px;
+    margin-bottom: 32px;
 }
 .card {
     display: flex;
@@ -39,53 +39,13 @@ p{
     line-height: 120%;
     color: #919399;
 }
-.redir{
-    cursor: pointer;
-}
 .card-body {
-    margin-top: 24px;
     width: -webkit-fill-available;
 }
-.buttonLog {
-    background-color: #005BD1;
-    color: white;
-    padding: 0 20%;
-    width: -webkit-fill-available;
-    border-radius: 10px;
-    height: 47px;
-    margin-bottom: 26px;
-    font-family: 'Montserrat-Regular';
-    cursor: pointer;
+.card-body p {
+    font-family: Montserrat-Regular;
 }
-input:hover {
-    background-color: #DBDEE4;
-    transition: ease 1s;
-}
-input {
-    font-family: 'Montserrat-Regular';
-    font-size: 14px;
-    height:34px;
-    margin-bottom: 12px;
-    width: -webkit-fill-available;
-}
-.user-email {
-    background: url("../../assets/image/mail-icon.svg") no-repeat;
-}
-.user-passw {
-    background: url("../../assets/image/blocked-icon.svg") no-repeat;
-    margin-bottom: 26px;
-}
-.user-email, .user-passw {
-    background-size: inherit;
-    background-position-y: center;
-    background-color: #F0F1F3;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    background-position-x: 16px;
-    padding-left: 3.5rem;
-    border-radius: 9px;
-    outline: none;
-}
+
 .general-block {
     display: flex;
     flex-direction: column;
@@ -93,20 +53,38 @@ input {
 }
 .bottom-block-register {
     display: flex;
-    justify-content: space-around;
+    gap:10px;
+    margin-top: 16px;
+    padding: 10px 0;
 }
 .bottom-block-register p {
-    color: #005BD1;
     font-weight: bold;
-    cursor: pointer;
+    font-family: Montserrat-Bold;
+    font-size: 14px;
 }
 
+h3 {
+    justify-content: center;
+    align-self: stretch;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 120%;
+    font-family: 'Montserrat-Bold';
+    margin-bottom: 13px;
+}
+.resend-p {
+    color: #005BD1;
+}
+.time {
+    font-weight: bold;
+    font-size: 12px;
+    color: #528FDF;
+}
 .ruls{
     font-family: 'Montserrat-Regular';
     color: rgb(201, 0, 0);
     display: flex;
     flex-direction: column;
 }
-
-
 
