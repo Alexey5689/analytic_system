@@ -1,17 +1,3 @@
-body {
-    display: flex;
-    justify-content: center;
-    background-color: #F0F1F3;
-    height: 100vh;
-    align-items: center;
-}
-.container {
-    display: flex;
-    justify-content: center;
-    background-color: #F0F1F3;
-    height: 100vh;
-    align-items: center;
-}
 .card-header {
     justify-content: center;
     align-self: stretch;
@@ -20,7 +6,6 @@ body {
     font-weight: 700;
     line-height: 120%;
     font-family: 'Montserrat-Bold';
-    padding: 0 10%;
     margin-bottom: 32px;
 }
 .card {
@@ -29,8 +14,8 @@ body {
     flex-direction: column;
     background-color: white;
     border-radius: 20px;
-    padding: 42px 32px;
-    width: 454px;
+    height: fit-content;
+    padding: 8% 5%;
 }
 p{
     font-size: 16px;
@@ -43,8 +28,12 @@ p{
     width: -webkit-fill-available;
 }
 .card-body p {
-    font-size: 12px;
-    font-family: Montserrat-Bold;
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-family: Montserrat-Regular;
+}
+.time {
+    margin-left: 10px;
 }
 .general-block {
     display: flex;
@@ -53,19 +42,14 @@ p{
 }
 .bottom-block-register {
     display: flex;
+    margin-left: 10px;
     gap:10px;
 }
 .bottom-block-register p {
     font-weight: bold;
     font-size: 14px;
     font-family: Montserrat-Bold;
-    padding: 10px;
-}
-.main-text {
-    padding-bottom: 16px;
-}
-.time {
-    margin-left: 10px;
+    margin-bottom: 10px;
 }
 
 h3 {
@@ -81,10 +65,4 @@ h3 {
 .resend-p {
     color: #005BD1;
     cursor: pointer;
-}
-.ruls{
-    font-family: 'Montserrat-Regular';
-    color: rgb(201, 0, 0);
-    display: flex;
-    flex-direction: column;
 }

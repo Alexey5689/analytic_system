@@ -1,4 +1,4 @@
-import {createStore} from "vuex";
+import { createStore } from "vuex";
 import createPersistedState from 'vuex-persistedstate';
 import Cookies from 'js-cookie';
 
@@ -42,6 +42,5 @@ export default createStore({
          },
     },
     modules:{
-
     }
 })
