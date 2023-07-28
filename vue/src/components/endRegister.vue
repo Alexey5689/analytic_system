@@ -28,9 +28,7 @@ export default{
         }
 
     },
-    created(){
-        this.sendMail(this.$route.params.token);
-    },
+
     mounted(){
         this.getEmail(this.$route.params.token);
         this.setInterval();
