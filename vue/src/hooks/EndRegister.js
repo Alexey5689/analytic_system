@@ -11,17 +11,19 @@ export function confEmail(){
                     _token: token,
                 }
             },)
-            localStorage.removeItem('repeatEmail');
-            localStorage.removeItem('reg');
+
             console.log(response);
         }catch(err){
             console.error(err)
         }finally{
         }
     }
+    function clear(){
+        localStorage.removeItem('repeatEmail');
+        localStorage.removeItem('reg');
+    }
 
-
-    return{ getEmail }
+    return{ getEmail, clear }
 }
 
 

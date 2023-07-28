@@ -12,9 +12,10 @@ import { confEmail } from '../hooks/EndRegister.js';
 export default{
 
     setup(props){
-        const { getEmail } = confEmail();
+        const { getEmail,clear} = confEmail();
         return{
             getEmail,
+            clear
         }
     },
     methods:{
@@ -24,7 +25,9 @@ export default{
             }, 3000)
         }
     },
-
+    created(){
+        this.clear();
+    },
     mounted(){
         this.getEmail(this.$route.params.token);
         this.setInterval();
