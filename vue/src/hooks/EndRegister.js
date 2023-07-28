@@ -1,6 +1,6 @@
 
-import { useStore } from 'vuex';
-import Cookies from 'js-cookie';
+// import { useStore } from 'vuex';
+// import Cookies from 'js-cookie';
 import axios from 'axios';
 import config from "../../vue.config.js";
 
@@ -8,13 +8,13 @@ export function confEmail(){
     //vuexподключение
     const store = useStore();
 
-    const getEmail = async()=>{
+    const getEmail = async(token)=>{
         try{
             const response = await axios({
                 method: "GET",
                 url:config.appBackendURL + ':' + config.appBackendPort + '/api/verify',
                 params: {
-                    _token: Cookies.get('reg_token'),
+                    _token: token,
                 }
             },)
             localStorage.removeItem('repeatEmail');
@@ -25,9 +25,9 @@ export function confEmail(){
         }finally{
         }
     }
-    const sendMail = (token) => {
-        store.commit('getRegToken', token);
-    }
+    // const sendMail = (token) => {
+    //     store.commit('getRegToken', token);
+    // }
 
     return{ sendMail, getEmail }
 }
