@@ -1,12 +1,11 @@
 
-// import { useStore } from 'vuex';
-// import Cookies from 'js-cookie';
+
 import axios from 'axios';
 import config from "../../vue.config.js";
 
 export function confEmail(){
     //vuexподключение
-    const store = useStore();
+
 
     const getEmail = async(token)=>{
         try{
@@ -25,9 +24,7 @@ export function confEmail(){
         }finally{
         }
     }
-    // const sendMail = (token) => {
-    //     store.commit('getRegToken', token);
-    // }
+
 
     return{ sendMail, getEmail }
 }
