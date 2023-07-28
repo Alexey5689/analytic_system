@@ -6,15 +6,14 @@
     </div>
 </template>
 <script>
-import { confEmail } from '../hooks/confirmReg';
-import { mapState } from 'vuex';
+import { ThisIsTheEnd } from '../hooks/EndRegister.js';
+
 export default{
 
     setup(props){
-        const { sendMail,getEmail } = confEmail();
+        const { EndReg } = ThisIsTheEnd();
         return{
-            sendMail,
-            getEmail
+            EndReg
         }
     },
 
@@ -33,9 +32,7 @@ export default{
         this.getEmail();
         this.setInterval();
     },
-    computed:mapState({
-            reg: state => state.Reg.IsRegistration,
-    })
+
 
 
 }

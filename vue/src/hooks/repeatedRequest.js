@@ -7,7 +7,7 @@ export function Repeated(){
         respose: "",
     })
         //повторная отправка письма на почту
-        const repeatReqest = async () =>{
+        const repeatRequest = async () =>{
             try{
                 const response = await axios({
                     method:'POST',
@@ -20,16 +20,15 @@ export function Repeated(){
                     }
             },)
                 state.respose = response.data;
-                console.log(response);
                 location.reload();
             }catch(err){
                 console.log(err);
-                state.respose = err.message;
+                state.respose = err.response.data.message;
             }
         }
     return {
         state,
-        repeatReqest,
+        repeatRequest,
 
     }
 }

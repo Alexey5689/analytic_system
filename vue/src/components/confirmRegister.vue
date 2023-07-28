@@ -11,7 +11,7 @@
             <div class="bottom-block-register">
                 <p>Не пришло письмо?</p>
                 <p v-if="seconds>0" class=" ">Отправить повторно</p>
-                <p v-else class="resend-p" @click="repeatReqest" >Отправить повторно</p>
+                <p v-else class="resend-p" @click="repeatRequest" >Отправить повторно</p>
             </div>
             <p class="time">{{minuts<1?'00':'0'+minuts}}:{{minuts===1?'00':seconds<10?'0'+seconds:seconds}}</p>
         </div>
@@ -23,9 +23,9 @@
     import { Repeated } from '../hooks/repeatedRequest.js';
     export default{
         setup(props){
-            const { repeatReqest, state }=Repeated()
+            const { repeatRequest, state }=Repeated()
             return {
-                repeatReqest,
+                repeatRequest,
                 state,
             }
         },
