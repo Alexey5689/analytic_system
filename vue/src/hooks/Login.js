@@ -6,14 +6,14 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, helpers} from '@vuelidate/validators'
 import { useStore } from 'vuex';
 
-
+const log = JSON.parse(localStorage.getItem('Log'));
 export function AuthValidForm(){
     const store = useStore();
     const state = reactive({
         email: "",
         password:"",
         emailMessage:'Шаблон почты аааааа@aa.com',
-        errLog: false,
+        errLog: log,
         response: "",
 
     })
@@ -55,12 +55,12 @@ export function AuthValidForm(){
                     Cookies.set('XSRF-TOKEN', response.data.token);
                     store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
                 }
-           // state.response=response.data.message;
         }catch(err){
             console.log(err);
             if(err.response.status === 429){
-                state.errLog = true;
+                localStorage.setItem('Log', true);
                 localStorage.setItem('repeatEmail', state.email);
+                location.reload();
             }
             state.response = err.response;
         }finally{
