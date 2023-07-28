@@ -1,9 +1,13 @@
 
+import { useStore } from 'vuex';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import config from "../../vue.config.js";
 
-export function ThisIsTheEnd(){
+export function confEmail(){
+    //vuexподключение
+    const store = useStore();
+
     const getEmail = async()=>{
         try{
             const response = await axios({
@@ -15,6 +19,7 @@ export function ThisIsTheEnd(){
             },)
             localStorage.removeItem('repeatEmail');
             localStorage.removeItem('reg');
+            console.log(response);
         }catch(err){
             console.error(err)
         }finally{
@@ -23,11 +28,14 @@ export function ThisIsTheEnd(){
     const sendMail = (token) => {
         store.commit('getRegToken', token);
     }
-    return{
-        getEmail,
-        sendMail
-    }
+
+    return{ sendMail, getEmail }
 }
+
+
+
+
+
 
 
 
