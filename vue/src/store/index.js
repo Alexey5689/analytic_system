@@ -1,12 +1,13 @@
 import { createStore } from "vuex";
 import createPersistedState from 'vuex-persistedstate';
 import Cookies from 'js-cookie';
-
+const reg = JSON.parse(localStorage.getItem('reg'))
 export default createStore({
     state: ()=>({
        seconds:60,
        minuts:1,
        IsRegistration: '',
+       reg: reg,
     }),
     plugins: [createPersistedState({
         key:"reg_token",
@@ -20,6 +21,7 @@ export default createStore({
     mutations:{
         getRegToken(state, token){
             state.IsRegistration = token;
+            console.log(token);
         },
         changeTime(state){
             if(state.minuts > 0){

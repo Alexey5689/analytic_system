@@ -30,6 +30,7 @@ button {
     background-color: #005BD1;
     border-radius: 10px;
     height: 47px;
+    cursor: pointer;
 }
 .general-block {
     display: flex;

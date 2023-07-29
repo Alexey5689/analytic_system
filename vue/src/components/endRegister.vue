@@ -12,33 +12,21 @@ import { confEmail } from '../hooks/EndRegister.js';
 export default{
 
     setup(props){
-        const { getEmail,clear} = confEmail();
+        const {state, getVerify, getToken } = confEmail();
         return{
-            getEmail,
-            clear
-        }
-    },
-    methods:{
-        setInterval(){
-            setTimeout(function(){
-                window.location = '/main/';
-            }, 3000)
+            getVerify,
+            getToken,
+            state,
         }
     },
     created(){
-        this.clear();
+        this.getToken(this.$route.params.token);
     },
     mounted(){
-        this.getEmail(this.$route.params.token);
-        this.setInterval();
+        this.getVerify();
     },
-
-
-
 }
-
 </script>
-
 <style src="../components/compStyle/endRegisterStyle.css" scoped>
 </style>
 

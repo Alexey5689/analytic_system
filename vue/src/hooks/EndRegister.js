@@ -1,29 +1,41 @@
 import axios from 'axios';
 import config from "../../vue.config.js";
-
+import { useStore } from 'vuex';
+import { reactive } from 'vue';
+import Cookies from 'js-cookie'
 export function confEmail(){
-    const getEmail = async(token)=>{
+    const store = useStore();
+    const state = reactive({
+        response:"",
+    })
+    const getVerify = async()=>{
         try{
             const response = await axios({
                 method: "GET",
                 url:config.appBackendURL + ':' + config.appBackendPort + '/api/verify',
                 params: {
-                    _token: token,
+                    _token:Cookies.get('reg_token'),
                 }
             },)
-
-            console.log(response);
+            localStorage.removeItem('repeatEmail');
+            localStorage.removeItem('reg');
+            Cookies.remove('reg_token');
+            setTimeout(function(){
+                window.location = '/main/';
+            }, 3000)
         }catch(err){
-            console.error(err)
+            state.response = err.response.data.message
         }finally{
         }
     }
-    function clear(){
-        localStorage.removeItem('repeatEmail');
-        localStorage.removeItem('reg');
+    function getToken(token){
+        store.commit('getRegToken', token);
     }
-
-    return{ getEmail, clear }
+    return{
+        state,
+        getVerify,
+        getToken
+    }
 }
 
 

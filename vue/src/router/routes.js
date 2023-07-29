@@ -4,31 +4,34 @@ import Change from '../components/endChangePass.vue';
 import ConfReg from '../components/confirmRegister.vue';
 import ConfPassRec from '../components/confirmPassRecovery.vue';
 
+
 export const routes = [
     {
-        name: "Reg",
+        name: "Registration",
         path: '/',
         component: Register
     },
     {
         name: "EndReg",
         path: '/end-register/:token',
-        component: EndRegister
+        component: EndRegister,
+        meta: { reg: true }
     },
     {
         name: "ConfReg",
         path: '/conf-reg',
-        component: ConfReg
+        component: ConfReg,
+        meta: { reg: true }
     },
     {
-        name: "Change ",
+        name: "Change",
         path: '/change',
-        component: Change
+        component: Change,
     },
     {
         name: "ConfPassRec",
         path: '/conf-pass',
-        component: ConfPassRec
+        component: ConfPassRec,
     },
 
 

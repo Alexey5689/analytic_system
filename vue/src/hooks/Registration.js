@@ -5,10 +5,10 @@ import { helpers } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
-import { useStore } from 'vuex';
+
+
 const reg = JSON.parse(localStorage.getItem('reg'))
 export function RegForm(){
-    const store = useStore();
     //регулярные выражения
     const regName = helpers.regex(/^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/);
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
@@ -64,14 +64,13 @@ export function RegForm(){
     })
     //валидация
     const v$ = useVuelidate(rules, state);
-
+    //регистрация
     async function fetchForm(){
         //ошибки валидации
         if(this.v$.$invalid){
             this.v$.$touch();
             return;
         }
-
         try{
             const response = await axios({
                     method:'POST',
@@ -89,9 +88,10 @@ export function RegForm(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-            //  смена регистрации на подтверждение
+            //смена регистрации на подтверждение
             console.log(response.data);
             localStorage.setItem('reg', true);
+            localStorage.setItem('repeatEmail', state.email);
             location.reload();
         }catch(err){
             console.log(err);
@@ -107,7 +107,6 @@ export function RegForm(){
             const response = await axios.get( config.appLocalHost + ':' + config.appBackendPort +'/api/city')
             state.cities = response.data;
         }catch(err){
-            console.log(err);
             //ошибка запроса
             state.response = err.response.data.message;
         }
