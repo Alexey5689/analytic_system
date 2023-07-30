@@ -33,8 +33,11 @@
                         <h3>Демо-данные</h3>
                         <p>Демо-данные позволяют увидеть систему в действии при первом её запуске. Эти
                             данные можно удалить позже в настройках проекта.</p>
-                        <button class="btn_add" style="display: none">Наполнить проект</button>
-                        <button class="btn_remove">Удалить данные</button>
+                        <button
+                            @click="fillProject"
+                            class="btn_add"
+                            >Наполнить проект</button>
+                        <button class="btn_remove" style="display: none">Удалить данные</button>
                     </div>
                 </div>
                 <div class="connect_way">
@@ -53,13 +56,37 @@
                         <h3>Яндекс.Директ</h3>
                         <p>Подключение личного кабинета Яндекс.Директ. Выгрузка данных с личных или
                             корпоративных аккаунтов.</p>
-                        <button class="btn_add">Наполнить проект</button>
-                        <button class="btn_remove" style="display: none">Подключить</button>
+                        <button class="btn_add" style="display: none" >Наполнить проект</button>
+                        <button
+                            class="btn_remove"
+                            @click="plugYandex">Подключить
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </article>
 </template>
+
+<script>
+    import { mapActions } from 'vuex'
+    export default{
+        methods:{
+            ...mapActions({
+                ShowModelCon:'ShowModelCon',
+                ShowDemoCon:'ShowDemoCon',
+            }),
+            plugYandex(){
+                this.ShowModelCon();
+            },
+            fillProject(){
+                this.ShowDemoCon();
+            }
+
+        }
+
+    }
+
+</script>
 
 <style src="../components/compStyle/main.css" scoped></style>

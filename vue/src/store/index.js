@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import { Registration } from './regModul';
-
-
+import { YandexModWin } from './YanCon.js';
+import { DemoModWin } from './DemoCon.js';
 export default createStore({
     state: ()=>({
        seconds:60,
@@ -28,7 +28,9 @@ export default createStore({
         },
     },
     modules:{
-        Reg: Registration
+        Reg: Registration,
+        YandWind: YandexModWin,
+        DemoWind: DemoModWin,
     }
 
 })
