@@ -16,15 +16,15 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
-#stages:          # List of stages for jobs, and their order of execution
-#  - build
+stages:          # List of stages for jobs, and their order of execution
+  - test
 #  - deploy
 
-#build-docker:
-#  stage: build
+test:
+  stage: test
 #  
-#  tags:
-#    - tests_laravel
+  tags:
+    - tests_laravel
 #  image: registry.pro-technologii.ru/development/ecms:latest
 #  variables:
 #      # these values may need to be different if using TLS, k8s, etc.
@@ -33,13 +33,14 @@
 #    APP_IMAGE_NAME: "${CI_REGISTRY_IMAGE}/app:${CI_COMMIT_SHORT_SHA}"
 #    VUE_IMAGE_NAME: "${CI_REGISTRY_IMAGE}/vue:${CI_COMMIT_SHORT_SHA}"
 #    REGISTRY: git.pro-technologii.ru/development/analytic-system
-#  only:
-#    - main
-#    - dev
+  only:
+    - main
+    - dev
 
 #  before_script:
 #    - docker login -u Deployer -p ${ACCESS_TOKEN} registry.pro-technologii.ru
-#  script:
+  script:
+      - echo "testing"
 #    - docker build -t ${APP_IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} -f ./config/app/Dockerfile .
 #    - docker push ${APP_IMAGE_NAME}
 #    - docker build -t ${VUE_IMAGE_NAME} --build-arg branch=${CI_COMMIT_REF_NAME} -f ./config/app/Dockerfile .
