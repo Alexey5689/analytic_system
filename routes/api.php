@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DataYandexController;
+use App\Http\Controllers\DataCampaignsYandexDirectController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
@@ -25,9 +25,11 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,60');
 
-Route::get('/campaign', [DataYandexController::class, 'get_campaign']);
+Route::get('/campaigns', [DataCampaignsYandexDirectController::class, 'get_campaign']);
 
-Route::get('/ads_group', [DataYandexController::class, 'get_ads_group']);
+Route::get('/send_api_campaign', [DataCampaignsYandexDirectController::class, 'send_api_campaign']);
+
+Route::get('/ads_group', [DataCampaignsYandexDirectController::class, 'get_ads_group']);
 
 
 
