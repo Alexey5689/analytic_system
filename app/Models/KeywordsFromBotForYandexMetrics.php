@@ -30,6 +30,6 @@ class KeywordsFromBotForYandexMetrics extends Model
 
     public function campaign(): BelongsTo
     {
-        return $this->belongsTo(CampaignFromBotForYandexMetric::class);
+        return $this->belongsTo(CampaignFromBotForYandexMetrics::class);
     }
 }

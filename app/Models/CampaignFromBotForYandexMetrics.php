@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class CampaignFromBotForYandexMetric extends Model
+class CampaignFromBotForYandexMetrics extends Model
 {
     use HasApiTokens, Notifiable;
 

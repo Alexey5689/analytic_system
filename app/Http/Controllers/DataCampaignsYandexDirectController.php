@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CampaignFromBotForYandexMetric;
-use Illuminate\Support\Carbon;
+use App\Models\CampaignFromBotForYandexMetrics;
 use Illuminate\Support\Facades\Http;
 
 class DataCampaignsYandexDirectController extends Controller
@@ -25,7 +24,7 @@ class DataCampaignsYandexDirectController extends Controller
 
     public function __invoke()
     {
-        CampaignFromBotForYandexMetric::upsert($this->get_campaign(),['id'], [
+        CampaignFromBotForYandexMetrics::upsert($this->get_campaign(),['id'], [
             'campaign_name',
             'impressions',
             'clicks',
@@ -36,7 +35,7 @@ class DataCampaignsYandexDirectController extends Controller
     public function send_api_campaigns()
     {
         if ($this->get_campaign() !== null) {
-            return CampaignFromBotForYandexMetric::all()->toJson();
+            return CampaignFromBotForYandexMetrics::all()->toJson();
         } else {
             return response()->json(
                 [
