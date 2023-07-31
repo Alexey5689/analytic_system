@@ -26,7 +26,7 @@ export const routes = [
         ]
     },
     {
-        name: "Reg",
+        name: "Registration",
         path: '/',
         component: Register
     },

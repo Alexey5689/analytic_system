@@ -1,4 +1,5 @@
 <script>
+import { RouterLink } from 'vue-router';
 export default {
     data(){
         return{
@@ -12,24 +13,15 @@ export default {
         changeHomePageSettings() {
             this.homePage = "/main/settings";
         },
-        // homePage(){
-        //     return this.$route.path == "/analytics";
-        // }
     },
 
 }
-</script>
-
-<script setup>
-import { RouterLink } from 'vue-router';
 </script>
 
 <template>
     <aside>
         <img src="../assets/image/logo.svg" alt="Logo">
         <div class="menu">
-            <!-- <h2 v-if="homePage">Аналитика</h2>
-            <h2 v-else="homePage">Настройки</h2> -->
             <h2>{{ homePage === "/main/" ? 'Аналитика' : 'Настройки'}}</h2>
             <ul>
                 <li>

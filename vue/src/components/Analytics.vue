@@ -1,38 +1,20 @@
-<script setup>
-    //import { AnalyticsInfo } from '../hooks/AnalGetInform.js';
-    // export default{
-    //     setup(props){
-    //         const {state} = AnalyticsInfo();
-                // return{
-                //     state,
-                // }
-    //     }
-    // }
-    import axios from 'axios';
-    import { ref, onMounted } from 'vue';
+<script>
 
-    async function GetInfo(){
-        try{
-            const response = await axios({
-                method:'GET',
-                    url:config.appBackendURL + ':' + config.appBackendPort + '/api/format_campaigns_data',
+    import { AnalyticStates } from '../hooks/Analytics.js';
+    import { mapGetters } from 'vuex';
+    export default{
+        setup(props){
+            const {state} = AnalyticStates();
+            return{
+                state,
+            }
+        },
+        computed:{
+            ...mapGetters({
+                stateAnalyticsCompany:'stateAnalyticsCompany',
             })
-            console.log(response);
-        }catch(err){
-            console.log(err);
         }
     }
-    const response = ref('')
-    onMounted(() => {
-        GetInfo()
-    })
-
-    const toggle = ref(true),
-        networkSearch = ref(true),
-        networkRsya = ref(true),
-        company = ref(true),
-        storageAds = ref(true),
-        guaranteeAds = ref(true)
 
 </script>
 <style src="../components/compStyle/main.css" scoped></style>
@@ -68,8 +50,8 @@
                     </tr>
                 </thead>
                 <tr>
-                    <td @click="toggle = !toggle">
-                        <img v-if="toggle" class="selection_list_1" src="../assets/image/selection_list.svg"
+                    <td @click="state.toggle = !state.toggle">
+                        <img v-if="state.toggle" class="selection_list_1" src="../assets/image/selection_list.svg"
                             alt="Selection list">
                         <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
                         <img class="logo_analytics" src="../assets/image/logo_analytics.svg" alt="Logo analytics">
@@ -82,12 +64,12 @@
             </table>
         </div>
 
-        <div v-if="!toggle" class="network">
+        <div v-if="!state.toggle" class="network">
             <h2>Сеть</h2>
             <table>
                 <tr>
                     <td>
-                        <img v-if="networkSearch" class="selection_list_1" src="../assets/image/selection_list.svg"
+                        <img v-if="state.networkSearch" class="selection_list_1" src="../assets/image/selection_list.svg"
                             alt="Selection list">
                         <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
                         Поиск
@@ -96,9 +78,9 @@
                     <td>244</td>
                     <td>1.5%</td>
                 </tr>
-                <tr @click="networkRsya = !networkRsya" :class="{ 'advertising_company_active': !networkRsya }">
+                <tr @click="state.networkRsya = !state.networkRsya" :class="{ 'advertising_company_active': !state.networkRsya }">
                     <td>
-                        <img v-if="networkRsya" class="selection_list_1" src="../assets/image/selection_list.svg"
+                        <img v-if="state.networkRsya" class="selection_list_1" src="../assets/image/selection_list.svg"
                             alt="Selection list">
                         <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
                         РСЯ
@@ -110,19 +92,17 @@
             </table>
         </div>
 
-        <template v-if="!toggle">
-
-            <div v-if="!networkRsya" class="company">
+        <template v-if="!state.toggle">
+            <div v-if="!state.networkRsya" class="company">
                 <h2>Компания</h2>
                 <table>
-                    <tr @click="company = !company" :class="{ 'advertising_company_active': !company }">
+                    <tr @click="state.company = !state.company" :class="{ 'advertising_company_active': !state.company }">
                         <td>
-                            <img v-if="company" class="selection_list_1" src="../assets/image/selection_list.svg"
+                            <img v-if="state.company" class="selection_list_1" src="../assets/image/selection_list.svg"
                                 alt="Selection list">
                             <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
                                 alt="Selection list">
-                            <!-- Поиск | Кухня | Хранение -->
-                            {{  }}
+                            {{ stateAnalyticsCompany }}
                         </td>
                         <td>7 442</td>
                         <td>244</td>
@@ -131,14 +111,14 @@
                 </table>
             </div>
 
-            <template v-if="!networkRsya">
+            <template v-if="!state.networkRsya">
 
-                <div v-if="!company" class="ads">
+                <div v-if="!state.company" class="ads">
                     <h2>Объявления</h2>
                     <table>
                         <tr>
                             <td>
-                                <img v-if="storageAds" class="selection_list_1" src="../assets/image/selection_list.svg"
+                                <img v-if="state.storageAds" class="selection_list_1" src="../assets/image/selection_list.svg"
                                     alt="Selection list">
                                 <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
                                     alt="Selection list">
@@ -148,9 +128,9 @@
                             <td>180</td>
                             <td>0.9%</td>
                         </tr>
-                        <tr @click="guaranteeAds = !guaranteeAds" :class="{ 'advertising_company_active': !guaranteeAds }">
+                        <tr @click="state.guaranteeAds = !state.guaranteeAds" :class="{ 'advertising_company_active': !state.guaranteeAds }">
                             <td>
-                                <img v-if="guaranteeAds" class="selection_list_1" src="../assets/image/selection_list.svg"
+                                <img v-if="state.guaranteeAds" class="selection_list_1" src="../assets/image/selection_list.svg"
                                     alt="Selection list">
                                 <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
                                     alt="Selection list">
@@ -163,9 +143,9 @@
                     </table>
                 </div>
 
-                <template v-if="!company">
+                <template v-if="!state.company">
 
-                    <div v-if="!guaranteeAds" class="keyword">
+                    <div v-if="!state.guaranteeAds" class="keyword">
                         <h2>Ключевое слово</h2>
                         <table>
                             <tr>
