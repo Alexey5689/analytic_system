@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('ads_from_bot_for_yandex_metrics', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('ads_list_id');
             $table->string('ad_name');
             $table->integer('impressions');
             $table->integer('clicks');
