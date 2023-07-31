@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('negative_keywords_from_campaign_from_bot_for_yandex_metrics', function (Blueprint $table) {
             $table->id();
             $table->string('negative_keywords_name_from_campaign');
-            $table->integer('visits');
-            $table->integer('applications');
-            $table->float('conversion');
+            $table->integer('impressions');
+            $table->integer('clicks');
+            $table->float('daily_budget')->nullable();
             $table->timestamps();
         });
     }

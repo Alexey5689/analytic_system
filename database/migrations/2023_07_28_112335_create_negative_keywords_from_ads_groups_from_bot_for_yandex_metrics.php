@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('negative_keywords_from_campaign_from_bot_for_yandex_metrics', function (Blueprint $table) {
+        Schema::create('negative_keywords_from_ads_groups_from_bot_for_yandex_metrics', function (Blueprint $table) {
             $table->id();
+            $table->string('negative_keywords_name_from_ad_group');
+            $table->integer('impressions');
+            $table->integer('clicks');
+            $table->float('daily_budget')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('negative_keywords_from_campaign_from_bot_for_yandex_metrics');
+        Schema::dropIfExists('negative_keywords_from_ads_groups_from_bot_for_yandex_metrics');
     }
 };

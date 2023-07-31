@@ -13,8 +13,8 @@ class CampaignFromBotForYandexMetric extends Model
     protected $fillable = [
         'id',
         'campaign_name',
-        'visits',
-        'applications',
-        'conversion',
+        'impressions',
+        'clicks',
+        'daily_budget',
     ];
 }

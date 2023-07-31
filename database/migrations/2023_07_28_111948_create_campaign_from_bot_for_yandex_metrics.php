@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('campaign_from_bot_for_yandex_metrics', function (Blueprint $table) {
             $table->id();
             $table->string('campaign_name');
-            $table->integer('visits');
-            $table->integer('applications');
-            $table->float('conversion');
+            $table->integer('impressions');
+            $table->integer('clicks');
+            $table->float('daily_budget')->nullable();
             $table->timestamps();
         });
     }
