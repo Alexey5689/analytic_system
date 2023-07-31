@@ -27,7 +27,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,60');
 Route::get('/campaigns', [DataCampaignsYandexDirectController::class, 'send_api_campaigns']);
 Route::get('/ads', [DataAdsYandexDirectController::class, 'send_api_ads']);
-Route::get('/keywords', [DataKeywordsYandexDirectController::class, 'get_keywords']);
+Route::get('/keywords', [DataKeywordsYandexDirectController::class, 'send_api_keywords']);
 
 
 
