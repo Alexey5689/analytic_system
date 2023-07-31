@@ -2,7 +2,9 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\DataAdsYandexDirectController;
 use App\Http\Controllers\DataCampaignsYandexDirectController;
+use App\Http\Controllers\DataKeywordsYandexDirectController;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -14,7 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->call(new DataCampaignsYandexDirectController())->everyTenMinutes()->appendOutputTo('../../storage/logs/scheduler.log');
-
+        $schedule->call(new DataAdsYandexDirectController())->everyTenMinutes()->appendOutputTo('../../storage/logs/scheduler.log');
     }
 
     /**
