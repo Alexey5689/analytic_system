@@ -26,7 +26,7 @@ class AdsGroupsFromBotForYandexMetrics extends Model
 
     public function campaign(): BelongsTo
     {
-        return $this->belongsTo(CampaignFromBotForYandexMetric::class);
+        return $this->belongsTo(CampaignFromBotForYandexMetrics::class);
     }
 
     public function ads_list(): HasOne

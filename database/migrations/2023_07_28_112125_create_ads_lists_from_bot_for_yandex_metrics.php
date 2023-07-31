@@ -15,10 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ads_group_id');
             $table->foreignId('campaign_id');
-            $table->string('ads_list_name');
-            $table->integer('impressions');
-            $table->integer('clicks');
-            $table->float('daily_budget')->nullable();
             $table->timestamps();
         });
     }

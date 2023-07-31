@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataAdsGroupsYandexDirectController;
+use App\Http\Controllers\DataAdsListsYandexDirectController;
 use App\Http\Controllers\DataAdsYandexDirectController;
 use App\Http\Controllers\DataCampaignsYandexDirectController;
 use App\Http\Controllers\DataKeywordsYandexDirectController;
@@ -30,6 +31,8 @@ Route::get('/campaigns', [DataCampaignsYandexDirectController::class, 'send_api_
 Route::get('/ads', [DataAdsYandexDirectController::class, 'send_api_ads']);
 Route::get('/keywords', [DataKeywordsYandexDirectController::class, 'send_api_keywords']);
 Route::get('/ads_group', [DataAdsGroupsYandexDirectController::class, 'get_ads_group']);
+Route::get('/ads_list', [DataAdsListsYandexDirectController::class, 'get_ads_list']);
+
 
 
 
