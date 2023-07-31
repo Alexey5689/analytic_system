@@ -11,25 +11,21 @@ class DataAdsGroupsYandexDirectController extends Controller
 {
     public function get_ads_group()
     {
-        $response = Http::get(config('api.url') . ':' . (config('api.port') . '/api/format_campaigns_data'))->json();
-        foreach ($response as $campaign) {
-                $campaign_data[] = [
-                    'id' => $campaign['id'],
-                    'campaign_id' => $campaign,
-                    'created_at' => Carbon::now()->toDateTimeString(),
+        $response = Http::get(config('api.url') . ':' . (config('api.port') . '/api/format_ads_group_data'))->json();
+
+        foreach ($response as $ad_group) {
+                $ad_group_data[] = [
+                    'id' => $ad_group['id'],
+                    'campaign_id' => $ad_group['campaign_id'],
                 ];
             }
-        return $campaign_data;
+        return $ad_group_data;
     }
 
     public function __invoke()
     {
-        CampaignFromBotForYandexMetric::upsert($this->get_ads_group(),['id'], [
-            'campaign_name',
-            'visits',
-            'applications',
-            'conversion',
+        AdsGroupsFromBotForYandexMetrics::upsert($this->get_ads_group(),['id'], [
+            'campaign_id',
         ]);
-        return CampaignFromBotForYandexMetric::all()->toJson();
     }
 }

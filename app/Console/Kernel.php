@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\DataAdsGroupsYandexDirectController;
 use App\Http\Controllers\DataAdsYandexDirectController;
 use App\Http\Controllers\DataCampaignsYandexDirectController;
 use App\Http\Controllers\DataKeywordsYandexDirectController;
@@ -18,6 +19,8 @@ class Kernel extends ConsoleKernel
         $schedule->call(new DataCampaignsYandexDirectController())->everyTenMinutes()->appendOutputTo('../../storage/logs/scheduler.log');
         $schedule->call(new DataAdsYandexDirectController())->everyTenMinutes()->appendOutputTo('../../storage/logs/scheduler.log');
         $schedule->call(new DataKeywordsYandexDirectController())->everyTenMinutes()->appendOutputTo('../../storage/logs/scheduler.log');
+        $schedule->call(new DataAdsGroupsYandexDirectController())->everyTenMinutes()->appendOutputTo('../../storage/logs/scheduler.log');
+
     }
 
     /**

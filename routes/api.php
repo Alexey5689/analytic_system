@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataAdsGroupsYandexDirectController;
 use App\Http\Controllers\DataAdsYandexDirectController;
 use App\Http\Controllers\DataCampaignsYandexDirectController;
 use App\Http\Controllers\DataKeywordsYandexDirectController;
@@ -28,6 +29,7 @@ Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5
 Route::get('/campaigns', [DataCampaignsYandexDirectController::class, 'send_api_campaigns']);
 Route::get('/ads', [DataAdsYandexDirectController::class, 'send_api_ads']);
 Route::get('/keywords', [DataKeywordsYandexDirectController::class, 'send_api_keywords']);
+Route::get('/ads_group', [DataAdsGroupsYandexDirectController::class, 'get_ads_group']);
 
 
 
