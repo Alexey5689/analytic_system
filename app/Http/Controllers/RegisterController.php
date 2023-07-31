@@ -15,6 +15,28 @@ use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
+     /**
+      * Store a newly created resource in storage.
+      *
+     @OA\Post(
+      *     path="/api/register",
+      *     tags={"Регистрация пользователя, заполнение формы"},
+      *     summary="Запись нового пользователя в БД",
+      *     operationId="registerUser",
+      *     @OA\Response(
+      *         response="200",
+      *         description="Пользователь успешно зарегистрирован",
+      *         @OA\JsonContent(
+      *             @OA\Property(property="status", type="boolean", example=true)
+      *         )
+      *     ),
+      *     @OA\RequestBody(
+      *         required=true,
+      *         @OA\JsonContent(ref="#/components/schemas/RegisterRequest")
+      *     )
+      * )
+      **/
+
     public function store(ValidateRegisterRequest $request)
     {
         $user = User::create([
@@ -34,6 +56,28 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     *
+    @OA\Post(
+     *     path="/api/register-mail-again",
+     *     tags={"Повторная отправка подтверждение регистрации пользователю"},
+     *     summary="Повторная отправка эл.письма пользователю",
+     *     operationId="registerMailAgain",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Письмо отправлено",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="boolean", example=true)
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/Request")
+     *     )
+     * )
+     *
+     **/
+
     public function again(Request $request) {
         if(!$user = User::where('email', $request->email)) {
             return response()->json([
@@ -48,6 +92,29 @@ class RegisterController extends Controller
             'status' => true
         ]);
     }
+
+    /**
+     *
+     * @OA\Get(
+     *     path="/api/verify",
+     *     tags={"Верификация email пользователя и внесение изменений в БД"},
+     *     summary="Подтверждение записи о пользователе",
+     *     operationId="verifyUser",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Email подтвержден",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="boolean", example=true)
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/Request")
+     *     )
+     * )
+     *
+     *
+     **/
 
     public function verify(Request $request)
     {
@@ -67,7 +134,6 @@ class RegisterController extends Controller
             'status' => true
         ]);
     }
-
     public function city() {
         $cities =[
             [ "id" => 1, "name" => "Абаза"],
