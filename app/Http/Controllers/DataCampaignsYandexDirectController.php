@@ -12,14 +12,14 @@ class DataCampaignsYandexDirectController extends Controller
     {
         $response = Http::get(config('api.url') . ':' . (config('api.port') . '/api/format_campaigns_data'))->json();
         foreach ($response as $campaign) {
-                $campaign_data[] = [
-                    'id' => $campaign['id'],
-                    'campaign_name' => $campaign['name'],
-                    'impressions' => $campaign['impressions'],
-                    'clicks' => $campaign['clicks'],
-                    'daily_budget' => $campaign['daily_budget'],
-                ];
-            }
+            $campaign_data[] = [
+                'id' => $campaign['id'],
+                'campaign_name' => $campaign['name'],
+                'impressions' => $campaign['impressions'],
+                'clicks' => $campaign['clicks'],
+                'daily_budget' => $campaign['daily_budget'],
+            ];
+        }
         return $campaign_data;
     }
 
@@ -31,7 +31,6 @@ class DataCampaignsYandexDirectController extends Controller
             'clicks',
             'daily_budget',
         ]);
-        return CampaignFromBotForYandexMetric::all()->toJson();
     }
 
     public function send_api_campaigns()

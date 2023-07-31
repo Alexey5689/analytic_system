@@ -21,6 +21,6 @@ class CampaignFromBotForYandexMetric extends Model
 
     public function keywords(): HasMany
     {
-        return $this->hasMany(Keywords::class);
+        return $this->hasMany(KeywordsFromBotForYandexMetrics::class);
     }
 }
