@@ -22,14 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', [RegisterController::class, 'store']);
-
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,60');
-
 Route::get('/campaigns', [DataCampaignsYandexDirectController::class, 'get_campaign']);
-
-Route::get('/send_api_campaign', [DataCampaignsYandexDirectController::class, 'send_api_campaign']);
-
 Route::get('/ads_group', [DataCampaignsYandexDirectController::class, 'get_ads_group']);
+
 
 
 
