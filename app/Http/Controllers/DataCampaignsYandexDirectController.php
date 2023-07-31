@@ -12,27 +12,14 @@ class DataCampaignsYandexDirectController extends Controller
     {
         $response = Http::get(config('api.url') . ':' . (config('api.port') . '/api/format_campaigns_data'))->json();
         foreach ($response as $campaign) {
-            if ($campaign['impressions'] && $campaign['clicks'] !== 0) {
-                $conversion_formula = $campaign['impressions'] / $campaign['clicks'] * 100;
                 $campaign_data[] = [
                     'id' => $campaign['id'],
                     'campaign_name' => $campaign['name'],
-                    'visits' => $campaign['impressions'],
-                    'applications' => $campaign['clicks'],
-                    'conversion' => round($conversion_formula, 2),
-                    'created_at' => Carbon::now()->toDateTimeString(),
+                    'impressions' => $campaign['impressions'],
+                    'clicks' => $campaign['clicks'],
+                    'daily_budget' => $campaign['daily_budget'],
                 ];
             }
-            else {
-                $campaign_data[] = [
-                    'id' => $campaign['id'],
-                    'campaign_name' => $campaign['name'],
-                    'visits' => $campaign['impressions'],
-                    'applications' => $campaign['clicks'],
-                    'conversion' => 0,
-                ];
-            }
-        }
         return $campaign_data;
     }
 
@@ -40,10 +27,24 @@ class DataCampaignsYandexDirectController extends Controller
     {
         CampaignFromBotForYandexMetric::upsert($this->get_campaign(),['id'], [
             'campaign_name',
-            'visits',
-            'applications',
-            'conversion',
+            'impressions',
+            'clicks',
+            'daily_budget',
         ]);
         return CampaignFromBotForYandexMetric::all()->toJson();
+    }
+
+    public function send_api_campaigns()
+    {
+        if ($this->get_campaign() !== null) {
+            return CampaignFromBotForYandexMetric::all()->toJson();
+        } else {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'Нет данных'
+                ]
+            );
+        }
     }
 }
