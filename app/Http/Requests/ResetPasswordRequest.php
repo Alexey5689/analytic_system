@@ -8,10 +8,10 @@ class ResetPasswordRequest extends FormRequest
 {
     /**
      * @OA\Schema(
-     *      required={"email", "password"},
+     *      required={"password", "password confirmed"},
      *      schema="ResetPasswordRequest",
-     *      @OA\Property(property="email", type="string",  example="egorov@mail.ru", description="Email пользователя"),
      *      @OA\Property(property="password", type="string",  example="123QWEqwe1!", description="Пароль"),
+     *      @OA\Property(property="password confirmed", type="string", example="123QWEqwe1!", description="Подтверждение пароля пользователя"),
      * )
      *
      * Determine if the user is authorized to make this request.

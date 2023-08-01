@@ -16,8 +16,8 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class ForgotPasswordController extends Controller
 {
-     /**
-      * Store a newly created resource in storage.
+      /**
+      * Generate a link to recover your password.
       *
       * @OA\Post(
       *     path="/api/forget-password",
@@ -31,7 +31,6 @@ class ForgotPasswordController extends Controller
       *             @OA\Schema(type="string"),
       *             description="Введение email пользователем"
       *     ),
-      *
       *     @OA\Response(
       *         response="200",
       *         description="Ok",
@@ -68,15 +67,32 @@ class ForgotPasswordController extends Controller
     }
 
     /**
+     * Recover your password.
+     *
      * @OA\Post(
      *     path="/api/reset",
-     *     tags={"Изменение пароля после перехода по ссылке"},
-     *     summary="Изменение пароля после перехода по ссылке",
+     *     tags={"Страница восстановления пароля после перехода по ссылке"},
+     *     summary="Страница восстановления пароля после перехода по ссылке",
      *     operationId="/api/reset(POST)",
+     *     @OA\Parameter(
+     *             name="password",
+     *             in="query",
+     *             required=true,
+     *             @OA\Schema(type="string"),
+     *             description="Пароль пользователя"
+     *         ),
+     *      @OA\Parameter(
+     *             name="password_confirmed",
+     *             in="query",
+     *             required=true,
+     *             @OA\Schema(type="string"),
+     *             description="Подтверждение пароля пользователя"
+     *         ),
      *     @OA\Response(
      *         response="200",
      *         description="Ok",
      *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Оk"),
      *             @OA\Property(property="status", type="boolean", example=true)
      *         )
      *     ),
