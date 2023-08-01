@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 class RegisterController extends Controller
 {
      /**
-      * Store a newly created resource in storage.
+      * Register in the app.
       *
       * @OA\Post(
       *     path="/api/register",
@@ -93,6 +93,7 @@ class RegisterController extends Controller
     }
 
     /**
+     *     Resend the email to the previously entered email address.
      *
      *     @OA\Post(
      *     path="/api/register-mail-again",
@@ -133,8 +134,9 @@ class RegisterController extends Controller
     }
 
     /**
+     *     Email verification, automatic filling of the token field.
      *
-     * @OA\Get(
+     *     @OA\Get(
      *     path="/api/verify",
      *     tags={"Подтверждение записи о пользователе"},
      *     summary="Верификация email пользователя и внесение изменений в БД",
@@ -146,7 +148,7 @@ class RegisterController extends Controller
      *             @OA\Schema(type="string", example="fPMgGFTHFGTZgRfFSr"),
      *             description="Поле не заполняется пользователем, получаем из объекта запроса"
      *         ),
-     *     @OA\Response(
+     *      @OA\Response(
      *         response="200",
      *         description="Ok",
      *         @OA\JsonContent(
@@ -175,6 +177,7 @@ class RegisterController extends Controller
             'status' => true
         ]);
     }
+
     public function city() {
         $cities =[
             [ "id" => 1, "name" => "Абаза"],

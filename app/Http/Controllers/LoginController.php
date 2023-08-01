@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Log in to the web application.
      *
      * @OA\Post(
      *     path="/api/login",
