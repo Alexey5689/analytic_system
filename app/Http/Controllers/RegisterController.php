@@ -49,20 +49,20 @@ class RegisterController extends Controller
       *             in="query",
       *             required=true,
       *             @OA\Schema(type="string"),
-      *             description="Номер телефона пользователя"
+      *             description="Пароль пользователя"
       *         ),
       *      @OA\Parameter(
       *             name="password_confirmed",
       *             in="query",
       *             required=true,
       *             @OA\Schema(type="string"),
-      *             description="Номер телефона пользователя"
+      *             description="Пароль пользователя"
       *         ),
       *     @OA\Response(
       *         response="200",
-      *         description="Пользователь успешно зарегистрирован",
+      *         description="Ok",
       *         @OA\JsonContent(
-      *             @OA\Property(property="message", type="string", example="Пользователь зарегистрирован"),
+      *             @OA\Property(property="message", type="string", example="Пользователь успешно зарегистрирован"),
       *             @OA\Property(property="status", type="boolean", example=true)
       *         ),
       *     ),
@@ -94,21 +94,27 @@ class RegisterController extends Controller
 
     /**
      *
-    @OA\Post(
+     *     @OA\Post(
      *     path="/api/register-mail-again",
-     *     tags={"Повторная отправка подтверждение регистрации пользователю"},
+     *     tags={"Повторная отправка подтверждения регистрации пользователю"},
      *     summary="Повторная отправка эл.письма пользователю",
      *     operationId="registerMailAgain",
+     *     @OA\Parameter(
+     *             name="email",
+     *             in="cookie",
+     *             required=true,
+     *             @OA\Schema(type="string", example="panama@mail.ru"),
+     *             description="Поле не заполняется пользователем, получаем из объекта запроса"
+     *         ),
      *     @OA\Response(
      *         response="200",
-     *         description="Письмо отправлено",
+     *         description="Ok",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Письмо отправлено"),
+     *             @OA\Property(property="status", type="boolean", example=true)
+     *         ),
      *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *
-     *     )
      * )
-     *
      **/
 
     public function again(Request $request) {
@@ -130,23 +136,25 @@ class RegisterController extends Controller
      *
      * @OA\Get(
      *     path="/api/verify",
-     *     tags={"Верификация email пользователя и внесение изменений в БД"},
-     *     summary="Подтверждение записи о пользователе",
+     *     tags={"Подтверждение записи о пользователе"},
+     *     summary="Верификация email пользователя и внесение изменений в БД",
      *     operationId="verifyUser",
+     *      @OA\Parameter(
+     *             name="_token",
+     *             in="cookie",
+     *             required=true,
+     *             @OA\Schema(type="string", example="fPMgGFTHFGTZgRfFSr"),
+     *             description="Поле не заполняется пользователем, получаем из объекта запроса"
+     *         ),
      *     @OA\Response(
      *         response="200",
-     *         description="Email подтвержден",
+     *         description="Ok",
      *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Email подтвержден"),
      *             @OA\Property(property="status", type="boolean", example=true)
-     *         )
+     *         ),
      *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-
-     *     )
      * )
-     *
-     *
      **/
 
     public function verify(Request $request)
