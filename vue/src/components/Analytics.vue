@@ -59,7 +59,7 @@
                     </td>
                     <td>14 743</td>
                     <td>1 098</td>
-                    <td>2.8 %</td>
+                    <td>2.8 &#8381</td>
                 </tr>
             </table>
         </div>
@@ -76,7 +76,7 @@
                     </td>
                     <td>7 442</td>
                     <td>244</td>
-                    <td>1.5%</td>
+                    <td>1.5&#8381</td>
                 </tr>
                 <tr @click="state.networkRsya = !state.networkRsya" :class="{ 'advertising_company_active': !state.networkRsya }">
                     <td>
@@ -87,7 +87,7 @@
                     </td>
                     <td>7 301</td>
                     <td>854</td>
-                    <td>1.3%</td>
+                    <td>1.3&#8381</td>
                 </tr>
             </table>
         </div>
@@ -106,7 +106,7 @@
                         </td>
                         <td>7 442</td>
                         <td>244</td>
-                        <td>1.3%</td>
+                        <td>1.3&#8381</td>
                     </tr>
                 </table>
             </div>
@@ -126,7 +126,7 @@
                             </td>
                             <td>4 932</td>
                             <td>180</td>
-                            <td>0.9%</td>
+                            <td>0.9&#8381</td>
                         </tr>
                         <tr @click="state.guaranteeAds = !state.guaranteeAds" :class="{ 'advertising_company_active': !state.guaranteeAds }">
                             <td>
@@ -138,7 +138,7 @@
                             </td>
                             <td>2 510</td>
                             <td>61</td>
-                            <td>0.2%</td>
+                            <td>0.2&#8381</td>
                         </tr>
                     </table>
                 </div>
@@ -154,7 +154,7 @@
                                 </td>
                                 <td>580</td>
                                 <td>42</td>
-                                <td>0.2%</td>
+                                <td>0.2&#8381</td>
                             </tr>
                             <tr>
                                 <td>
@@ -162,7 +162,7 @@
                                 </td>
                                 <td>4 352</td>
                                 <td>138</td>
-                                <td>0.7%</td>
+                                <td>0.7&#8381</td>
                             </tr>
                         </table>
                     </div>
