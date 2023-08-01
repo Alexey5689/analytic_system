@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-if="stateDemoCon" @click.stop="hideDemoWindCon">
+    <div class="modal" v-show="stateDemoCon" @click.stop="hideDemoWindCon">
         <div  @click.stop class="modal_content">
             <div class="modal_body">
                 <h2>Подключение Демо-данных</h2>

@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-if="stateShowDell" @click.stop ="hideWindowDell">
+    <div class="modal" v-show="stateShowDell" @click.stop ="hideWindowDell">
         <div  @click.stop class="modal_content">
             <div class="modal_body">
                 <h2>Вы уверены, что хотите удалить <span>рекламный канал Яндекс</span>?</h2>

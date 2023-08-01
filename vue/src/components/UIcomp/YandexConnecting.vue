@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-if="stateShowCon" @click.stop ="hideWindowCon">
+    <div class="modal" v-show="stateShowCon" @click.stop="hideWindowCon">
         <div @click.stop class="modal_content">
             <div class="modal_body">
                 <h2>Подключение рекламного канала Яндекс</h2>
