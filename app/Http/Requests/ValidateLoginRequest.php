@@ -8,8 +8,8 @@ class ValidateLoginRequest extends FormRequest
 {
     /**
      * @OA\Schema(
-     *      required={"Авторизация"},
-     *      schema="LoginRequest",
+     *      required={"email", "password"},
+     *      schema="ValidateLoginRequest",
      *      @OA\Property(property="email", type="string",  example="egorov@mail.ru", description="Email пользователя"),
      *      @OA\Property(property="password", type="string",  example="123QWEqwe1!", description="Пароль"),
      * )
