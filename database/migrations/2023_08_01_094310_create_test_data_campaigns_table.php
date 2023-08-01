@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('test_data_campaign', function (Blueprint $table) {
+        Schema::create('test_data_campaigns', function (Blueprint $table) {
             $table->id();
             $table->string('campaign_name');
             $table->integer('impressions');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('test_data_campaign');
+        Schema::dropIfExists('test_data_campaigns');
     }
 };

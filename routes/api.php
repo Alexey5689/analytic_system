@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TestDataAdsController;
+use App\Http\Controllers\TestDataCampaignController;
+use App\Http\Controllers\TestDataKeywordsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', [RegisterController::class, 'store']);
-
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,60');
+Route::get('/test_data_campaigns', [TestDataCampaignController::class, 'test_data']);
+Route::get('/test_data_ads', [TestDataAdsController::class, 'test_data']);
+Route::get('/test_data_keywords', [TestDataKeywordsController::class, 'test_data']);
 
 
 
