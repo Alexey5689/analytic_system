@@ -18,21 +18,57 @@ class RegisterController extends Controller
      /**
       * Store a newly created resource in storage.
       *
-     @OA\Post(
+      * @OA\Post(
       *     path="/api/register",
       *     tags={"Регистрация пользователя, заполнение формы"},
       *     summary="Запись нового пользователя в БД",
       *     operationId="registerUser",
+      *     @OA\Parameter(
+      *             name="name",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Введение ФИО пользователем"
+      *         ),
+      *    @OA\Parameter(
+      *             name="email",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Введение email пользователем"
+      *         ),
+      *    @OA\Parameter(
+      *             name="tel",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="integer"),
+      *             description="Номер телефона пользователя"
+      *         ),
+      *     @OA\Parameter(
+      *             name="password",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Номер телефона пользователя"
+      *         ),
+      *      @OA\Parameter(
+      *             name="password_confirmed",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Номер телефона пользователя"
+      *         ),
       *     @OA\Response(
       *         response="200",
       *         description="Пользователь успешно зарегистрирован",
       *         @OA\JsonContent(
+      *             @OA\Property(property="message", type="string", example="Пользователь зарегистрирован"),
       *             @OA\Property(property="status", type="boolean", example=true)
-      *         )
+      *         ),
       *     ),
       *     @OA\RequestBody(
       *         required=true,
-      *         @OA\JsonContent(ref="#/components/schemas/RegisterRequest")
+      *         @OA\JsonContent(ref="#/components/schemas/ValidateRegisterRequest")
       *     )
       * )
       **/
@@ -66,13 +102,10 @@ class RegisterController extends Controller
      *     @OA\Response(
      *         response="200",
      *         description="Письмо отправлено",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="boolean", example=true)
-     *         )
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/Request")
+     *
      *     )
      * )
      *
@@ -109,7 +142,7 @@ class RegisterController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/Request")
+
      *     )
      * )
      *

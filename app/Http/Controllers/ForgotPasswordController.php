@@ -16,6 +16,37 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class ForgotPasswordController extends Controller
 {
+     /**
+      * Store a newly created resource in storage.
+      *
+      * @OA\Post(
+      *     path="/api/forget-password",
+      *     tags={"Генерация ссылки для сброса пароля"},
+      *     summary="Обрабатывает логику отправки письма с ссылкой для сброса пароля на указанный email",
+      *     operationId="forgetPassword",
+      *     @OA\Parameter(
+      *             name="email",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Введение email пользователем"
+      *     ),
+      *
+      *     @OA\Response(
+      *         response="200",
+      *         description="Ok",
+      *         @OA\JsonContent(
+      *             @OA\Property(ref="#/components/schemas/ForgotPasswordRequest")
+      *         )
+      *     ),
+      *      @OA\RequestBody(
+      *        required=true,
+      *     @OA\JsonContent(ref="#/components/schemas/ForgotPasswordRequest")
+      *      )
+      * )
+      *
+      **/
+
     public function forget(ForgotPasswordRequest $request)
     {
         $status = Password::sendResetLink(
@@ -36,15 +67,30 @@ class ForgotPasswordController extends Controller
         ]);
     }
 
-    public function reset(Request $request)
+    /**
+     * @OA\Post(
+     *     path="/api/reset",
+     *     tags={"Изменение пароля после перехода по ссылке"},
+     *     summary="Изменение пароля после перехода по ссылке",
+     *     operationId="/api/reset(POST)",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Ok",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="boolean", example=true)
+     *         )
+     *     ),
+     *      @OA\RequestBody(
+     *        required=true,
+     *           @OA\JsonContent(ref="#/components/schemas/ResetPasswordRequest")
+     *      )
+     * )
+     *
+     **/
+
+    public function reset(ResetPasswordRequest $request)
         {
-            $request->validate([
-                'token' => 'required',
-                'password' => 'required|confirmed',
-            ]);
-
-
-            $status = Password::reset(
+           $status = Password::reset(
                 $request->only( 'password', 'password_confirmation', 'token'),
                 function (User $user, string $password) {
                     $user->forceFill([
