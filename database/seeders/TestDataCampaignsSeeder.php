@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 
-class TestDataCampaignSeeder extends Seeder
+class TestDataCampaignsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,7 +21,7 @@ class TestDataCampaignSeeder extends Seeder
         ];
 
         foreach ($campaigns as $campaign) {
-            DB::table('test_data_campaign')->insert([
+            DB::table('test_data_campaigns')->insert([
                 'campaign_name' => $campaign,
                 'impressions' => rand(),
                 'clicks' =>  rand(),
