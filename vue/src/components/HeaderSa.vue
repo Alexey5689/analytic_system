@@ -12,7 +12,7 @@
                 </svg>
             </div>
         </div>
-        <div class="user">
+        <div class="user" @click="hightLogOutWind">
             <div class="user_name">
                 <p>Сергей Д.</p>
             </div>
@@ -22,3 +22,18 @@
         </div>
     </header>
 </template>
+<script>
+    import { mapMutations } from 'vuex';
+    export default{
+        methods:{
+            ...mapMutations({
+                changeStatelogOut:'changeStatelogOut'
+            }),
+            hightLogOutWind(){
+                this.changeStatelogOut();
+            }
+        }
+    }
+</script>
+
+
