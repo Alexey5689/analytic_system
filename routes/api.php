@@ -28,7 +28,6 @@ Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5
 
 Route::post('/forget-password', [ForgotPasswordController::class, 'forget']);
 
-Route::get('/reset', [ForgotPasswordController::class, 'reset']);
 Route::post('/reset', [ForgotPasswordController::class, 'reset']);
 
 Route::post('/recovery-email-again', [ForgotPasswordController::class, 'again']);
