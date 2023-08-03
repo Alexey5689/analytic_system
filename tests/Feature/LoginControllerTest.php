@@ -3,11 +3,13 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class LoginControllerTest extends TestCase
 {
     use DatabaseMigrations;
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      */
@@ -26,6 +28,7 @@ class LoginControllerTest extends TestCase
                 'tel' => '89096096127',
                 'email' => 'next@mail.ru',
                 'password' => 'qwerty12',
+                'password_confirmation' => 'qwerty12'
             ]);
         $response = $this->post('/api/login',
             [
