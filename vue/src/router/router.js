@@ -8,14 +8,13 @@ const router = createRouter({
 })
 router.beforeEach((to, from)=>{
     // защиты роута
-    if(to.meta.auth && !store.state.isAuth){
+    if(to.meta.auth && !store.state.auth){
             alert("Вы не авторизованы");
             return { name:"Log" };
     }
-    else if(to.meta.auth && store.state.isAuth){
-        alert("Вы уже авторизованы");
-        return { name:"Main" };
-    }
+    else if(to.meta.reg && !store.state.reg){
+        return { name:"Registration" };
+}
 })
 
 export default router;

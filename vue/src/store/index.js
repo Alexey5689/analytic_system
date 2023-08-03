@@ -1,46 +1,47 @@
 import { createStore } from "vuex";
 import createPersistedState from 'vuex-persistedstate';
 import Cookies from 'js-cookie';
-
+const reg = JSON.parse(localStorage.getItem('reg'))
 export default createStore({
     state: ()=>({
-        seconds:60,
-        minuts:1,
-        isAuth: '',
-     }),
+       seconds:60,
+       minuts:1,
+       IsRegistration: '',
+       reg: reg,
+    }),
     plugins: [createPersistedState({
-        key:"XSRF-TOKEN",
-        paths:['isAuth'],
+        key:"reg_token",
+        paths:['IsRegistration'],
         storage: {
             getItem: key => Cookies.get(key),
             setItem: (key, value) => Cookies.set(key, value),
             removeItem: key => Cookies.remove(key)
           }
     })],
-
     mutations:{
-        getAuthToken(state, token){
-            state.isAuth = token
-        },
-        lostAuthToken(state){
-            state.isAuth ="";
+        getRegToken(state, token){
+            state.IsRegistration = token;
+            console.log(token);
         },
         changeTime(state){
-             if(state.minuts > 0){
-                 state.minuts-=1
-             }
-             if(state.seconds > 0){
-                 state.seconds-= 1;
-             }
-        },
-     },
+            if(state.minuts > 0){
+                state.minuts-=1
+            }
+            if(state.seconds > 0){
+                state.seconds-= 1;
+            }
+       },
+    },
     actions:{
-         changeTimeAsync({commit}){
-             setInterval(()=>{
-                 commit('changeTime')
-             },1000);
-         },
+        changeTimeAsync({commit}){
+            setInterval(()=>{
+                commit('changeTime')
+            },1000);
+        },
     },
     modules:{
+
     }
+
+
 })
