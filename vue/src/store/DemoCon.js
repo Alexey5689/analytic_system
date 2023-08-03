@@ -4,9 +4,10 @@ import axios from "axios";
 export const DemoModWin={
     state: ()=>({
         DemoCon:false,
-        DemoDataCon:false,
+        IsDemoDataCon:false,
         DemoDell:false,
         DemoErr:false,
+        active:false,
 
     }),
     getters:{
@@ -21,7 +22,10 @@ export const DemoModWin={
             return state.DemoErr
         },
         stateDemoDataCon(state){
-            return state.DemoDataCon
+            return state.IsDemoDataCon
+        },
+        stateDemoActive(state){
+            return state.active
         }
 
     },
@@ -36,15 +40,25 @@ export const DemoModWin={
             state.DemoErr = !state.DemoErr;
         },
         changeStateDemoDataCon(state){
-            state.DemoDataCon = !state.DemoDataCon;
-       },
+            state.IsDemoDataCon = !state.IsDemoDataCon;
+        },
+        changeDemoActive(state){
+            state.active = !state.active
+        }
     },
     actions:{
         ShowDemoCon({commit}){
             commit('changeStateDemoCon')
         },
-        // async Connection({commit}){
+        continueFull({commit}){
+
+            commit('changeStateDemoDataCon');
+            commit('changeStateDemoCon');
+        }
+        //async continueFull({commit}){
         //     try{
+        //         commit(' changeStateDemoCon')
+        //         commit('changeStateDemoDataCon')
         //         const response = await axios({
         //             method:'GET',
         //             url:config.appBackendURL + ':' + config.appBackendPort + '/api/format_campaigns_data',
@@ -52,10 +66,14 @@ export const DemoModWin={
         //         console.log(response);
         //         commit('getAnalytics', response.data)
         //         commit('changeStateShowCon');
+        //         commit('changeDemoActive')
         //     }catch(err){
         //         console.log(err);
         //         commit('changeStateShowCon');
         //         commit('changeStateShowErr');
+        //     }
+        //     finally{
+        //         commit('changeStateDemoDataCon')
         //     }
         //  }
 

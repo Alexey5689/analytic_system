@@ -6,6 +6,7 @@ export const YandexModWin={
         showDell:false,
         showErr:false,
         company: '',
+        active:false,
     }),
     getters:{
         // модальное окно
@@ -20,7 +21,10 @@ export const YandexModWin={
         },
         stateAnalyticsCompany(state){
             return state.company
-        }
+        },
+        stateActivYnd(state){
+            return state.active
+        },
 
     },
     mutations:{
@@ -36,6 +40,9 @@ export const YandexModWin={
         getAnalytics(state, info){
             state.analytics = info;
        },
+       changeActivYand(state){
+            state.active = !state.active;
+       }
     },
     actions:{
         ShowModelCon({commit}){
@@ -50,6 +57,7 @@ export const YandexModWin={
                 console.log(response);
                 commit('getAnalytics', response.data)
                 commit('changeStateShowCon');
+                commit('changeActivYand');
             }catch(err){
                 console.log(err);
                 commit('changeStateShowCon');

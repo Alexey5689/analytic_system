@@ -14,6 +14,7 @@
                     позже в настройках проекта.
                 </p>
                 <button
+                    @click="continueFull"
                     class="continue">Продолжить</button>
             </div>
         </div>
@@ -31,6 +32,7 @@
         methods:{
             ...mapActions({
                 ShowDemoCon:'ShowDemoCon',
+                continueFull:'continueFull'
             }),
 
             hideDemoWindCon(){

@@ -21,10 +21,14 @@
                     <div class="way_header">
                         <img src="../assets/image/logo_way_1.svg" alt="Logo way">
                         <div class="status_way">
-                            <div class="sw_inactive" style="display: none">
+                            <div
+                                v-if="!stateDemoActive"
+                                class="sw_inactive">
                                 <p>Не активно</p>
                             </div>
-                            <div class="sw_active">
+                            <div
+                                v-else
+                                class="sw_active">
                                 <p>Активно</p>
                             </div>
                         </div>
@@ -44,10 +48,14 @@
                     <div class="way_header">
                         <img src="../assets/image/logo_way_2.svg" alt="Logo way">
                         <div class="status_way">
-                            <div class="sw_inactive">
+                            <div
+                                class="sw_inactive"
+                                v-if="!stateActivYnd">
                                 <p>Не активно</p>
                             </div>
-                            <div class="sw_active" style="display: none">
+                            <div
+                                v-else
+                                class="sw_active">
                                 <p>Активно</p>
                             </div>
                         </div>
@@ -69,8 +77,14 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
     export default{
+        computed:{
+            ...mapGetters({
+                stateActivYnd:'stateActivYnd',
+                stateDemoActive:'stateDemoActive',
+            })
+        },
         methods:{
             ...mapActions({
                 ShowModelCon:'ShowModelCon',
