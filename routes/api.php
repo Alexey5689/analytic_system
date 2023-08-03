@@ -28,7 +28,7 @@ Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5
 
 Route::get('/city', [RegisterController::class, 'city']);
 
-Route::get('/verify', [RegisterController::class, 'verify']);
+Route::post('/verify', [RegisterController::class, 'verify']);
 
 Route::post('/register-mail-again', [RegisterController::class, 'again']);
 
