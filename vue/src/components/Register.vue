@@ -136,7 +136,10 @@ export default {
 
     },
     created(){
-        this.getCities()
+        if(!this.state.isReg){
+            this.getCities()
+        }
+
     },
 }
 </script>

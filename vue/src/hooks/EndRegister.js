@@ -26,7 +26,7 @@ export function confEmail(){
             localStorage.removeItem('reg');
             Cookies.remove('reg_token');
             setTimeout(function(){
-                window.location = '/main/';
+                window.location = '/login';
             }, 3000)
         }catch(err){
             state.response = err.response.data.message
