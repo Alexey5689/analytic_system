@@ -9,12 +9,13 @@ export function confEmail(){
         response:"",
     })
     const getVerify = async()=>{
+
         try{
             const response = await axios({
-                method: "GET",
+                method: "POST",
                 url:config.appBackendURL + ':' + config.appBackendPort + '/api/verify',
-                params: {
-                    _token:Cookies.get('reg_token'),
+                data: {
+                    token:Cookies.get('reg_token'),
                 }
             },)
             localStorage.removeItem('repeatEmail');
