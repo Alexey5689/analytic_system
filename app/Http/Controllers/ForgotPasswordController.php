@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
@@ -22,7 +23,6 @@ class ForgotPasswordController extends Controller
             $request->only('email')
         );
 
-
         if($status === Password::RESET_LINK_SENT)
         {
             return response()->json([
@@ -36,21 +36,15 @@ class ForgotPasswordController extends Controller
         ]);
     }
 
-    public function reset(Request $request)
+    public function reset(ResetPasswordRequest $request)
         {
-            $request->validate([
-                'token' => 'required',
-                'password' => 'required|confirmed',
-            ]);
-
-
             $status = Password::reset(
-                $request->only( 'password', 'password_confirmation', 'token'),
+                $request->only( 'password', 'password_confirmation', 'token', 'email'),
                 function (User $user, string $password) {
+
                     $user->forceFill([
                         'password' => Hash::make($password)
                     ])->setRememberToken(Str::random(60));
-
                     $user->save();
 
                     event(new PasswordReset($user));
@@ -70,4 +64,18 @@ class ForgotPasswordController extends Controller
             }
         }
 
+    public function again(Request $request) {
+        if(!$user = User::where('email', $request->email)) {
+            return response()->json([
+                'error' => 'Failed',
+                'status' => false
+            ]);
+        }
+        $user = $user->firstOrFail();
+        event(new PasswordReset($user));
+        return response()->json([
+            'message' => "Письмо отправлено",
+            'status' => true
+        ]);
+    }
 }

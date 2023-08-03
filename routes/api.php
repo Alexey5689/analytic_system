@@ -29,6 +29,12 @@ Route::post('/register-mail-again', [RegisterController::class, 'again']);
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,10');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('web');
 
+Route::post('/forget-password', [ForgotPasswordController::class, 'forget']);
+
+Route::get('/reset', [ForgotPasswordController::class, 'reset']);
+Route::post('/reset', [ForgotPasswordController::class, 'reset']);
+
+Route::post('/recovery-email-again', [ForgotPasswordController::class, 'again']);
 
 
 
