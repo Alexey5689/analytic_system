@@ -9,7 +9,7 @@ const app = createApp(App);
 components.forEach(component => {
     app.component(component.name, component);
 });
-console.log(components);
+
 app
     .use(store)//глоб хранилище
     .use(router)//роутинг
