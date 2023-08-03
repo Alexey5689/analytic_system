@@ -3,8 +3,14 @@ import EndRegister from "../components/endRegister.vue";
 import Change from '../components/endChangePass.vue';
 import ConfReg from '../components/confirmRegister.vue';
 import ConfPassRec from '../components/confirmPassRecovery.vue';
+import Login from "../components/Login.vue";
 
 export const routes = [
+    {
+        name: "Login",
+        path: '/login',
+        component: Login
+    },
     {
         name: "Reg",
         path: '/',
@@ -30,6 +36,7 @@ export const routes = [
         path: '/conf-pass',
         component: ConfPassRec
     },
+
 
 
 ]
