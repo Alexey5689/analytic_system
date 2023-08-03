@@ -15,13 +15,13 @@ export const routes = [
         name: "EndReg",
         path: '/end-register/:token',
         component: EndRegister,
-        // meta: { reg: true }
+
     },
     {
         name: "ConfReg",
         path: '/conf-reg',
         component: ConfReg,
-        // meta: { reg: true }
+
     },
     {
         name: "Change",
