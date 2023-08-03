@@ -8,13 +8,18 @@ export function confEmail(){
     const state = reactive({
         response:"",
     })
-    const getVerify = async()=>{
+    const getVerify = async()=> {
+        const cookies = JSON.parse(Cookies.get('reg_token'));
         try{
+
             const response = await axios({
-                method: "GET",
-                url:config.appBackendURL + ':' + config.appBackendPort + '/api/verify',
-                params: {
-                    _token:Cookies.get('reg_token'),
+                method: "POST",
+                url:config.appLocalHost + ':' + config.appBackendPort + '/api/verify',
+                data: {
+                    token:cookies.IsRegistration,
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 }
             },)
             localStorage.removeItem('repeatEmail');
@@ -27,7 +32,10 @@ export function confEmail(){
             state.response = err.response.data.message
         }finally{
         }
+
+
     }
+
     function getToken(token){
         store.commit('getRegToken', token);
     }
