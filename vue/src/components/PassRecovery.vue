@@ -1,5 +1,5 @@
 <template>
-    <div v-if="state.isRec" >
+    <div v-if="state.isChange" >
         <confRec/>
     </div>
     <div v-else class="card">

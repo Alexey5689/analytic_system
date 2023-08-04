@@ -4,7 +4,7 @@ import { reactive } from 'vue';
 
 export function Repeated(){
     const state = reactive({
-        respose: "",
+        response: "",
     })
         //повторная отправка письма на почту
         const repeatReqest = async () =>{
@@ -19,12 +19,12 @@ export function Repeated(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-                state.respose = response.data;
+                state.response = response.data;
                 console.log(response);
                 location.reload();
             }catch(err){
                 console.log(err);
-                state.respose = err.message;
+                state.response = err.response.data.message;
             }
         }
     return {

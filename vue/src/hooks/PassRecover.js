@@ -12,7 +12,7 @@ const pass = JSON.parse(localStorage.getItem('Pass'))
 export function RecForm(){
     const state = reactive({
             email: "",
-            isRec: pass ,
+            isChange: pass,
             response: ''
     })
     const rules = computed (()=>{
@@ -38,8 +38,8 @@ export function RecForm(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-            console.log(response);
-            localStorage.setItem('repeatEmailChangePass', state.email);
+            //console.log(response);
+            //localStorage.setItem('repeatEmailChangePass', state.email);
             localStorage.setItem('Pass', true);
         }catch(err){
             state.response = err.data.message;

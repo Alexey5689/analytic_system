@@ -21,11 +21,16 @@
 import {endChangePass} from '../hooks/endChangePass.js';
 export default {
     setup(props){
-        const {state, ChangeSubmit} = endChangePass();
+        const {state, ChangeSubmit, GetEmail} = endChangePass();
         return{
             state,
             ChangeSubmit,
+            GetEmail
         }
     },
+    created(){
+        this.GetEmail(this.$route.params)
+    }
+
 }
 </script>
