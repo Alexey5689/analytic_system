@@ -6,6 +6,7 @@ use App\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Mail;
@@ -17,7 +18,7 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class ForgotPasswordController extends Controller
 {
-    public function forget(ForgotPasswordRequest $request)
+    public function forget_current_password(ForgotPasswordRequest $request)
     {
         $status = Password::sendResetLink(
             $request->only('email')
@@ -36,7 +37,7 @@ class ForgotPasswordController extends Controller
         ]);
     }
 
-    public function reset(ResetPasswordRequest $request)
+    public function assigning_new_password(ResetPasswordRequest $request)
         {
             $status = Password::reset(
                 $request->only( 'password', 'password_confirmation', 'token', 'email'),
@@ -64,7 +65,7 @@ class ForgotPasswordController extends Controller
             }
         }
 
-    public function again(Request $request) {
+    public function resending_email(Request $request) {
         if(!$user = User::where('email', $request->email)) {
             return response()->json([
                 'error' => 'Failed',
