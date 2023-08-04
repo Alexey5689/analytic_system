@@ -2,14 +2,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ForgotPasswordRequest;
+use App\Http\Requests\ResendEmailRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
@@ -65,7 +61,7 @@ class ForgotPasswordController extends Controller
             }
         }
 
-    public function resending_email(Request $request) {
+    public function resending_email(ResendEmailRequest $request) {
         if(!$user = User::where('email', $request->email)) {
             return response()->json([
                 'error' => 'Failed',
