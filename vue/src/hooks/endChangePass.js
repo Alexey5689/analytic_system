@@ -39,13 +39,11 @@ export function endChangePass(){
         }
 
     }
-    function GetEmail(params){
-        const params = params.token.split('&');
-        for( var i = 0; i < params.length; i++){
-            state.token = params[0]
-            var tmp = params[i].split('=');
-            state.email=tmp[1]
-        }
+    function GetEmail(token){
+        var params = (new URL(document.location));
+        var email = params.search.replace('?').split('=');
+        state.email = email[1];
+        state.token = token;
     }
     return{state, ChangeSubmit, GetEmail }
 

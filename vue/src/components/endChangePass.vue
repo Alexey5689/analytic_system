@@ -29,7 +29,7 @@ export default {
         }
     },
     created(){
-        this.GetEmail(this.$route.params)
+        this.GetEmail(this.$route.params.token)
     }
 
 }

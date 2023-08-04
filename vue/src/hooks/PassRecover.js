@@ -1,4 +1,3 @@
-
 import { reactive, computed } from 'vue';
 import axios from 'axios';
 import config from "../../vue.config.js";
@@ -38,11 +37,13 @@ export function RecForm(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-            //console.log(response);
+            console.log(response);
             //localStorage.setItem('repeatEmailChangePass', state.email);
             localStorage.setItem('Pass', true);
+            location.reload()
         }catch(err){
-            state.response = err.data.message;
+            console.log(err);
+            state.response = err.response.data.message;
         }finally{
             state.email = '';
         }
