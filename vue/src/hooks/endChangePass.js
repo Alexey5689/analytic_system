@@ -41,7 +41,8 @@ export function endChangePass(){
     }
     function GetEmail(token){
         var params = (new URL(document.location));
-        var email = params.search.replace('?').split('=');
+        var email = params.search.replace('?','').split('=');
+        console.log(email);
         state.email = email[1];
         state.token = token;
     }

@@ -6,6 +6,7 @@ import ConfPassRec from '../components/confirmPassRecovery.vue';
 import Login from "../components/Login.vue";
 import Recovery from '../components/PassRecovery.vue'
 import Confirm from '../components/confirmPassRecovery.vue'
+import ConfirmLogin from '../components/confirmLogin.vue';
 
 export const routes = [
     {
@@ -32,7 +33,7 @@ export const routes = [
 
     {
         name: "Change ",
-        path: '/change',
+        path: '/change/:token',
         component: Change
     },
     {
@@ -57,5 +58,10 @@ export const routes = [
         path: '/reset-password/:token',
         component: Change
     },
+    {
+        name:"ConfmLog",
+        path:'/confirm-login',
+        component: ConfirmLogin,
+    }
 
 ]
