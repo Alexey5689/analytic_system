@@ -30,11 +30,7 @@ Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('web');
 
 Route::post('/forget-password', [ForgotPasswordController::class, 'forget_current_password']);
-
 Route::post('/reset', [ForgotPasswordController::class, 'assigning_new_password']);
-
-Route::post('/recovery-email-again', [ForgotPasswordController::class, 'resending_email']);
-
 
 
 

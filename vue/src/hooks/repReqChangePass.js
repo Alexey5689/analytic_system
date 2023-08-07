@@ -7,13 +7,13 @@ export function Repeated(){
         response: "",
     })
         //повторная отправка письма на почту
-        const repeatReqest = async () =>{
+        const repeatRequest = async () =>{
             try{
                 const response = await axios({
                     method:'POST',
-                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/recovery-email-again',
+                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/forget-password',
                     data:{
-                        email: localStorage.getItem('repeatEmailChangePass'),
+                        email:localStorage.getItem('repeatEmailChangePass'),
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -29,8 +29,7 @@ export function Repeated(){
         }
     return {
         state,
-        repeatReqest,
-
+        repeatRequest,
     }
 }
 

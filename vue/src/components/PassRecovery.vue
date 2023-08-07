@@ -2,7 +2,8 @@
     <div v-if="state.isChange" >
         <confRec/>
     </div>
-    <div v-else class="card">
+    <div v-else class="container">
+    <div class="card">
         <h1 class="card-header">Восстановление пароля</h1>
         <div class="ruls">
             {{ state.response }}
@@ -26,6 +27,7 @@
                 <p class="link" @click="$router.push('/login')" >Войти</p>
             </div>
         </div>
+    </div>
     </div>
 </template>
 

@@ -1,4 +1,5 @@
 <template>
+    <div class="container">
     <div class="card">
         <h1 class="card-header">Смените пароль</h1>
         <div class="ruls">
@@ -11,6 +12,7 @@
                 <button type="submit" class="button">Поменять пароль</button>
             </form>
         </div>
+    </div>
     </div>
 </template>
 

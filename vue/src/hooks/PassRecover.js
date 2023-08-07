@@ -38,7 +38,7 @@ export function RecForm(){
                     }
             },)
             console.log(response);
-            //localStorage.setItem('repeatEmailChangePass', state.email);
+            localStorage.setItem('repeatEmailChangePass', state.email);
             localStorage.setItem('Pass', true);
             location.reload()
         }catch(err){

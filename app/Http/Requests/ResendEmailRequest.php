@@ -29,7 +29,6 @@ class ResendEmailRequest extends FormRequest
     public function messages(): array {
         return [
             'email.email' => 'Должен быть указан действительный адрес электронной почты',
-            'email.required'  => 'Вы не указали email',
             ];
     }
 }

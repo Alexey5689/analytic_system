@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
 
-
-
 class ForgotPasswordController extends Controller
 {
     public function forget_current_password(ForgotPasswordRequest $request)
@@ -60,19 +58,4 @@ class ForgotPasswordController extends Controller
                 ]);
             }
         }
-
-    public function resending_email(ResendEmailRequest $request) {
-        if(!$user = User::where('email', $request->email)) {
-            return response()->json([
-                'error' => 'Failed',
-                'status' => false
-            ]);
-        }
-        $user = $user->firstOrFail();
-        event(new PasswordReset($user));
-        return response()->json([
-            'message' => "Письмо отправлено",
-            'status' => true
-        ]);
-    }
 }
