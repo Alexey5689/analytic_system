@@ -32,15 +32,13 @@ Route::post('/verify', [RegisterController::class, 'verify']);
 Route::post('/register-mail-again', [RegisterController::class, 'again']);
 Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,10');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('web');
-Route::post('/forget-password', [ForgotPasswordController::class, 'forget']);
+Route::post('/forget-password', [ForgotPasswordController::class, 'forget_current_password']);
+Route::post('/reset', [ForgotPasswordController::class, 'assigning_new_password']);
 Route::get('/campaigns', [DataCampaignsYandexDirectController::class, 'send_api_campaigns']);
 Route::get('/ads', [DataAdsYandexDirectController::class, 'send_api_ads']);
 Route::get('/keywords', [DataKeywordsYandexDirectController::class, 'send_api_keywords']);
 Route::get('/ads_group', [DataAdsGroupsYandexDirectController::class, 'get_ads_group']);
 Route::get('/ads_list', [DataAdsListsYandexDirectController::class, 'get_ads_list']);
-Route::post('/reset', [ForgotPasswordController::class, 'reset']);
 Route::post('/recovery-email-again', [ForgotPasswordController::class, 'again']);
-
-
 
 

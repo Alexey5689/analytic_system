@@ -4,33 +4,32 @@ import { reactive } from 'vue';
 
 export function Repeated(){
     const state = reactive({
-        respose: "",
+        response: "",
     })
         //повторная отправка письма на почту
-        const repeatReqest = async () =>{
+        const repeatRequest = async () =>{
             try{
                 const response = await axios({
                     method:'POST',
-                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/recovery-email-again',
+                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/forget-password',
                     data:{
-                        email: localStorage.getItem('repeatEmailChangePass'),
+                        email:localStorage.getItem('repeatEmailChangePass'),
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-                state.respose = response.data;
+                state.response = response.data;
                 console.log(response);
                 location.reload();
             }catch(err){
                 console.log(err);
-                state.respose = err.message;
+                state.response = err.response.data.message;
             }
         }
     return {
         state,
-        repeatReqest,
-
+        repeatRequest,
     }
 }
 

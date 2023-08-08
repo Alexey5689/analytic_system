@@ -6,13 +6,22 @@
                 <p>Превышено количество попыток входа</p>
                 <p
                     class="resend-p"
-                    @click="$router.push('/confirm-login')">Желаете сбросить пароль?
+                    @click="errLog">Желаете сбросить пароль?
                 </p>
             </div>
         </div>
     </div>
 </template>
 <script>
+    import { ErrorLogin } from '../hooks/errLogin'
+    export default{
+        setup(props){
+            const{errLog} = ErrorLogin();
+            return{
+                errLog
+            }
+        }
+    }
 
 
 </script>

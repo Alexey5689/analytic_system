@@ -1,4 +1,3 @@
-
 import { reactive, computed } from 'vue';
 import axios from 'axios';
 import config from "../../vue.config.js";
@@ -12,7 +11,7 @@ const pass = JSON.parse(localStorage.getItem('Pass'))
 export function RecForm(){
     const state = reactive({
             email: "",
-            isRec: pass ,
+            isChange: pass,
             response: ''
     })
     const rules = computed (()=>{
@@ -41,8 +40,10 @@ export function RecForm(){
             console.log(response);
             localStorage.setItem('repeatEmailChangePass', state.email);
             localStorage.setItem('Pass', true);
+            location.reload()
         }catch(err){
-            state.response = err.data.message;
+            console.log(err);
+            state.response = err.response.data.message;
         }finally{
             state.email = '';
         }

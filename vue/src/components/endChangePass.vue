@@ -1,4 +1,5 @@
 <template>
+    <div class="container">
     <div class="card">
         <h1 class="card-header">Смените пароль</h1>
         <div class="ruls">
@@ -12,6 +13,7 @@
             </form>
         </div>
     </div>
+    </div>
 </template>
 
 <style src="../components/compStyle/endChangePass.css" scoped>
@@ -21,11 +23,16 @@
 import {endChangePass} from '../hooks/endChangePass.js';
 export default {
     setup(props){
-        const {state, ChangeSubmit} = endChangePass();
+        const {state, ChangeSubmit, GetEmail} = endChangePass();
         return{
             state,
             ChangeSubmit,
+            GetEmail
         }
     },
+    created(){
+        this.GetEmail(this.$route.params.token)
+    }
+
 }
 </script>

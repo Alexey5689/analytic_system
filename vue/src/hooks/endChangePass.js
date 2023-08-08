@@ -8,7 +8,8 @@ export function endChangePass(){
             password: "",
             password_confirm: '',
             token: '',
-            response: ''
+            response: '',
+            email:''
     })
     const ChangeSubmit = async (token) =>{
         try{
@@ -16,7 +17,7 @@ export function endChangePass(){
                     method:'POST',
                     url:config.appBackendURL + ':' + config.appBackendPort + '/api/reset',
                     data:{
-                        email:localStorage.getItem('repeatEmailChangePass'),
+                        email:state.email,
                         token:token,
                         password:state.password,
                         password_confirmation: state.password_confirm
@@ -38,7 +39,14 @@ export function endChangePass(){
         }
 
     }
-    return{state, ChangeSubmit }
+    function GetEmail(token){
+        var params = (new URL(document.location));
+        var email = params.search.replace('?','').split('=');
+        console.log(email);
+        state.email = email[1];
+        state.token = token;
+    }
+    return{state, ChangeSubmit, GetEmail }
 
 }
 

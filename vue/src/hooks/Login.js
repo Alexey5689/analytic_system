@@ -49,23 +49,25 @@ export function AuthValidForm(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
-                console.log(response.data)
-                if(response.data.status === true){
+                console.log(response)
+                if(response.data.status == false){
+                    state.response = response.data.message;
+                }
+                else{
                     window.location.href ='/main/';
                     Cookies.set('XSRF-TOKEN', response.data.token);
                     store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
                 }
         }catch(err){
-            console.log(err);
-            if(err.response.status === 429){
+            console.log(err.response);
+            if(err.response.status == 429){
                 localStorage.setItem('Log', true);
                 localStorage.setItem('repeatEmail', state.email);
                 location.reload();
             }
-            state.response = err.response;
+
+
         }finally{
-            // state.password = '';
-            // state.email = '';
         }
     }
     const logOut = () =>{
