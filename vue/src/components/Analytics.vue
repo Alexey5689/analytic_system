@@ -10,8 +10,9 @@
             }
         },
         computed:{
-            ...mapGetters({
+            ...mapGetters('DemoModWin',{
                 stateAnalyticsCompany:'stateAnalyticsCompany',
+
             })
         }
     }
@@ -95,18 +96,18 @@
         <template v-if="!state.toggle">
             <div v-if="!state.networkRsya" class="company">
                 <h2>Компания</h2>
-                <table>
+                <table v-for="company in stateAnalyticsCompany">
                     <tr @click="state.company = !state.company" :class="{ 'advertising_company_active': !state.company }">
                         <td>
                             <img v-if="state.company" class="selection_list_1" src="../assets/image/selection_list.svg"
                                 alt="Selection list">
                             <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
                                 alt="Selection list">
-                            {{ stateAnalyticsCompany }}
+                            {{ company.campaign_name }}
                         </td>
-                        <td>7 442</td>
-                        <td>244</td>
-                        <td>1.3&#8381</td>
+                        <td>{{ company.impressions }}</td>
+                        <td>{{ company.clicks }}</td>
+                        <td>{{ company.daily_budget }} &#8381</td>
                     </tr>
                 </table>
             </div>

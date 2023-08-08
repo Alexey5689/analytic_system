@@ -18,7 +18,9 @@ export const DemoModWin = {
         stateDemoErr: (state) => state.DemoErr,
         stateDemoDataCon: (state) => state.IsDemoDataCon,
         stateDemoActive: (state) => state.active,
-
+        stateAnalyticsCompany(state){
+            return state.demo
+        },
     },
     mutations: {
         changeStateDemoCon(state) {
