@@ -9,4 +9,11 @@ class TestDataAds extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id',
+        'ad_name',
+        'impressions',
+        'clicks',
+        'daily_budget',
+    ];
 }
