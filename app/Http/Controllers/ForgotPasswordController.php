@@ -31,7 +31,8 @@ class ForgotPasswordController extends Controller
       *         response="200",
       *         description="Ok",
       *         @OA\JsonContent(
-      *             @OA\Property(ref="#/components/schemas/ForgotPasswordRequest")
+      *             @OA\Property(property="message", type="string", example="Оk"),
+      *             @OA\Property(property="status", type="boolean", example=true)
       *         )
       *     ),
       *      @OA\RequestBody(
