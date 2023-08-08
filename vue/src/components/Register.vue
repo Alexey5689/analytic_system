@@ -8,11 +8,9 @@
         <div class="card-body">
             <form class="general-block" @submit.prevent="fetchForm">
                 <div>
-
                     <div class="ruls">
                         {{ state.response }}
                     </div>
-
                     <small class="ruls" v-for="errors in v$.name.$errors ">{{ errors.$message }}</small>
                     <input
                         class="user-name"
@@ -86,8 +84,8 @@
 
             </div>
             <button
-
-            type="submit">Продолжить</button>
+                type="submit">Продолжить
+            </button>
             </form>
 
         </div>
@@ -138,7 +136,10 @@ export default {
 
     },
     created(){
-        this.getCities()
+        if(!this.state.isReg){
+            this.getCities()
+        }
+
     },
 }
 </script>

@@ -15,9 +15,9 @@ class ResetPassword extends ResetPasswordNotification
     /**
      * Create a new notification instance.
      */
-    public function __construct($token)
+    public function __construct($user)
     {
-        parent::__construct($token);
+        parent::__construct($user);
     }
 
     /**
@@ -35,7 +35,7 @@ class ResetPassword extends ResetPasswordNotification
      */
     public function toMail($notifiable): MailMessage
     {
-        $link = url( config('app.url').':'.config('app.frontend_port')."/reset-password/".$this->token );
+        $link = url( config('app.url').':'.config('app.frontend_port')."/reset-password/".$this->token."?email=".$notifiable->getEmailForPasswordReset());
         return (new MailMessage)
              ->subject('Уведомление о сбросе пароля - '  . config('app.name'))
              ->line('Вы получаете это письмо, потому что мы получили запрос на сброс пароля для вашей учетной записи.')

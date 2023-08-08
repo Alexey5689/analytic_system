@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,8 +30,7 @@ class User extends Authenticatable
         'tel',
         'email',
         'password',
-        'region',
-        'promo',
+        'city',
         'verify_token',
         'status',
         'city',

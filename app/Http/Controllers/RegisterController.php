@@ -161,7 +161,7 @@ class RegisterController extends Controller
 
     public function verify(Request $request)
     {
-        if (!$user = User::where('verify_token', $request['_token'])->first()) {
+        if (!$user = User::where('verify_token', $request['token'])->first()) {
             return response()->json([
                 'error' => 'Verification failed',
                 'message' => "Пользователь с таким ID не найден",

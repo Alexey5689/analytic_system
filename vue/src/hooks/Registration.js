@@ -6,13 +6,16 @@ import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, maxLength} from '@vuelidate/validators';
 import { sameAs } from '@vuelidate/validators';
 import { useStore } from 'vuex';
+import Cookies from 'js-cookie';
+
+
 const reg = JSON.parse(localStorage.getItem('reg'))
 export function RegForm(){
-    const store = useStore();
     //регулярные выражения
     const regName = helpers.regex(/^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/);
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
+    const store = useStore();
     const state = reactive({
             isReg: reg ,//флаг меняющий компонент на компонент подтверждения регистрации
             email: "",
@@ -29,7 +32,6 @@ export function RegForm(){
             cellMessage:'Шаблон телефона 8999 999 99 99',
             checked:"",//checkbox
     })
-    //валидация
     const rules = computed (()=>{
         return  {
                     name:{
@@ -64,18 +66,17 @@ export function RegForm(){
     })
     //валидация
     const v$ = useVuelidate(rules, state);
-
+    //регистрация
     async function fetchForm(){
         //ошибки валидации
         if(this.v$.$invalid){
             this.v$.$touch();
             return;
         }
-
         try{
             const response = await axios({
                     method:'POST',
-                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/register',
+                    url:config.appLocalHost + ':' + config.appBackendPort +'/api/register',
                     data:{
                         email:state.email,
                         password:state.password,
@@ -89,13 +90,12 @@ export function RegForm(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-            //  смена регистрации на подтверждение
+            //смена регистрации на подтверждение
             console.log(response.data);
             localStorage.setItem('reg', true);
+            localStorage.setItem('repeatEmail', state.email);
             location.reload();
         }catch(err){
-            console.log(err);
-            //ошибка регистрации вывод в компоненте
             state.response = err.response.data.message;
             localStorage.setItem('repeatEmail', state.email);
         }finally{
@@ -106,9 +106,7 @@ export function RegForm(){
         try{
             const response = await axios.get( config.appLocalHost + ':' + config.appBackendPort +'/api/city')
             state.cities = response.data;
-            console.log(state.cities);
         }catch(err){
-            console.log(err);
             //ошибка запроса
             state.response = err.response.data.message;
         }
