@@ -12,7 +12,8 @@
         computed:{
             ...mapGetters('DemoModWin',{
                 stateAnalyticsCompany:'stateAnalyticsCompany',
-                stateGetAds:'stateGetAds'
+                stateAnalyticsAds:'stateAnalyticsAds',
+                stateAnalyticsKeywords:'stateAnalyticsKeywords'
             })
         }
     }
@@ -115,7 +116,7 @@
             <template v-if="!state.networkRsya">
                 <div v-if="!state.company" class="ads">
                     <h2>Объявления</h2>
-                    <table v-for="ads in stateGetAds">
+                    <table v-for="ads in stateAnalyticsAds">
                         <tr @click="state.guaranteeAds = !state.guaranteeAds" :class="{ 'advertising_company_active': !state.guaranteeAds }">
                             <td>
                                 <img v-if="state.guaranteeAds" class="selection_list_1" src="../assets/image/selection_list.svg"
@@ -135,22 +136,14 @@
 
                     <div v-if="!state.guaranteeAds" class="keyword">
                         <h2>Ключевое слово</h2>
-                        <table>
+                        <table v-for="keyword in stateAnalyticsKeywords">
                             <tr>
                                 <td>
-                                    Ёмкость для хранения продуктов
+                                    {{ keyword.keyword_name }}
                                 </td>
-                                <td>580</td>
-                                <td>42</td>
-                                <td>0.2&#8381</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Удобное хранение продуктов
-                                </td>
-                                <td>4 352</td>
-                                <td>138</td>
-                                <td>0.7&#8381</td>
+                                <td>{{ keyword.impressions }}</td>
+                                <td>{{ keyword.clicks }}</td>
+                                <td>{{ keyword.daily_budget }} &#8381</td>
                             </tr>
                         </table>
                     </div>
