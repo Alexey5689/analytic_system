@@ -8,6 +8,9 @@ use App\Http\Controllers\DataCampaignsYandexDirectController;
 use App\Http\Controllers\DataKeywordsYandexDirectController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TestDataAdsController;
+use App\Http\Controllers\TestDataCampaignController;
+use App\Http\Controllers\TestDataKeywordsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +30,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/test_data_campaigns', [TestDataCampaignController::class, 'test_data']);
+Route::get('/test_data_ads', [TestDataAdsController::class, 'test_data']);
+Route::get('/test_data_keywords', [TestDataKeywordsController::class, 'test_data']);
 Route::get('/city', [RegisterController::class, 'city']);
 Route::post('/verify', [RegisterController::class, 'verify']);
 Route::post('/register-mail-again', [RegisterController::class, 'again']);
@@ -40,5 +46,3 @@ Route::get('/keywords', [DataKeywordsYandexDirectController::class, 'send_api_ke
 Route::get('/ads_group', [DataAdsGroupsYandexDirectController::class, 'get_ads_group']);
 Route::get('/ads_list', [DataAdsListsYandexDirectController::class, 'get_ads_list']);
 Route::post('/recovery-email-again', [ForgotPasswordController::class, 'again']);
-
-
