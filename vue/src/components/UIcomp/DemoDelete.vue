@@ -19,7 +19,7 @@
     export default{
         name:'DemoDel',
         computed:{
-            ...mapGetters({
+            ...mapGetters('DemoModWin', {
                 stateDemoDell:'stateDemoDell'
             })
         },

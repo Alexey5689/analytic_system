@@ -21,24 +21,25 @@
     </div>
 </template>
 <script>
-    import { mapActions, mapGetters } from 'vuex';
-    export default{
-        name:'DemoCon',
-        computed:{
-            ...mapGetters({
-                stateDemoCon:'stateDemoCon'
-            })
+
+import { mapActions, mapGetters } from 'vuex';
+
+export default {
+    name: 'DemoCon',
+    computed: {
+        ...mapGetters('DemoModWin', {
+            stateDemoCon: 'stateDemoCon',
+        }),
+    },
+    methods: {
+        ...mapActions('DemoModWin', {
+            ShowDemoCon: 'ShowDemoCon',
+            continueFull: 'continueFull',
+        }),
+
+        hideDemoWindCon() {
+            this.ShowDemoCon();
         },
-        methods:{
-            ...mapActions({
-                ShowDemoCon:'ShowDemoCon',
-                continueFull:'continueFull'
-            }),
-
-            hideDemoWindCon(){
-                this.ShowDemoCon();
-            }
-        }
-
-    }
+    },
+};
 </script>
