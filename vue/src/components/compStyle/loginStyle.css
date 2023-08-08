@@ -1,3 +1,17 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
+}
 .card-header {
     justify-content: center;
     align-self: stretch;
@@ -6,7 +20,6 @@
     font-weight: 700;
     line-height: 120%;
     font-family: 'Montserrat-Bold';
-    padding: 0 10%;
     margin-bottom: 13px;
 }
 .card {
@@ -16,7 +29,8 @@
     background-color: white;
     border-radius: 20px;
     height: fit-content;
-    padding: 8% 5%;
+    padding: 42px 32px;
+    width: 454px;
 }
 p{
     font-size: 16px;
@@ -25,11 +39,14 @@ p{
     line-height: 120%;
     color: #919399;
 }
+.redir{
+    cursor: pointer;
+}
 .card-body {
-    margin: 5% 0;
+    margin-top: 24px;
     width: -webkit-fill-available;
 }
-button {
+.buttonLog {
     background-color: #005BD1;
     color: white;
     padding: 0 20%;
@@ -37,8 +54,8 @@ button {
     border-radius: 10px;
     height: 47px;
     margin-bottom: 26px;
-    font-family: 'Montserrat-Regular'
-
+    font-family: 'Montserrat-Regular';
+    cursor: pointer;
 }
 input:hover {
     background-color: #DBDEE4;
@@ -81,5 +98,15 @@ input {
 .bottom-block-register p {
     color: #005BD1;
     font-weight: bold;
+    cursor: pointer;
 }
+
+.ruls{
+    font-family: 'Montserrat-Regular';
+    color: rgb(201, 0, 0);
+    display: flex;
+    flex-direction: column;
+}
+
+
 

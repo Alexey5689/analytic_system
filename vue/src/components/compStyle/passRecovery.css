@@ -9,6 +9,20 @@
     padding: 0 10%;
     margin-bottom: 13px;
 }
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
+}
 .card {
     display: flex;
     align-items: center;
@@ -16,7 +30,8 @@
     background-color: white;
     border-radius: 20px;
     height: fit-content;
-    padding: 8% 5%;
+    padding: 42px 32px;
+    width: 454px;
 }
 p{
     font-size: 16px;
@@ -24,6 +39,9 @@ p{
     font-weight: 500;
     line-height: 120%;
     color: #919399;
+}
+.link{
+    color:#005BD1;
 }
 .card-body {
     margin: 5% 0;
@@ -37,13 +55,12 @@ button {
     border-radius: 10px;
     height: 47px;
     margin-bottom: 26px;
-    font-family: 'Montserrat-Regular'
+    font-family: 'Montserrat-Regular';
+    cursor: pointer;
+
 
 }
-input:hover {
-    background-color: #528FDF;
-    transition: ease 1s;
-}
+
 input {
     font-family: 'Montserrat-Regular';
     font-size: 14px;
@@ -52,6 +69,7 @@ input {
     width: -webkit-fill-available;
 }
 .user-email {
+    background: url("../../assets/image/mail-icon.svg") no-repeat;
     background-size: inherit;
     background-position-y: center;
     background-color: #F0F1F3;
@@ -77,4 +95,12 @@ input {
     font-weight: bold;
     font-size: 14px;
 }
+.ruls{
+    font-family: 'Montserrat-Regular';
+    color: rgb(201, 0, 0);
+    display: flex;
+    flex-direction: column;
+}
+
+
 

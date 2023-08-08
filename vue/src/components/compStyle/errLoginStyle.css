@@ -1,3 +1,17 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    background-color: #F0F1F3;
+    height: 100vh;
+    align-items: center;
+}
 .card-header {
     justify-content: center;
     align-self: stretch;
@@ -13,7 +27,7 @@
     background-color: white;
     border-radius: 20px;
     height: fit-content;
-    padding: 8% 5%;
+    padding: 42px 32px;
 }
 p{
     font-size: 16px;
@@ -21,7 +35,6 @@ p{
     font-weight: 500;
     line-height: 120%;
     color: #919399;
-    margin-bottom: 26px;
 }
 .bottom-block-register {
     text-align: end;
@@ -30,8 +43,9 @@ p{
     font-weight: bold;
     font-size: 14px;
     font-family: Montserrat-Bold;
-    margin-bottom: 10px;
 }
 .resend-p {
     color: #005BD1;
+    font-weight: bold;
+    margin-top: 6px;
 }

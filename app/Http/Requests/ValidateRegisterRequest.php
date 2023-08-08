@@ -25,7 +25,7 @@ class ValidateRegisterRequest extends FormRequest
             'name' => 'min:2|max:255',
             'tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|unique:users|max:255',
-            'password' => 'required|max:255'
+            'password' => 'required|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/',
         ];
     }
 
@@ -41,6 +41,7 @@ class ValidateRegisterRequest extends FormRequest
             'name.max' => 'Слишком длинное имя пользователя',
             'tel.required' => 'Вы не указали номер',
             'tel.regex' => 'Неверный формат номера',
+            'password.regex' => 'Пароль должен содержать латинские буквы, одну в верхнем регистре, число и спец. символ, минимальная длина пароля - 8 символов'
         ];
     }
 }
