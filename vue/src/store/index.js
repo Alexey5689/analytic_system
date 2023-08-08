@@ -43,8 +43,8 @@ export default createStore({
         },
     },
     modules:{
-        YandWind: YandexModWin,
-        DemoWind: DemoModWin,
+        YandexModWin: YandexModWin,
+        DemoModWin: DemoModWin,
         LogOutModWin: LogOutModWin,
     }
 

@@ -1,84 +1,75 @@
 import config from "../../vue.config.js";
 import axios from "axios";
 
-export const DemoModWin={
-    state: ()=>({
-        DemoCon:false,
-        IsDemoDataCon:false,
-        DemoDell:false,
-        DemoErr:false,
-        active:false,
-
+export const DemoModWin = {
+    state: () => ({
+        demo: [],
+        isDemoLoading: false,
+        DemoCon: false,
+        IsDemoDataCon: false,
+        DemoDell: false,
+        DemoErr: false,
+        active: false,
     }),
-    getters:{
-        // модальное окно
-        stateDemoCon(state){
-            return state.DemoCon
-        },
-        stateDemoDell(state){
-            return state.DemoDell
-        },
-        stateDemoErr(state){
-            return state.DemoErr
-        },
-        stateDemoDataCon(state){
-            return state.IsDemoDataCon
-        },
-        stateDemoActive(state){
-            return state.active
-        }
+
+    getters: {
+        stateDemoCon: (state) => state.DemoCon,
+        stateDemoDell: (state) => state.DemoDell,
+        stateDemoErr: (state) => state.DemoErr,
+        stateDemoDataCon: (state) => state.IsDemoDataCon,
+        stateDemoActive: (state) => state.active,
 
     },
-    mutations:{
-        changeStateDemoCon(state){
+    mutations: {
+        changeStateDemoCon(state) {
             state.DemoCon = !state.DemoCon;
         },
-        changeStateDemoDell(state){
+        changeStateDemoDell(state) {
             state.DemoDell = !state.DemoDell;
         },
-        changeStateDemoErr(state){
+        changeStateDemoErr(state) {
             state.DemoErr = !state.DemoErr;
         },
-        changeStateDemoDataCon(state){
+        changeStateDemoDataCon(state) {
             state.IsDemoDataCon = !state.IsDemoDataCon;
         },
-        changeDemoActive(state){
-            state.active = !state.active
-        }
-    },
-    actions:{
-        ShowDemoCon({commit}){
-            commit('changeStateDemoCon')
+        changeDemoActive(state) {
+            state.active = !state.active;
         },
-        continueFull({commit}){
-
+        getAnalytics(state, data) {
+            state.demo = data;
+        },
+    },
+    actions: {
+        ShowDemoCon({ commit }) {
+            commit('changeStateDemoCon');
+        },
+        continueFulls({ commit }) {
             commit('changeStateDemoDataCon');
             commit('changeStateDemoCon');
-        }
-        //async continueFull({commit}){
-        //     try{
-        //         commit(' changeStateDemoCon')
-        //         commit('changeStateDemoDataCon')
-        //         const response = await axios({
-        //             method:'GET',
-        //             url:config.appBackendURL + ':' + config.appBackendPort + '/api/format_campaigns_data',
-        //         })
-        //         console.log(response);
-        //         commit('getAnalytics', response.data)
-        //         commit('changeStateShowCon');
-        //         commit('changeDemoActive')
-        //     }catch(err){
-        //         console.log(err);
-        //         commit('changeStateShowCon');
-        //         commit('changeStateShowErr');
-        //     }
-        //     finally{
-        //         commit('changeStateDemoDataCon')
-        //     }
-        //  }
+        },
+        async continueFull({ commit }) {
+            try {
+                commit('changeStateDemoCon');
+                commit('changeStateDemoDataCon');
 
+                const response = await axios.get(
+                    config.appBackendURL + ':' + config.appBackendPort + '/api/test_data_campaigns'
+                );
+                console.log(response);
 
+                commit('getAnalytics', response.data);
+
+                // commit('changeStateShowCon');
+                commit('changeDemoActive');
+            } catch (err) {
+                console.log(err);
+                commit('changeStateShowCon');
+                commit('changeStateShowErr');
+            } finally {
+                commit('changeStateDemoDataCon');
+            }
+        },
     },
-    namespased: true,
-}
-
+    namespaced: true,
+};

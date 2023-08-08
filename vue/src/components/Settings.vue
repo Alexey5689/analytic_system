@@ -77,29 +77,28 @@
 </template>
 
 <script>
-    import { mapActions, mapGetters } from 'vuex'
-    export default{
-        computed:{
-            ...mapGetters({
-                stateActivYnd:'stateActivYnd',
-                stateDemoActive:'stateDemoActive',
-            })
+import { mapActions, mapGetters } from 'vuex';
+
+export default {
+    computed: {
+        ...mapGetters('DemoModWin', {
+            stateActivYnd: 'stateActivYnd',
+            stateDemoActive: 'stateDemoActive',
+        }),
+    },
+    methods: {
+        ...mapActions('DemoModWin', {
+            ShowModelCon: 'ShowModelCon',
+            ShowDemoCon: 'ShowDemoCon',
+        }),
+        plugYandex() {
+            this.ShowModelCon();
         },
-        methods:{
-            ...mapActions({
-                ShowModelCon:'ShowModelCon',
-                ShowDemoCon:'ShowDemoCon',
-            }),
-            plugYandex(){
-                this.ShowModelCon();
-            },
-            fillProject(){
-                this.ShowDemoCon();
-            }
-
-        }
-
-    }
+        fillProject() {
+            this.ShowDemoCon();
+        },
+    },
+};
 
 </script>
 
