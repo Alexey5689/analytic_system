@@ -4,6 +4,7 @@ import axios from "axios";
 export const DemoModWin = {
     state: () => ({
         demo: [],
+        demoAds: [],
         isDemoLoading: false,
         DemoCon: false,
         IsDemoDataCon: false,
@@ -21,6 +22,9 @@ export const DemoModWin = {
         stateAnalyticsCompany(state){
             return state.demo
         },
+        stateGetAds (state) {
+            return state.demoAds
+        }
     },
     mutations: {
         changeStateDemoCon(state) {
@@ -40,7 +44,11 @@ export const DemoModWin = {
         },
         getAnalytics(state, data) {
             state.demo = data;
+
         },
+        getAdsAnalytics(state,data) {
+            state.demoAds = data;
+        }
     },
     actions: {
         ShowDemoCon({ commit }) {
@@ -60,7 +68,12 @@ export const DemoModWin = {
                 );
                 console.log(response);
 
+                const adsResponse = await axios.get(
+                    config.appBackendURL + ':' + config.appBackendPort + '/api/test_data_ads'
+                );
+                console.log(adsResponse);
                 commit('getAnalytics', response.data);
+                commit('getAdsAnalytics', adsResponse.data);
 
                 // commit('changeStateShowCon');
                 commit('changeDemoActive');

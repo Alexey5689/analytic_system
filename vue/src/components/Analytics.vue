@@ -12,7 +12,7 @@
         computed:{
             ...mapGetters('DemoModWin',{
                 stateAnalyticsCompany:'stateAnalyticsCompany',
-
+                stateGetAds:'stateGetAds'
             })
         }
     }
@@ -113,33 +113,20 @@
             </div>
 
             <template v-if="!state.networkRsya">
-
                 <div v-if="!state.company" class="ads">
                     <h2>Объявления</h2>
-                    <table>
-                        <tr>
-                            <td>
-                                <img v-if="state.storageAds" class="selection_list_1" src="../assets/image/selection_list.svg"
-                                    alt="Selection list">
-                                <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
-                                    alt="Selection list">
-                                Хранение продуктов
-                            </td>
-                            <td>4 932</td>
-                            <td>180</td>
-                            <td>0.9&#8381</td>
-                        </tr>
+                    <table v-for="ads in stateGetAds">
                         <tr @click="state.guaranteeAds = !state.guaranteeAds" :class="{ 'advertising_company_active': !state.guaranteeAds }">
                             <td>
                                 <img v-if="state.guaranteeAds" class="selection_list_1" src="../assets/image/selection_list.svg"
                                     alt="Selection list">
                                 <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
                                     alt="Selection list">
-                                Гарантия и под. услуги
+                                {{ ads.ad_name }}
                             </td>
-                            <td>2 510</td>
-                            <td>61</td>
-                            <td>0.2&#8381</td>
+                            <td>{{ ads.impressions }}</td>
+                            <td>{{ ads.clicks }}</td>
+                            <td>{{ ads.daily_budget }} &#8381</td>
                         </tr>
                     </table>
                 </div>
