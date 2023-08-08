@@ -3,14 +3,49 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidateLoginRequest;
-use App\Mail\ResetPasswordMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
+    /**
+     * Log in to the web application.
+     *
+     * @OA\Post(
+     *     path="/api/login",
+     *     tags={"Авторизация, заполнение формы"},
+     *     summary="Авторизация пользователя",
+     *     operationId="authUser",
+     *    @OA\Parameter(
+     *             name="email",
+     *             in="query",
+     *             required=true,
+     *             @OA\Schema(type="string"),
+     *             description="Email пользователя"
+     *         ),
+
+     *     @OA\Parameter(
+     *             name="password",
+     *             in="query",
+     *             required=true,
+     *             @OA\Schema(type="string"),
+     *             description="Пароль пользователя"
+     *         ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Ok",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Success"),
+     *             @OA\Property(property="status", type="boolean", example=true)
+     *         ),
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/ValidateLoginRequest")
+     *     )
+     * )
+     **/
 
     public function login(ValidateLoginRequest $request)
     {
