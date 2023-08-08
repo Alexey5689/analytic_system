@@ -7,6 +7,12 @@ use Illuminate\Foundation\Http\FormRequest;
 class ForgotPasswordRequest extends FormRequest
 {
     /**
+     *      @OA\Schema(
+     *      schema="ForgotPasswordRequest",
+     *      required={"email"},
+     *      @OA\Property(property="email", type="string",  example="egorov@mail.ru", description="Email пользователя"),
+     * )
+     *
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool

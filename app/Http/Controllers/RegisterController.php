@@ -15,6 +15,64 @@ use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
+     /**
+      * Register in the app.
+      *
+      * @OA\Post(
+      *     path="/api/register",
+      *     tags={"Регистрация пользователя, заполнение формы"},
+      *     summary="Запись нового пользователя в БД",
+      *     operationId="registerUser",
+      *     @OA\Parameter(
+      *             name="name",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Введение ФИО пользователем"
+      *         ),
+      *    @OA\Parameter(
+      *             name="email",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Введение email пользователем"
+      *         ),
+      *    @OA\Parameter(
+      *             name="tel",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="integer"),
+      *             description="Номер телефона пользователя"
+      *         ),
+      *     @OA\Parameter(
+      *             name="password",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Пароль пользователя"
+      *         ),
+      *      @OA\Parameter(
+      *             name="password_confirmed",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Пароль пользователя"
+      *         ),
+      *     @OA\Response(
+      *         response="200",
+      *         description="Ok",
+      *         @OA\JsonContent(
+      *             @OA\Property(property="message", type="string", example="Пользователь успешно зарегистрирован"),
+      *             @OA\Property(property="status", type="boolean", example=true)
+      *         ),
+      *     ),
+      *     @OA\RequestBody(
+      *         required=true,
+      *         @OA\JsonContent(ref="#/components/schemas/ValidateRegisterRequest")
+      *     )
+      * )
+      **/
+
     public function store(ValidateRegisterRequest $request)
     {
         $user = User::create([
@@ -34,6 +92,32 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     *     Resend the email to the previously entered email address.
+     *
+     *     @OA\Post(
+     *     path="/api/register-mail-again",
+     *     tags={"Повторная отправка подтверждения регистрации пользователю"},
+     *     summary="Повторная отправка эл.письма пользователю",
+     *     operationId="registerMailAgain",
+     *     @OA\Parameter(
+     *             name="email",
+     *             in="cookie",
+     *             required=true,
+     *             @OA\Schema(type="string", example="panama@mail.ru"),
+     *             description="Поле не заполняется пользователем, получаем из объекта запроса"
+     *         ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Ok",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Письмо отправлено"),
+     *             @OA\Property(property="status", type="boolean", example=true)
+     *         ),
+     *     ),
+     * )
+     **/
+
     public function again(Request $request) {
         if(!$user = User::where('email', $request->email)) {
             return response()->json([
@@ -48,6 +132,32 @@ class RegisterController extends Controller
             'status' => true
         ]);
     }
+
+    /**
+     *     Email verification, automatic filling of the token field.
+     *
+     *     @OA\Get(
+     *     path="/api/verify",
+     *     tags={"Подтверждение записи о пользователе"},
+     *     summary="Верификация email пользователя и внесение изменений в БД",
+     *     operationId="verifyUser",
+     *      @OA\Parameter(
+     *             name="_token",
+     *             in="cookie",
+     *             required=true,
+     *             @OA\Schema(type="string", example="fPMgGFTHFGTZgRfFSr"),
+     *             description="Поле не заполняется пользователем, получаем из объекта запроса"
+     *         ),
+     *      @OA\Response(
+     *         response="200",
+     *         description="Ok",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Email подтвержден"),
+     *             @OA\Property(property="status", type="boolean", example=true)
+     *         ),
+     *     ),
+     * )
+     **/
 
     public function verify(Request $request)
     {

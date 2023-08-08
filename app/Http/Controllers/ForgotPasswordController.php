@@ -12,6 +12,37 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class ForgotPasswordController extends Controller
 {
+      /**
+      * Generate a link to recover your password.
+      *
+      * @OA\Post(
+      *     path="/api/forget-password",
+      *     tags={"Генерация ссылки для сброса пароля"},
+      *     summary="Обрабатывает логику отправки письма с ссылкой для сброса пароля на указанный email",
+      *     operationId="forgetPassword",
+      *     @OA\Parameter(
+      *             name="email",
+      *             in="query",
+      *             required=true,
+      *             @OA\Schema(type="string"),
+      *             description="Введение email пользователем"
+      *     ),
+      *     @OA\Response(
+      *         response="200",
+      *         description="Ok",
+      *         @OA\JsonContent(
+      *             @OA\Property(property="message", type="string", example="Оk"),
+      *             @OA\Property(property="status", type="boolean", example=true)
+      *         )
+      *     ),
+      *      @OA\RequestBody(
+      *        required=true,
+      *     @OA\JsonContent(ref="#/components/schemas/ForgotPasswordRequest")
+      *      )
+      * )
+      *
+      **/
+
     public function forget_current_password(ForgotPasswordRequest $request)
     {
         $status = Password::sendResetLink(
@@ -30,6 +61,44 @@ class ForgotPasswordController extends Controller
             'status' => false
         ]);
     }
+
+    /**
+     * Recover your password.
+     *
+     * @OA\Post(
+     *     path="/api/reset",
+     *     tags={"Страница восстановления пароля после перехода по ссылке"},
+     *     summary="Страница восстановления пароля после перехода по ссылке",
+     *     operationId="/api/reset(POST)",
+     *     @OA\Parameter(
+     *             name="password",
+     *             in="query",
+     *             required=true,
+     *             @OA\Schema(type="string"),
+     *             description="Пароль пользователя"
+     *         ),
+     *      @OA\Parameter(
+     *             name="password_confirmed",
+     *             in="query",
+     *             required=true,
+     *             @OA\Schema(type="string"),
+     *             description="Подтверждение пароля пользователя"
+     *         ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Ok",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Оk"),
+     *             @OA\Property(property="status", type="boolean", example=true)
+     *         )
+     *     ),
+     *      @OA\RequestBody(
+     *        required=true,
+     *           @OA\JsonContent(ref="#/components/schemas/ResetPasswordRequest")
+     *      )
+     * )
+     *
+     **/
 
     public function assigning_new_password(ResetPasswordRequest $request)
         {
