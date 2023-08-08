@@ -2,6 +2,9 @@ import { createStore } from "vuex";
 import createPersistedState from 'vuex-persistedstate';
 import Cookies from 'js-cookie';
 const reg = JSON.parse(localStorage.getItem('reg'))
+import { YandexModWin } from './YanCon.js';
+import { DemoModWin } from './DemoCon.js';
+import { LogOutModWin } from './Logout.js';
 export default createStore({
     state: ()=>({
        seconds:60,
@@ -40,8 +43,9 @@ export default createStore({
         },
     },
     modules:{
-
+        YandWind: YandexModWin,
+        DemoWind: DemoModWin,
+        LogOutModWin: LogOutModWin,
     }
-
 
 })

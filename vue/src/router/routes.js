@@ -7,6 +7,9 @@ import Login from "../components/Login.vue";
 import Recovery from '../components/PassRecovery.vue'
 import Confirm from '../components/confirmPassRecovery.vue'
 import ConfirmLogin from '../components/confirmLogin.vue';
+import MainPage from '../components/MainPage.vue'
+import Analytics from '../components/Analytics.vue'
+import Settings from '../components/Settings.vue'
 
 export const routes = [
     {
@@ -15,7 +18,7 @@ export const routes = [
         component: Login
     },
     {
-        name: "Reg",
+        name: "Registration",
         path: '/',
         component: Register
     },
@@ -24,13 +27,11 @@ export const routes = [
         path: '/end-register/:token',
         component: EndRegister
     },
-
     {
         name: "ConfReg",
         path: '/conf-reg',
         component: ConfReg
     },
-
     {
         name: "Change ",
         path: '/change/:token',
@@ -62,6 +63,25 @@ export const routes = [
         name:"ConfmLog",
         path:'/confirm-login',
         component: ConfirmLogin,
-    }
-
+    },
+    {
+        name: "Main",
+        path: '/main/',
+        component: MainPage,
+        //meta: { auth: true},
+        children:[
+            {
+                name: 'Analitics',
+                path: '',
+                component: Analytics,
+                // meta: { auth: true},
+            },
+            {
+                name: 'Settings',
+                path: 'settings',
+                component: Settings,
+                //meta: { auth: true},
+            }
+        ]
+    },
 ]
