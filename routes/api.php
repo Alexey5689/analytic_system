@@ -11,8 +11,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TestDataAdsController;
 use App\Http\Controllers\TestDataCampaignController;
 use App\Http\Controllers\TestDataKeywordsController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +32,7 @@ Route::middleware('auth:sanctum')->group( function() {
     Route::get('/test_data_campaigns', [TestDataCampaignController::class, 'test_data']);
     Route::get('/test_data_ads', [TestDataAdsController::class, 'test_data']);
     Route::get('/test_data_keywords', [TestDataKeywordsController::class, 'test_data']);
-    Route::post('/logout', [LoginController::class, 'logout'])->middleware('web');
+    Route::post('/logout', [LoginController::class, 'logout']);
     Route::get('/campaigns', [DataCampaignsYandexDirectController::class, 'send_api_campaigns']);
     Route::get('/ads', [DataAdsYandexDirectController::class, 'send_api_ads']);
     Route::get('/keywords', [DataKeywordsYandexDirectController::class, 'send_api_keywords']);
