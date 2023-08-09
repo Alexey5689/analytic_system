@@ -85,6 +85,7 @@ input {
     padding-left: 3.5rem;
     border-radius: 9px;
     outline: none;
+    height: 56px;
 }
 .general-block {
     display: flex;

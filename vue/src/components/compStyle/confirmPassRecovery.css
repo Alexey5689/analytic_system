@@ -42,13 +42,11 @@ p{
 .card-body {
     width: -webkit-fill-available;
 }
-.card-body p {
-    margin-bottom: 30px;
-    font-size: 16px;
-    font-family: Montserrat-Regular;
-}
 .time {
+    font-size: 12px;
     margin-left: 10px;
+    font-family: Montserrat-Bold;
+    color: #528FDF;
 }
 .general-block {
     display: flex;
@@ -59,6 +57,7 @@ p{
     display: flex;
     margin-left: 10px;
     gap:10px;
+    margin-top: 26px;
 }
 .bottom-block-register p {
     font-weight: bold;

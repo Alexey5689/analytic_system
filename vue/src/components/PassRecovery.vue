@@ -23,7 +23,7 @@
                 <button type="submit" class="button">Восстановить</button>
             </form>
             <div class="bottom-block-register">
-                <p class="link" @click="$router.push('/registration')">Зарегестрироваться</p>
+                <p class="link" @click="$router.push('/')">Зарегистрироваться</p>
                 <p class="link" @click="$router.push('/login')" >Войти</p>
             </div>
         </div>

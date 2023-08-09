@@ -35,7 +35,7 @@ body {
 }
 p{
     font-size: 16px;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Montserrat';
     font-weight: 500;
     line-height: 120%;
     color: #919399;
@@ -44,7 +44,7 @@ p{
     color:#005BD1;
 }
 .card-body {
-    margin: 5% 0;
+    margin-top: 16px;
     width: -webkit-fill-available;
 }
 button {
@@ -79,6 +79,7 @@ input {
     padding-left: 3.5rem;
     border-radius: 9px;
     outline: none;
+    height: 56px;
 }
 .general-block {
     display: flex;
