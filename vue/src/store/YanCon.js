@@ -56,6 +56,10 @@ export const YandexModWin = {
         ShowModelCon ({commit}) {
             commit('changeStateShowCon')
         },
+
+        ShowDell({commit}) {
+            commit('changeStateShowDell');
+        },
         async continuePlug({commit}){
             try{
                 commit('changeStateShowCon');

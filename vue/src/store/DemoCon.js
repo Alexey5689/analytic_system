@@ -61,10 +61,10 @@ export const DemoModWin = {
         ShowDemoCon({ commit }) {
             commit('changeStateDemoCon');
         },
-        continueFulls({ commit }) {
-            commit('changeStateDemoDataCon');
-            commit('changeStateDemoCon');
+        ShowDemoDell({ commit }) {
+            commit('changeStateDemoDell');
         },
+
         async continueFull({ commit }) {
             try {
                 commit('changeStateDemoCon');

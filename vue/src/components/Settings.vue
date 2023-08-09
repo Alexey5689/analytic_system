@@ -43,7 +43,7 @@
                         >Наполнить проект</button>
                         <button class="btn_remove"
                                 v-if="stateDemoActive"
-                                @click="fillProject"
+                                @click="deleteDemo"
                         >Удалить данные</button>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                         </button>
                         <button class="btn_remove"
                                 v-if="stateActiveYandex"
-                                @click="plugYandex"
+                                @click="deleteYandex"
                         >Удалить данные</button>
                     </div>
                 </div>
@@ -99,9 +99,12 @@ export default {
             ShowDemoCon: 'ShowDemoCon',
             ShowDemoDell: 'ShowDemoDell',
         }),
+
+
         ...mapActions('YandexModWin',{
             ShowModelCon: 'ShowModelCon',
             continuePlug: 'continuePlug',
+            ShowDell: 'ShowDell',
         }),
         plugYandex() {
             this.ShowModelCon();
@@ -112,6 +115,9 @@ export default {
         deleteDemo() {
             this.ShowDemoDell();
         },
+        deleteYandex() {
+            this.ShowDell();
+        }
     },
 };
 

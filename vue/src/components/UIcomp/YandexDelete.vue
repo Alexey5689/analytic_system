@@ -1,6 +1,6 @@
 <template>
     <div class="modal" v-show="stateShowDell" @click.stop ="hideWindowDell">
-        <div  @click.stop class="modal_content">
+        <div class="modal_content">
             <div class="modal_body">
                 <h2>Вы уверены, что хотите удалить <span>рекламный канал Яндекс</span>?</h2>
                 <button class="modal_close" @click="hideWindowDell">
@@ -18,19 +18,16 @@
     import { mapMutations, mapGetters } from 'vuex';
     export default{
         name:'YanDell',
+        computed:{
+            ...mapGetters("YandexModWin", {
+                stateShowDell:'stateShowDell'
+            })
+        },
         methods:{
-            ...mapMutations({
+            ...mapMutations("YandexModWin", {
                 changeStateShowDell:'changeStateShowDell',
             }),
 
-            hideWindowDell(){
-                this.changeStateShowDell();
-            },
-        },
-        computed:{
-            ...mapGetters({
-                stateShowDell:'stateShowDell'
-            })
         }
 
     }
