@@ -10,8 +10,10 @@
             }
         },
         computed:{
-            ...mapGetters({
+            ...mapGetters('DemoModWin',{
                 stateAnalyticsCompany:'stateAnalyticsCompany',
+                stateAnalyticsAds:'stateAnalyticsAds',
+                stateAnalyticsKeywords:'stateAnalyticsKeywords'
             })
         }
     }
@@ -95,50 +97,37 @@
         <template v-if="!state.toggle">
             <div v-if="!state.networkRsya" class="company">
                 <h2>Компания</h2>
-                <table>
+                <table v-for="company in stateAnalyticsCompany">
                     <tr @click="state.company = !state.company" :class="{ 'advertising_company_active': !state.company }">
                         <td>
                             <img v-if="state.company" class="selection_list_1" src="../assets/image/selection_list.svg"
                                 alt="Selection list">
                             <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
                                 alt="Selection list">
-                            {{ stateAnalyticsCompany }}
+                            {{ company.campaign_name }}
                         </td>
-                        <td>7 442</td>
-                        <td>244</td>
-                        <td>1.3&#8381</td>
+                        <td>{{ company.impressions }}</td>
+                        <td>{{ company.clicks }}</td>
+                        <td>{{ company.daily_budget }} &#8381</td>
                     </tr>
                 </table>
             </div>
 
             <template v-if="!state.networkRsya">
-
                 <div v-if="!state.company" class="ads">
                     <h2>Объявления</h2>
-                    <table>
-                        <tr>
-                            <td>
-                                <img v-if="state.storageAds" class="selection_list_1" src="../assets/image/selection_list.svg"
-                                    alt="Selection list">
-                                <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
-                                    alt="Selection list">
-                                Хранение продуктов
-                            </td>
-                            <td>4 932</td>
-                            <td>180</td>
-                            <td>0.9&#8381</td>
-                        </tr>
+                    <table v-for="ads in stateAnalyticsAds">
                         <tr @click="state.guaranteeAds = !state.guaranteeAds" :class="{ 'advertising_company_active': !state.guaranteeAds }">
                             <td>
                                 <img v-if="state.guaranteeAds" class="selection_list_1" src="../assets/image/selection_list.svg"
                                     alt="Selection list">
                                 <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
                                     alt="Selection list">
-                                Гарантия и под. услуги
+                                {{ ads.ad_name }}
                             </td>
-                            <td>2 510</td>
-                            <td>61</td>
-                            <td>0.2&#8381</td>
+                            <td>{{ ads.impressions }}</td>
+                            <td>{{ ads.clicks }}</td>
+                            <td>{{ ads.daily_budget }} &#8381</td>
                         </tr>
                     </table>
                 </div>
@@ -147,22 +136,14 @@
 
                     <div v-if="!state.guaranteeAds" class="keyword">
                         <h2>Ключевое слово</h2>
-                        <table>
+                        <table v-for="keyword in stateAnalyticsKeywords">
                             <tr>
                                 <td>
-                                    Ёмкость для хранения продуктов
+                                    {{ keyword.keyword_name }}
                                 </td>
-                                <td>580</td>
-                                <td>42</td>
-                                <td>0.2&#8381</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Удобное хранение продуктов
-                                </td>
-                                <td>4 352</td>
-                                <td>138</td>
-                                <td>0.7&#8381</td>
+                                <td>{{ keyword.impressions }}</td>
+                                <td>{{ keyword.clicks }}</td>
+                                <td>{{ keyword.daily_budget }} &#8381</td>
                             </tr>
                         </table>
                     </div>

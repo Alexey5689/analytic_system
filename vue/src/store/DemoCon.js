@@ -4,6 +4,8 @@ import axios from "axios";
 export const DemoModWin = {
     state: () => ({
         demo: [],
+        demoAds: [],
+        demoKeywords: [],
         isDemoLoading: false,
         DemoCon: false,
         IsDemoDataCon: false,
@@ -18,7 +20,15 @@ export const DemoModWin = {
         stateDemoErr: (state) => state.DemoErr,
         stateDemoDataCon: (state) => state.IsDemoDataCon,
         stateDemoActive: (state) => state.active,
-
+        stateAnalyticsCompany(state){
+            return state.demo
+        },
+        stateAnalyticsAds (state) {
+            return state.demoAds
+        },
+        stateAnalyticsKeywords (state) {
+            return state.demoKeywords
+        }
     },
     mutations: {
         changeStateDemoCon(state) {
@@ -38,7 +48,14 @@ export const DemoModWin = {
         },
         getAnalytics(state, data) {
             state.demo = data;
+
         },
+        getAdsAnalytics(state,data) {
+            state.demoAds = data;
+        },
+        getKeywordsAnalytics(state,data) {
+            state.demoKeywords = data;
+        }
     },
     actions: {
         ShowDemoCon({ commit }) {
@@ -58,7 +75,17 @@ export const DemoModWin = {
                 );
                 console.log(response);
 
+                const adsResponse = await axios.get(
+                    config.appBackendURL + ':' + config.appBackendPort + '/api/test_data_ads'
+                );
+                console.log(adsResponse);
+                const keywordsResponse = await axios.get(
+                    config.appBackendURL + ':' + config.appBackendPort + '/api/test_data_keywords'
+                );
+                console.log(keywordsResponse);
                 commit('getAnalytics', response.data);
+                commit('getAdsAnalytics', adsResponse.data);
+                commit('getKeywordsAnalytics', keywordsResponse.data);
 
                 // commit('changeStateShowCon');
                 commit('changeDemoActive');

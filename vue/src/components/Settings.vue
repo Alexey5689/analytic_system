@@ -41,7 +41,7 @@
                             @click="fillProject"
                             class="btn_add"
                             >Наполнить проект</button>
-                        <button class="btn_remove" style="display: none">Удалить данные</button>
+                        <button class="btn_remove" v-if="stateDemoActive" @click="fillProject">Удалить данные</button>
                     </div>
                 </div>
                 <div class="connect_way">
