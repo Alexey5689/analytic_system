@@ -38,9 +38,9 @@
                         <p>Демо-данные позволяют увидеть систему в действии при первом её запуске. Эти
                             данные можно удалить позже в настройках проекта.</p>
                         <button
-                            @click="fillProject"
                             class="btn_add"
-                            >Наполнить проект</button>
+                            @click="fillProject"
+                        >Наполнить проект</button>
                         <button class="btn_remove" v-if="stateDemoActive" @click="fillProject">Удалить данные</button>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <div class="status_way">
                             <div
                                 class="sw_inactive"
-                                v-if="!stateActivYnd">
+                                v-if="!stateActiveYandex">
                                 <p>Не активно</p>
                             </div>
                             <div
@@ -64,7 +64,11 @@
                         <h3>Яндекс.Директ</h3>
                         <p>Подключение личного кабинета Яндекс.Директ. Выгрузка данных с личных или
                             корпоративных аккаунтов.</p>
-                        <button class="btn_add" style="display: none" >Наполнить проект</button>
+                        <button
+                            class="btn_add"
+                            @click="plugYandex"
+                            style="display: none"
+                        >Наполнить проект</button>
                         <button
                             class="btn_remove"
                             @click="plugYandex">Подключить
@@ -82,20 +86,29 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
     computed: {
         ...mapGetters('DemoModWin', {
-            stateActivYnd: 'stateActivYnd',
             stateDemoActive: 'stateDemoActive',
+        }),
+        ...mapGetters('YandexModWin', {
+            stateShowCon: 'stateShowCon',
         }),
     },
     methods: {
         ...mapActions('DemoModWin', {
-            ShowModelCon: 'ShowModelCon',
             ShowDemoCon: 'ShowDemoCon',
+            ShowDemoDell: 'ShowDemoDell',
+        }),
+        ...mapActions('YandexModWin',{
+            ShowModelCon: 'ShowModelCon',
+            continuePlug: 'continuePlug',
         }),
         plugYandex() {
             this.ShowModelCon();
         },
         fillProject() {
             this.ShowDemoCon();
+        },
+        deleteDemo() {
+            this.ShowDemoDell();
         },
     },
 };

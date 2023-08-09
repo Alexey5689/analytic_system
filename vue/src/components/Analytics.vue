@@ -10,7 +10,12 @@
             }
         },
         computed:{
-            ...mapGetters('DemoModWin',{
+            ...mapGetters('DemoModWin', {
+                stateAnalyticsCompany:'stateAnalyticsCompany',
+                stateAnalyticsAds:'stateAnalyticsAds',
+                stateAnalyticsKeywords:'stateAnalyticsKeywords'
+            }),
+            ...mapGetters('YandexModWin', {
                 stateAnalyticsCompany:'stateAnalyticsCompany',
                 stateAnalyticsAds:'stateAnalyticsAds',
                 stateAnalyticsKeywords:'stateAnalyticsKeywords'

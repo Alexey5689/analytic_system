@@ -1,63 +1,74 @@
 import config from "../../vue.config.js";
 import axios from "axios";
-export const YandexModWin={
-    state: ()=>({
-        showCon:false,
-        showDell:false,
-        showErr:false,
-        company: '',
+
+export const YandexModWin = {
+    state: () => ({
+        dataComp: [],
+        dataAds: [],
+        dataKeywords: [],
+        ShowCon:false,
+        ShowDell:false,
+        ShowErr:false,
         active:false,
     }),
+
     getters:{
         // модальное окно
-        stateShowCon(state){
-            return state.showCon
-        },
-        stateShowDell(state){
-            return state.showDell
-        },
-        stateShowErr(state){
-            return state.showErr
-        },
+        stateShowCon: (state) => state.ShowCon,
+        stateShowDell: (state) => state.ShowDell,
+        stateShowErr: (state) => state.ShowErr,
+        stateDemoActive: (state) => state.active,
         stateAnalyticsCompany(state){
-            return state.company
+            return state.dataComp
         },
-        stateActivYnd(state){
+        stateAnalyticsAds (state) {
+            return state.dataAds
+        },
+        stateAnalyticsKeywords (state) {
+            return state.dataKeywords
+        },
+        stateActiveYandex(state){
             return state.active
         },
-
     },
     mutations:{
         changeStateShowCon(state){
-            state.showCon = !state.showCon;
+            state.ShowCon = !state.ShowCon;
         },
         changeStateShowDell(state){
-            state.showDell = !state.showDell;
+            state.ShowDell = !state.ShowDell;
         },
         changeStateShowErr(state){
-            state.showErr = !state.showErr;
+            state.ShowErr = !state.ShowErr;
         },
-        getAnalytics(state, info){
-            state.analytics = info;
-       },
-       changeActivYand(state){
+        getAnalytics(state, data){
+            state.dataComp = data;
+        },
+        getAdsAnalytics(state,data) {
+            state.dataAds = data;
+        },
+        getKeywordsAnalytics(state,data) {
+            state.dataKeywords = data;
+        },
+        stateActiveYandex(state){
             state.active = !state.active;
-       }
+        }
     },
-    actions:{
-        ShowModelCon({commit}){
+
+    actions: {
+        ShowModelCon ({commit}) {
             commit('changeStateShowCon')
         },
-        async Connection({commit}){
+        async continuePlug({commit}){
             try{
-                const response = await axios({
-                    method:'GET',
-                    url:config.appBackendURL + ':' + config.appBackendPort + '/api/format_campaigns_data',
-                })
+                commit('changeStateShowCon');
+                commit('stateActiveYandex');
+
+                const response = await axios.get(
+                    config.appBackendURL + ':' + config.appBackendPort + '/api/campaigns'
+                );
                 console.log(response);
                 commit('getAnalytics', response.data)
-                commit('changeStateShowCon');
-                commit('changeActivYand');
             }catch(err){
                 console.log(err);
                 commit('changeStateShowCon');
@@ -65,5 +76,5 @@ export const YandexModWin={
             }
          }
     },
-    namespased: true,
+    namespaced: true,
 }

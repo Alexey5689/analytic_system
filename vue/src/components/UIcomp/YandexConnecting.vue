@@ -22,28 +22,27 @@
     </div>
 </template>
 <script>
-    import { mapActions, mapGetters } from 'vuex';
-    export default{
-        name:'YanCon',
-        methods:{
-            ...mapActions({
-                ShowModelCon:'ShowModelCon',
-                Connection:'Connection',
-            }),
 
-            hideWindowCon(){
-                this.ShowModelCon();
-            },
-            continuePlug(){
-                this.Connection();
-            }
+import { mapActions, mapGetters } from 'vuex';
+
+export default{
+    name:'YanCon',
+    computed:{
+        ...mapGetters('YandexModWin', {
+            stateShowCon:'stateShowCon'
+        })
+    },
+    methods:{
+        ...mapActions('YandexModWin', {
+            ShowModelCon:'ShowModelCon',
+            continuePlug:'continuePlug',
+        }),
+
+        hideWindowCon(){
+            this.ShowModelCon();
         },
-        computed:{
-            ...mapGetters({
-                stateShowCon:'stateShowCon'
-            })
-        }
     }
+}
 </script>
 <style src="../compStyle/main.css">
 </style>
