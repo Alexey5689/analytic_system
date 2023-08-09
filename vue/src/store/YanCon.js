@@ -17,7 +17,7 @@ export const YandexModWin = {
         stateShowCon: (state) => state.ShowCon,
         stateShowDell: (state) => state.ShowDell,
         stateShowErr: (state) => state.ShowErr,
-        stateDemoActive: (state) => state.active,
+        stateActiveYandex: (state) => state.active,
         stateAnalyticsCompany(state){
             return state.dataComp
         },
@@ -26,9 +26,6 @@ export const YandexModWin = {
         },
         stateAnalyticsKeywords (state) {
             return state.dataKeywords
-        },
-        stateActiveYandex(state){
-            return state.active
         },
     },
     mutations:{
@@ -50,7 +47,7 @@ export const YandexModWin = {
         getKeywordsAnalytics(state,data) {
             state.dataKeywords = data;
         },
-        stateActiveYandex(state){
+        changeActiveYandex(state){
             state.active = !state.active;
         }
     },
@@ -62,17 +59,30 @@ export const YandexModWin = {
         async continuePlug({commit}){
             try{
                 commit('changeStateShowCon');
-                commit('stateActiveYandex');
 
                 const response = await axios.get(
                     config.appBackendURL + ':' + config.appBackendPort + '/api/campaigns'
                 );
                 console.log(response);
+                const adsResponse = await axios.get(
+                    config.appBackendURL + ':' + config.appBackendPort + '/api/ads'
+                );
+                console.log(adsResponse);
+                const keywordsResponse = await axios.get(
+                    config.appBackendURL + ':' + config.appBackendPort + '/api/keywords'
+                );
+                console.log(keywordsResponse);
                 commit('getAnalytics', response.data)
+                commit('getAdsAnalytics', adsResponse.data)
+                commit('getKeywordsAnalytics', keywordsResponse.data)
+                commit('changeActiveYandex');
             }catch(err){
                 console.log(err);
                 commit('changeStateShowCon');
                 commit('changeStateShowErr');
+            }
+            finally {
+                // commit('changeStateShowCon');
             }
          }
     },
