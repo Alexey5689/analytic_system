@@ -41,7 +41,10 @@
                             class="btn_add"
                             @click="fillProject"
                         >Наполнить проект</button>
-                        <button class="btn_remove" v-if="stateDemoActive" @click="fillProject">Удалить данные</button>
+                        <button class="btn_remove"
+                                v-if="stateDemoActive"
+                                @click="fillProject"
+                        >Удалить данные</button>
                     </div>
                 </div>
                 <div class="connect_way">
@@ -65,14 +68,13 @@
                         <p>Подключение личного кабинета Яндекс.Директ. Выгрузка данных с личных или
                             корпоративных аккаунтов.</p>
                         <button
-                            class="btn_add"
-                            @click="plugYandex"
-                            style="display: none"
-                        >Наполнить проект</button>
-                        <button
                             class="btn_remove"
                             @click="plugYandex">Подключить
                         </button>
+                        <button class="btn_remove"
+                                v-if="stateActiveYandex"
+                                @click="plugYandex"
+                        >Удалить данные</button>
                     </div>
                 </div>
             </div>
@@ -89,7 +91,7 @@ export default {
             stateDemoActive: 'stateDemoActive',
         }),
         ...mapGetters('YandexModWin', {
-            stateShowCon: 'stateShowCon',
+            stateActiveYandex: 'stateActiveYandex',
         }),
     },
     methods: {
