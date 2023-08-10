@@ -10,11 +10,12 @@ export default createStore({
        seconds:60,
        minuts:1,
        IsRegistration: '',
+       IsAuthtorisation:'',
        reg: reg,
     }),
     plugins: [createPersistedState({
-        key:"reg_token",
-        paths:['IsRegistration'],
+        key:"XSRF-TOKEN",
+        paths:['IsAuthtorisation'],
         storage: {
             getItem: key => Cookies.get(key),
             setItem: (key, value) => Cookies.set(key, value),
@@ -22,10 +23,10 @@ export default createStore({
           }
     })],
     mutations:{
-        getRegToken(state, token){
-            state.IsRegistration = token;
-            console.log(token);
+        getAuthToken(state, token){
+            state.IsAuthtorisation = token;
         },
+
         changeTime(state){
             if(state.minuts > 0){
                 state.minuts-=1

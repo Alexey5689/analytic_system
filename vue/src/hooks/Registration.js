@@ -96,7 +96,7 @@ export function RegForm(){
             localStorage.setItem('repeatEmail', state.email);
             location.reload();
         }catch(err){
-            state.response = err.response.data.message;
+            // state.response = err.response.data.message;
             localStorage.setItem('repeatEmail', state.email);
         }finally{
         }

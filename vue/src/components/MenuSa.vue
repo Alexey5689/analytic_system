@@ -1,19 +1,8 @@
 <script>
 import { RouterLink } from 'vue-router';
 export default {
-    // data(){
-    //     return{
-    //         homePage: this.$route.path,
-    //         flag:Boolean,
-    //     }
-    // },
+
     methods: {
-        // changeHomePageAnnalytics() {
-        //     this.homePage = "/main/";
-        // },
-        // changeHomePageSettings() {
-        //     this.homePage = "/main/settings";
-        // },
         homePage() {
             if (this.$route.path == "/main/") {
 
@@ -31,7 +20,7 @@ export default {
     <aside>
         <img src="../assets/image/logo.svg" alt="Logo">
         <div class="menu">
-           <!-- <h2>{{ homePage === "/main/" ? 'Аналитика' : 'Настройки'}}</h2> -->
+
             <h2 v-if="homePage()">Аналитика</h2>
             <h2 v-else="homePage()">Настройки</h2>
             <ul>

@@ -210,6 +210,7 @@ aside {
   background: #DBDEE4;
 }
 
+
 header,
 footer {
   height: 80px;
@@ -730,7 +731,6 @@ table {
 .animation svg {
   margin: 70px auto;
   display: block;
-
   animation: spinnerAnimation 1s infinite linear;
 }
 
