@@ -195,7 +195,7 @@ aside {
   margin-top: -12px;
   margin-left: -12px;
   padding: 12px;
-} 
+}
 
 .menu li:not(:last-child) {
   margin-bottom: 18px;
@@ -205,7 +205,7 @@ aside {
   margin-right: 12px;
 }
 
-.router-link-active  {
+.router-link-exact-active  {
   border-radius: 9px;
   background: #DBDEE4;
 }
@@ -730,6 +730,8 @@ table {
 .animation svg {
   margin: 70px auto;
   display: block;
+
+  animation: spinnerAnimation 1s infinite linear;
 }
 
 .сonnect_demo h2,
@@ -783,3 +785,18 @@ table {
 .btn_logout .continue:first-child:hover {
   opacity: 1;
 }
+
+
+
+ @keyframes spinnerAnimation {
+    0% {
+      transform: translate(-50%, -50%) rotate(0);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+
+
