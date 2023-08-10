@@ -6,6 +6,14 @@ const router = createRouter({
     routes,
     history: createWebHistory(),
 })
+router.beforeEach((to, from)=>{
+    //логика защиты роутинга
+    if(to.meta.auth && !store.state.IsAuthtorisation){
+            alert("Вы не авторизованы");
+            return { name:"Login" };
+    }
+})
+
 
 
 export default router;

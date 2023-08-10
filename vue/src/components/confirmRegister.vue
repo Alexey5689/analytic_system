@@ -7,7 +7,7 @@
         </div>
         <h3>Спасибо за регистрацию!</h3>
         <div class="card-body">
-            <p class="main-text">На вашу почту <span>{{ localStorage.getItem('repeatEmail') }}</span>  была отправлена ссылка подтверждения регистрации. Перейдите по ссылке в письме для подтверждения</p>
+            <p class="main-text">На вашу почту <span>{{ mail }}</span>  была отправлена ссылка подтверждения регистрации. Перейдите по ссылке в письме для подтверждения</p>
             <div class="bottom-block-register">
                 <p>Не пришло письмо?</p>
                 <p v-if="seconds>0" class=" ">Отправить повторно</p>
@@ -22,7 +22,13 @@
     import { mapActions, mapState } from 'vuex';
     import { Repeated } from '../hooks/repeatedRequest.js';
     export default{
+        data(){
+            return{
+                mail:localStorage.getItem('repeatEmail')
+            }
+        },
         setup(props){
+
             const { repeatRequest, state }=Repeated()
             return {
                 repeatRequest,
