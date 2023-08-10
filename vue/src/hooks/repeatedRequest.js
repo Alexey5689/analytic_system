@@ -11,7 +11,7 @@ export function Repeated(){
             try{
                 const response = await axios({
                     method:'POST',
-                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/register-mail-again',
+                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/forget-password',
                     data:{
                         email:localStorage.getItem('repeatEmail'),
                     },
