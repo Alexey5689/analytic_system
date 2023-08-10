@@ -18,9 +18,18 @@
 1. Выполнить `composer install`
 2. Запустить `sail up`
 
+--- 
+
+## Добавление миграций и тестовых данных
+
+1. После запуска проекта выполнить команду `sail artisan migrate --seed`
+
+--- 
 
 ## Работа со Swagger. Установка проекта
 
 1. Выполнить установку плагина для swagger `composer require "darkaonline/l5-swagger"`
 2. Запустить генерацию `sail artisan l5-swagger:generate`
 3. Swagger доступен по вашему хосту по адресу `/api/documentation`
+
+--- 
