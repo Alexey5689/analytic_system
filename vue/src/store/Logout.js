@@ -14,5 +14,5 @@ export const LogOutModWin={
             state.logOut = !state.logOut;
         },
     },
-    namespased:true,
+    namespaсed:true,
 }

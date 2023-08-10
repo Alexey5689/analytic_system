@@ -103,7 +103,7 @@
             <div v-if="!state.networkRsya" class="company">
                 <h2>Компания</h2>
                 <table v-for="company in stateAnalyticsCompany">
-                    <tr @click="state.company = !state.company" :class="{ 'advertising_company_active': !state.company }">
+                    <tr @click="state.company = !state.company" :class="{ 'advertising_company_active': !state.company}">
                         <td>
                             <img v-if="state.company" class="selection_list_1" src="../assets/image/selection_list.svg"
                                 alt="Selection list">
@@ -117,7 +117,8 @@
                     </tr>
                 </table>
             </div>
-
+            <div v-else >
+            </div>
             <template v-if="!state.networkRsya">
                 <div v-if="!state.company" class="ads">
                     <h2>Объявления</h2>

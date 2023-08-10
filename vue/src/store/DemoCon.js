@@ -11,10 +11,12 @@ export const DemoModWin = {
         IsDemoDataCon: false,
         DemoDell: false,
         DemoErr: false,
+        DemoModal: false,
         active: false,
     }),
 
     getters: {
+        stateDemoModal: (state) => state.DemoModal,
         stateDemoCon: (state) => state.DemoCon,
         stateDemoDell: (state) => state.DemoDell,
         stateDemoErr: (state) => state.DemoErr,
@@ -31,6 +33,9 @@ export const DemoModWin = {
         }
     },
     mutations: {
+        changeStateDemoModal(state) {
+            state.DemoModal = !state.DemoModal;
+        },
         changeStateDemoCon(state) {
             state.DemoCon = !state.DemoCon;
         },
@@ -48,7 +53,6 @@ export const DemoModWin = {
         },
         getAnalytics(state, data) {
             state.demo = data;
-
         },
         getAdsAnalytics(state,data) {
             state.demoAds = data;

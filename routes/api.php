@@ -11,6 +11,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TestDataAdsController;
 use App\Http\Controllers\TestDataCampaignController;
 use App\Http\Controllers\TestDataKeywordsController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 
 /*
