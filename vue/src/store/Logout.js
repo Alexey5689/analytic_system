@@ -1,4 +1,4 @@
-
+import Cookies from 'js-cookie';
 export const LogOutModWin={
     state: ()=>({
         logOut:false,
