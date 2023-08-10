@@ -20,7 +20,7 @@ export function Repeated(){
                     }
             },)
                 state.response = response.data;
-                location.reload();
+                //location.reload();
             }catch(err){
                 console.log(err);
                 state.response = err.response.data.message;

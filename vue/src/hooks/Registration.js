@@ -104,11 +104,11 @@ export function RegForm(){
     //получение массива городов
     const getCities = async()=> {
         try{
-            const response = await axios.get( config.appLocalHost + ':' + config.appBackendPort +'/api/city')
+            const response = await axios.get( config.appBackendURL + ':' + config.appBackendPort +'/api/city')
             state.cities = response.data;
         }catch(err){
             //ошибка запроса
-            state.response = err.response.data.message;
+            //state.response = err.response.data.message;
         }
     }
     return{
