@@ -25,8 +25,7 @@
     </div>
 </template>
 <script>
-    import { LogOut } from '../../hooks/LogOut.js';
-    import { mapGetters, mapMutations } from 'vuex';
+    import { mapGetters, mapMutations, mapActions } from 'vuex';
     export default{
         name:'LogOut',
         computed:{
@@ -38,16 +37,14 @@
             ...mapMutations({
                 changeStatelogOut:'changeStatelogOut'
             }),
+            ...mapActions({
+                loginOut:'loginOut'
+            }),
             hightLogOutWind(){
                 this.changeStatelogOut();
             },
         },
-        setup(props){
-            const{loginOut} =LogOut();
-            return {
-                loginOut
-            }
-        }
+
     }
 
 </script>
