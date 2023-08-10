@@ -30,7 +30,7 @@ class ResetPasswordRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required|confirmed|max:255|min:8',
+            'password' => 'required|confirmed|max:255|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/',
             'token' => 'required'
         ];
     }
@@ -43,8 +43,7 @@ class ResetPasswordRequest extends FormRequest
             'password.required' => 'Вы не указали пароль',
             'password.confirmed' => 'Введите подтверждение пароля',
             'email.email' => 'Должен быть указан действительный адрес электронной почты',
-            'email.required'  => 'Вы не указали email',
-
+            'password.regex' => 'Пароль должен содержать латинские буквы, минимум одну в верхнем регистре, число и спец. символ, минимальная длина пароля - 8 символов',
         ];
     }
 }
