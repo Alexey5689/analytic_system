@@ -34,15 +34,7 @@ class DataCampaignsYandexDirectController extends Controller
 
     public function send_api_campaigns()
     {
-        if ($this->get_campaign() !== null) {
-            return CampaignFromBotForYandexMetrics::all()->toJson();
-        } else {
-            return response()->json(
-                [
-                    'status' => false,
-                    'message' => 'Нет данных'
-                ]
-            );
-        }
+       return CampaignFromBotForYandexMetrics::all()->toJson();
+       
     }
 }

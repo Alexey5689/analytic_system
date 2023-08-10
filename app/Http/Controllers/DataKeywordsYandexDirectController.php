@@ -55,15 +55,6 @@ class DataKeywordsYandexDirectController extends Controller
 
     public function send_api_keywords()
     {
-        if ($this->get_keywords()->sendContent() == ['status' => false]) {
-            return response()->json(
-                [
-                    'status' => false,
-                    'message' => 'Нет данных'
-                ]
-            );
-        } else {
             return KeywordsFromBotForYandexMetrics::all()->toJson();
-        }
     }
 }

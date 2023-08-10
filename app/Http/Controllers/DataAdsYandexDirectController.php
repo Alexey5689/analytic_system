@@ -34,16 +34,6 @@ class DataAdsYandexDirectController extends Controller
     }
 
     public function send_api_ads() {
-        if($this->get_ads() !== null ) {
-            return AdsFromBotForYandexMetrics::all()->toJson();
-        }
-        else {
-            return response()->json(
-                [
-                    'status' => false,
-                    'message' => 'Нет данных'
-                ]
-            );
-        }
+       return AdsFromBotForYandexMetrics::all()->toJson();
     }
 }
