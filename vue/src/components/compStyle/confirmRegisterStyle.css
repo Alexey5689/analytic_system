@@ -89,5 +89,6 @@ h3 {
     flex-direction: column;
 }
 span{
-    color: #005BD1;
+    color: #528FDF;
+    border-bottom: #528FDF 1.5px solid;
 }
