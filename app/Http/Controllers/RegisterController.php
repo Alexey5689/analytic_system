@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ResendEmailRequest;
 use App\Http\Requests\ValidateRegisterRequest;
 use App\Mail\VerifyMail;
 use App\Models\User;
@@ -118,7 +119,7 @@ class RegisterController extends Controller
      * )
      **/
 
-    public function again(Request $request) {
+    public function again(ResendEmailRequest $request) {
         if(!$user = User::where('email', $request->email)) {
             return response()->json([
                 'error' => 'Failed',
