@@ -26,7 +26,10 @@ export default createStore({
         getAuthToken(state, token){
             state.IsAuthtorisation = token;
         },
-
+        logOut(){
+            Cookies.remove('IsAuthtorisation');
+            window.location.href ='/login';
+        },
         changeTime(state){
             if(state.minuts > 0){
                 state.minuts-=1
