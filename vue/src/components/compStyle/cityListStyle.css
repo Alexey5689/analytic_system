@@ -5,18 +5,18 @@ ul{
 .cityListWrapper{
     position: absolute;
     display: flex;
-    width: 350px;
+    width: 380px;
     height: 240px;
     padding: 16px 4px 16px 16px ;
     flex-direction: column;
     align-items: center;
     gap: 4px;
     flex-shrink: 0;
-    left: 39.1%;
-    top: 64%;
+    left: 38.8%;
+    top: 69%;
     border-radius: 9px;
-    border: 2px solid var(--bg-secondary-active, #DBDEE4);
-    background: var(--bg-primary-white, #FFF);
+    border: 2px solid  #DBDEE4;
+    background: #FFF;
     box-shadow: -3px 4px 10px 0px rgba(0, 0, 0, 0.16);
 }
 .cityList{

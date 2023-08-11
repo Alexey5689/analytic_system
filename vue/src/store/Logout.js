@@ -23,7 +23,7 @@ export const LogOutModWin={
     },
     actions:{
         async loginOut({commit}){
-            const token =JSON.parse(Cookies.get('XSRF-TOKEN'));
+            const token = JSON.parse(Cookies.get('XSRF-TOKEN'));
             try{
                 const response = await axios({
                     method:'POST',

@@ -25,7 +25,7 @@ export default createStore({
             state.IsAuthorisation = token;
         },
         logOut(){
-            Cookies.remove('XSRF-TOKEN');
+            state.IsAuthorisation = '';
             window.location.href ='/login';
         },
         changeTime(state){

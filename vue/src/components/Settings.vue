@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapMutations} from 'vuex';
 
 export default {
     computed: {
@@ -94,28 +94,46 @@ export default {
 
     },
     methods: {
-        ...mapActions({
-            ShowDemoCon: 'ShowDemoCon',
-            ShowDemoDell: 'ShowDemoDell',
+        ...mapMutations({
+            changeStateShowCon:'changeStateShowCon',
+            changeStateShowDell:'changeStateShowDell',
+            changeStateDemoCon:'changeStateDemoCon',
+            changeStateDemoDell:'changeStateDemoDell',
+            clearDemo:'clearDemo',
+            changeDemoActive:'changeDemoActive',
+            clearStateYandex:'clearStateYandex',
+            changeActiveYandex:'changeActiveYandex',
         }),
-
-
         ...mapActions({
-            ShowModelCon: 'ShowModelCon',
-            continuePlug: 'continuePlug',
-            ShowDell: 'ShowDell',
+            continuePlug:'continuePlug',
         }),
         plugYandex() {
-            this.ShowModelCon();
+            if(this.stateDemoActive){
+                this.clearDemo();
+                this.changeDemoActive();
+                this.changeStateShowCon();
+            }
+            else{
+                this.changeStateShowCon();
+            }
+
         },
         fillProject() {
-            this.ShowDemoCon();
+            if( this.stateActiveYandex){
+                this.clearStateYandex();
+                this.changeActiveYandex();
+                this.changeStateDemoCon();
+            }
+            else{
+                this.changeStateDemoCon();
+            }
+
         },
         deleteDemo() {
-            this.ShowDemoDell();
+            this.changeStateDemoDell();
         },
         deleteYandex() {
-            this.ShowDell();
+           this.changeStateShowDell();
         }
     },
 };

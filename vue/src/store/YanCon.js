@@ -30,6 +30,7 @@ export const YandexModWin = {
     },
     mutations:{
         changeStateShowCon(state){
+            console.log('asd');
             state.ShowCon = !state.ShowCon;
         },
         changeStateShowDell(state){
@@ -52,26 +53,15 @@ export const YandexModWin = {
             state.active = !state.active;
         },
        clearStateYandex(state){
-           console.log('asdf');
             state.dataComp = [];
             state.dataAds = [];
             state.dataKeywords =[];
         },
     },
-
-
     actions: {
-        ShowModelCon ({commit}) {
-            commit('changeStateShowCon')
-        },
-
-        ShowDell({commit}) {
-            commit('changeStateShowDell');
-        },
         async continuePlug({commit}){
             try{
                 commit('changeStateShowCon');
-
                 const response = await axios.get(
                     config.appBackendURL + ':' + config.appBackendPort + '/api/campaigns'
                 );
@@ -90,11 +80,10 @@ export const YandexModWin = {
                 commit('changeActiveYandex');
             }catch(err){
                 console.log(err);
-                commit('changeStateShowCon');
                 commit('changeStateShowErr');
             }
             finally {
-                // commit('changeStateShowCon');
+
             }
          }
     },

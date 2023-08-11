@@ -1,12 +1,12 @@
-import { reactive, computed } from 'vue';
+import { reactive, computed } from 'vue';//для валидации computed must have
 import axios from 'axios';
 import config from "../../vue.config.js";
-import { helpers } from '@vuelidate/validators';
-import { useVuelidate } from '@vuelidate/core';
-import { required, email, minLength, maxLength} from '@vuelidate/validators';
-import { sameAs } from '@vuelidate/validators';
-import { useStore } from 'vuex';
-import Cookies from 'js-cookie';
+import { helpers } from '@vuelidate/validators';//валидация
+import { useVuelidate } from '@vuelidate/core';//валидация
+import { required, email, minLength, maxLength} from '@vuelidate/validators';//доп условия для проверки
+import { sameAs } from '@vuelidate/validators';//доп условия для проверки
+
+
 
 
 const reg = JSON.parse(localStorage.getItem('reg'))
@@ -76,7 +76,7 @@ export function RegForm(){
         try{
             const response = await axios({
                     method:'POST',
-                    url:config.appLocalHost + ':' + config.appBackendPort +'/api/register',
+                    url:config.appBackendURL + ':' + config.appBackendPort +'/api/register',
                     data:{
                         email:state.email,
                         password:state.password,

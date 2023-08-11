@@ -12,18 +12,14 @@ import { confEmail } from '../hooks/EndRegister.js';
 export default{
 
     setup(props){
-        const {state, getVerify, getToken } = confEmail();
+        const {state, getVerify } = confEmail();
         return{
             getVerify,
-            getToken,
             state,
         }
     },
     created(){
-        this.getToken(this.$route.params.token);
-    },
-    mounted(){
-        this.getVerify();
+        this.getVerify(this.$route.params.token);
     },
 }
 </script>

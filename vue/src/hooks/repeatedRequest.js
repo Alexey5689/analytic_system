@@ -19,8 +19,13 @@ export function Repeated(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-                state.response = response.data;
-                //location.reload();
+                if(response.data.status === false){
+                    state.response = response.data.message;
+                }else{
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000)
+                }
             }catch(err){
                 console.log(err);
                 state.response = err.response.data.message;

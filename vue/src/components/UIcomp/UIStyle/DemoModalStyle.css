@@ -10,7 +10,7 @@
     border: 1px solid  #FAFAFA;
     padding: 14px 16px;
     background: #ebebeb;
-    top:1.8%;
+    top:1.5%;
 }
 .section-top{
     width: 100%;
@@ -34,6 +34,8 @@
     display: flex;
     align-items: center;
     height: 19px;
+    background: #ebebeb;
+
 }
 
 .section-central .section-bottom{
@@ -45,7 +47,7 @@
     padding: 0;
 }
 .section_central_text>p{
-    color: var(--text-link-link-disable, #919399);
+    color:  #919399;
     font-family: Montserrat;
     font-size: 12px;
     font-style: normal;

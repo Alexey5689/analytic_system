@@ -8,7 +8,7 @@ export function ErrorLogin(){
         try{
             const response = await axios({
                 method: "POST",
-                url:config.appLocalHost + ':' + config.appBackendPort + '/api/forget-password',
+                url:config.appBackendURL + ':' + config.appBackendPort + '/api/forget-password',
                 data: {
                     email:localStorage.getItem('repeatEmail')
                 },

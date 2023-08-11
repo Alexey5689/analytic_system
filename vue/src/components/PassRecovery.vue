@@ -36,7 +36,8 @@
 
 <script>
     import { RecForm }  from '../hooks/PassRecover.js';
-    import confRec from '../components/confirmPassRecovery.vue'
+    import confRec from '../components/confirmPassRecovery.vue';
+
     export default {
         components:{
                 confRec

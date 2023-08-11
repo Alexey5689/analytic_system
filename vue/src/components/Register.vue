@@ -1,4 +1,5 @@
 <template>
+    <!-- смена содерж компонента при положительной регистрации -->
     <div v-if="state.isReg">
         <confReg/>
     </div>
@@ -97,10 +98,10 @@
 </style>
 
 <script>
-import confReg from '../components/confirmRegister.vue'
-import { RegForm } from '../hooks/Registration.js';
-
+import confReg from '../components/confirmRegister.vue' //импорт компонента
+import { RegForm } from '../hooks/Registration.js'; //импорт из composition API
 export default {
+    //обЬявление. импортированный компонент
     components:{
         confReg,
     },
@@ -109,6 +110,7 @@ export default {
             optionVisible:true,
         }
     },
+    //импорт из composition API: состояния, функции, валидация
     setup(props){
         const {state, fetchForm, v$, getCities } = RegForm();
         return{
@@ -128,6 +130,7 @@ export default {
 
     },
     methods:{
+        //выбор города
         getCity(city){
             this.state.searchTown = city.name;
             this.state.cityId = city.id;
@@ -136,6 +139,7 @@ export default {
 
     },
     created(){
+        //блочит вызов фукции в других компонентах
         if(!this.state.isReg){
             this.getCities()
         }

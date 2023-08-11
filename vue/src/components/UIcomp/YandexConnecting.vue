@@ -23,7 +23,7 @@
 </template>
 <script>
 
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters , mapMutations} from 'vuex';
 
 export default{
     name:'YanCon',
@@ -34,12 +34,13 @@ export default{
     },
     methods:{
         ...mapActions( {
-            ShowModelCon:'ShowModelCon',
             continuePlug:'continuePlug',
         }),
-
+        ...mapMutations({
+            changeStateShowCon:'changeStateShowCon',
+        }),
         hideWindowCon(){
-            this.ShowModelCon();
+           this.changeStateShowCon();
         },
     }
 }

@@ -22,7 +22,7 @@
 </template>
 <script>
 
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 export default {
     name: 'DemoCon',
@@ -33,12 +33,13 @@ export default {
     },
     methods: {
         ...mapActions({
-            ShowDemoCon: 'ShowDemoCon',
             continueFull: 'continueFull',
         }),
-
+        ...mapMutations({
+            changeStateDemoCon:'changeStateDemoCon',
+        }),
         hideDemoWindCon() {
-            this.ShowDemoCon();
+            this.changeStateDemoCon();
         },
     },
 };

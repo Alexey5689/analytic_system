@@ -59,15 +59,14 @@ export const DemoModWin = {
         },
         getDemoKeywordsAnalytics(state,data) {
             state.demoKeywords = data;
+        },
+        clearDemo(state){
+            state.demo = [];
+            state.demoAds = [];
+            state.demoKeywords = [];
         }
     },
     actions: {
-        ShowDemoCon({ commit }) {
-            commit('changeStateDemoCon');
-        },
-        ShowDemoDell({ commit }) {
-            commit('changeStateDemoDell');
-        },
 
         async continueFull({ commit }) {
             try {
@@ -95,8 +94,7 @@ export const DemoModWin = {
                 commit('changeDemoActive');
             } catch (err) {
                 console.log(err);
-                commit('changeStateShowCon');
-                commit('changeStateShowErr');
+                commit('changeStateDemoErr')
             } finally {
                 commit('changeStateDemoDataCon');
             }
