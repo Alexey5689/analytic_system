@@ -1,24 +1,22 @@
 <template>
-    <div class="section"  v-if="demoModalWind">
-        <div class="section-top">
-            <div class="section_text">
-                <p>Демо-проект</p>
+    <div class="section" v-show="stateDemoModal" @click.stop="demoModalWind" >
+        <div @click.stop class="section-top">
+            <div class="section_text_top">
+                <p class="textDemo">Демо-проект</p>
             </div>
-            <div class="section_action">
+            <div class="section_action" @click="demoModalWind">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="9" viewBox="0 0 15 9" fill="none">
-                    <path
-                        d="M7.50452 8.76693C7.25166 8.76693 7.02288 8.66759 6.81818 8.46891L0.26189 1.7591C0.183624 1.67481 0.120409 1.5815 0.0722456 1.47915C0.0240819 1.37078 0 1.25338 0 1.12695C0 0.958377 0.039133 0.807865 0.117399 0.675415C0.195665 0.536944 0.301023 0.428575 0.433474 0.350309C0.571945 0.272043 0.725467 0.23291 0.89404 0.23291C1.14088 0.23291 1.35461 0.320207 1.53522 0.494801L7.93799 7.05109H7.06201L13.4557 0.494801C13.6484 0.320207 13.8651 0.23291 14.106 0.23291C14.2745 0.23291 14.425 0.272043 14.5575 0.350309C14.696 0.428575 14.8043 0.536944 14.8826 0.675415C14.9609 0.807865 15 0.958377 15 1.12695C15 1.36777 14.9127 1.57849 14.7381 1.7591L8.17279 8.45988C8.08248 8.56223 7.98013 8.6405 7.86574 8.69468C7.75135 8.74284 7.63095 8.76693 7.50452 8.76693Z"
-                        fill="#919399" />
+                    <path d="M7.49548 0.233075C7.74834 0.233075 7.97712 0.332413 8.18182 0.531088L14.7381 7.2409C14.8164 7.32519 14.8796 7.4185 14.9278 7.52085C14.9759 7.62922 15 7.74662 15 7.87305C15 8.04162 14.9609 8.19213 14.8826 8.32459C14.8043 8.46306 14.699 8.57142 14.5665 8.64969C14.4281 8.72796 14.2745 8.76709 14.106 8.76709C13.8591 8.76709 13.6454 8.67979 13.4648 8.5052L7.06201 1.94891L7.93799 1.94891L1.54425 8.5052C1.3516 8.67979 1.13486 8.76709 0.89404 8.76709C0.725467 8.76709 0.574955 8.72796 0.442505 8.64969C0.304034 8.57143 0.195665 8.46306 0.117399 8.32459C0.039133 8.19214 -6.34223e-08 8.04162 -7.81594e-08 7.87305C-9.92125e-08 7.63223 0.0872964 7.42152 0.26189 7.2409L6.82721 0.540119C6.91752 0.437771 7.01987 0.359504 7.13426 0.30532C7.24864 0.257157 7.36905 0.233075 7.49548 0.233075Z" fill="#528FDF"/>
                 </svg>
             </div>
         </div>
         <div class="section-central">
-            <div class="section_text">
+            <div class="section_central_text">
                 <p>Проект наполнен демо-данными. Если вы хотите загрузить свои данные нажмите на кнопку ниже</p>
             </div>
         </div>
-        <div class="section-central">
-            <div class="section_text">
+        <div class="section-bottom">
+            <div class="section_text_bottom">
                 <p>Перейти к подключению</p>
             </div>
         </div>
@@ -26,47 +24,23 @@
 </template>
 
 <script>
-    import { mapGetters, mapMutations } from 'vuex';
-
-    export default {
-        name: "DemoModal",
-
-        state: ()=>({
-            DemoModal:false,
+import { mapGetters, mapMutations } from 'vuex';
+export default {
+    name: "DemoModal",
+    computed:{
+        ...mapGetters({
+            stateDemoModal:'stateDemoModal'
+        })
+    },
+    methods:{
+        ...mapMutations({
+            changeStateDemoModal:'changeStateDemoModal'
         }),
-        getters: {
-            stateDemoModal(state){
-                return state.DemoModal
-            }
-        },
-        computed:{
-            ...mapGetters( "DemoModWin", {
-                stateDemoModal:'stateDemoModal'
-            })
-        },
-        mutations:{
-            changeStateDemoModal(state){
-                state.DemoModal = !state.DemoModal;
-            },
-        },
-        methods:{
-            ...mapMutations({
-                changeStateDemoModal:'changeStateDemoModal'
-            }),
-            demoModalWind(){
-                this.changeStateDemoModal();
-            },
-        },
-        setup(props){
-            const{loginOut} =LogOut();
-            return {
-                loginOut
-            }
-        },
-        namespaced:true,
+        demoModalWind(){
+            this.changeStateDemoModal();
+        }
     }
+}
 </script>
-
-<style scoped>
-
+<style src="./UIStyle/DemoModalStyle.css" scoped>
 </style>

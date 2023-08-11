@@ -8,7 +8,7 @@ const router = createRouter({
 })
 router.beforeEach((to, from)=>{
     //логика защиты роутинга
-    if(to.meta.auth && !store.state.IsAuthtorisation){
+    if(to.meta.auth && !store.state.IsAuthorisation){
             alert("Вы не авторизованы");
             return { name:"Login" };
     }

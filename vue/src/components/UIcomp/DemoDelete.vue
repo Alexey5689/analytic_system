@@ -19,12 +19,12 @@
     export default{
         name:'DemoDel',
         computed:{
-            ...mapGetters('DemoModWin', {
+            ...mapGetters({
                 stateDemoDell:'stateDemoDell'
             })
         },
         methods:{
-            ...mapMutations('DemoModWin', {
+            ...mapMutations( {
                 changeStateDemoDell:'changeStateDemoDell',
                 changeStateDemoDataCon: 'changeStateDemoDataCon'
             }),

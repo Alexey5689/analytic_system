@@ -18,13 +18,13 @@ export const YandexModWin = {
         stateShowDell: (state) => state.ShowDell,
         stateShowErr: (state) => state.ShowErr,
         stateActiveYandex: (state) => state.active,
-        stateAnalyticsCompany(state){
+        stateYandexAnalyticsCompany(state){
             return state.dataComp
         },
-        stateAnalyticsAds (state) {
+        stateYandexAnalyticsAds (state) {
             return state.dataAds
         },
-        stateAnalyticsKeywords (state) {
+        stateYandexAnalyticsKeywords(state) {
             return state.dataKeywords
         },
     },
@@ -38,19 +38,27 @@ export const YandexModWin = {
         changeStateShowErr(state){
             state.ShowErr = !state.ShowErr;
         },
-        getAnalytics(state, data){
+        getYandexAnalytics(state, data){
             state.dataComp = data;
+
         },
-        getAdsAnalytics(state,data) {
+        getAdsYandexAnalytics(state,data) {
             state.dataAds = data;
         },
-        getKeywordsAnalytics(state,data) {
+        getKeywordsYandexAnalytics(state,data) {
             state.dataKeywords = data;
         },
         changeActiveYandex(state){
             state.active = !state.active;
-        }
+        },
+       clearStateYandex(state){
+           console.log('asdf');
+            state.dataComp = [];
+            state.dataAds = [];
+            state.dataKeywords =[];
+        },
     },
+
 
     actions: {
         ShowModelCon ({commit}) {
@@ -67,18 +75,18 @@ export const YandexModWin = {
                 const response = await axios.get(
                     config.appBackendURL + ':' + config.appBackendPort + '/api/campaigns'
                 );
-                console.log(response);
+                //console.log(response);
                 const adsResponse = await axios.get(
                     config.appBackendURL + ':' + config.appBackendPort + '/api/ads'
                 );
-                console.log(adsResponse);
+                //console.log(adsResponse);
                 const keywordsResponse = await axios.get(
                     config.appBackendURL + ':' + config.appBackendPort + '/api/keywords'
                 );
-                console.log(keywordsResponse);
-                commit('getAnalytics', response.data)
-                commit('getAdsAnalytics', adsResponse.data)
-                commit('getKeywordsAnalytics', keywordsResponse.data)
+               // console.log(keywordsResponse);
+                commit('getYandexAnalytics', response.data)
+                commit('getAdsYandexAnalytics', adsResponse.data)
+                commit('getKeywordsYandexAnalytics', keywordsResponse.data)
                 commit('changeActiveYandex');
             }catch(err){
                 console.log(err);
@@ -90,5 +98,5 @@ export const YandexModWin = {
             }
          }
     },
-    namespaced: true,
+
 }

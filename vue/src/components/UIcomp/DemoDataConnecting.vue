@@ -27,7 +27,7 @@
     export default{
         name:'DemoDataCon',
         computed:{
-            ...mapGetters('DemoModWin', {
+            ...mapGetters( {
                 stateDemoDataCon:'stateDemoDataCon'
             })
         },

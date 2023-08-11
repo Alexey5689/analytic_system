@@ -28,12 +28,12 @@ import { mapActions, mapGetters } from 'vuex';
 export default{
     name:'YanCon',
     computed:{
-        ...mapGetters('YandexModWin', {
+        ...mapGetters({
             stateShowCon:'stateShowCon'
         })
     },
     methods:{
-        ...mapActions('YandexModWin', {
+        ...mapActions( {
             ShowModelCon:'ShowModelCon',
             continuePlug:'continuePlug',
         }),

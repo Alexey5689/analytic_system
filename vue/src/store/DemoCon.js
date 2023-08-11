@@ -22,13 +22,13 @@ export const DemoModWin = {
         stateDemoErr: (state) => state.DemoErr,
         stateDemoDataCon: (state) => state.IsDemoDataCon,
         stateDemoActive: (state) => state.active,
-        stateAnalyticsCompany(state){
+        stateDemoAnalyticsCompany(state){
             return state.demo
         },
-        stateAnalyticsAds (state) {
+        stateDemoAnalyticsAds (state) {
             return state.demoAds
         },
-        stateAnalyticsKeywords (state) {
+        stateDemoAnalyticsKeywords (state) {
             return state.demoKeywords
         }
     },
@@ -51,13 +51,13 @@ export const DemoModWin = {
         changeDemoActive(state) {
             state.active = !state.active;
         },
-        getAnalytics(state, data) {
+        getDemoAnalytics(state, data) {
             state.demo = data;
         },
-        getAdsAnalytics(state,data) {
+        getDemoAdsAnalytics(state,data) {
             state.demoAds = data;
         },
-        getKeywordsAnalytics(state,data) {
+        getDemoKeywordsAnalytics(state,data) {
             state.demoKeywords = data;
         }
     },
@@ -87,9 +87,9 @@ export const DemoModWin = {
                     config.appBackendURL + ':' + config.appBackendPort + '/api/test_data_keywords'
                 );
                 console.log(keywordsResponse);
-                commit('getAnalytics', response.data);
-                commit('getAdsAnalytics', adsResponse.data);
-                commit('getKeywordsAnalytics', keywordsResponse.data);
+                commit('getDemoAnalytics', response.data);
+                commit('getDemoAdsAnalytics', adsResponse.data);
+                commit('getDemoKeywordsAnalytics', keywordsResponse.data);
 
                 // commit('changeStateShowCon');
                 commit('changeDemoActive');
@@ -102,5 +102,5 @@ export const DemoModWin = {
             }
         },
     },
-    namespaced: true,
+
 };

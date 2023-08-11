@@ -1,4 +1,7 @@
 import Cookies from 'js-cookie';
+import axios from "axios";
+import config from "../../vue.config.js";
+
 export const LogOutModWin={
     state: ()=>({
         logOut:false,
@@ -14,22 +17,19 @@ export const LogOutModWin={
             state.logOut = !state.logOut;
         },
         logOut(){
-            Cookies.remove('XSRF-TOKEN');
+            Cookies.remove('XSRF-TOKEN', '');
             window.location.href ='/login';
-        }
+        },
     },
     actions:{
         async loginOut({commit}){
-            console.log(Cookies.get('XSRF-TOKEN'));
+            const token =JSON.parse(Cookies.get('XSRF-TOKEN'));
             try{
                 const response = await axios({
                     method:'POST',
-                    url:config.appLocalHost + ':' + config.appBackendPort +'/api/logout',
-                    data:{
-                       token: Cookies.get('XSRF-TOKEN')
-                    },
+                    url:config.appBackendURL+ ':' + config.appBackendPort +'/api/logout',
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                        'Authorization': `Bearer ${token.IsAuthorisation}`,
                     }
                 },)
                 commit('logOut');
@@ -41,5 +41,5 @@ export const LogOutModWin={
         }
     },
 
-    namespaсed:true,
+
 }

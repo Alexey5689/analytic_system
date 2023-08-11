@@ -24,7 +24,7 @@
     export default{
         name:'DemoErr',
         computed:{
-            ...mapGetters('DemoModWin', {
+            ...mapGetters( {
                 stateDemoErr:'stateDemoErr'
             })
         },

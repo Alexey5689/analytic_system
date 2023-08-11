@@ -9,13 +9,11 @@ export default createStore({
     state: ()=>({
        seconds:60,
        minuts:1,
-       IsRegistration: '',
-       IsAuthtorisation:'',
-       reg: reg,
+       IsAuthorisation:'',
     }),
     plugins: [createPersistedState({
         key:"XSRF-TOKEN",
-        paths:['IsAuthtorisation'],
+        paths:['IsAuthorisation'],
         storage: {
             getItem: key => Cookies.get(key),
             setItem: (key, value) => Cookies.set(key, value),
@@ -24,10 +22,10 @@ export default createStore({
     })],
     mutations:{
         getAuthToken(state, token){
-            state.IsAuthtorisation = token;
+            state.IsAuthorisation = token;
         },
         logOut(){
-            Cookies.remove('IsAuthtorisation');
+            Cookies.remove('XSRF-TOKEN');
             window.location.href ='/login';
         },
         changeTime(state){

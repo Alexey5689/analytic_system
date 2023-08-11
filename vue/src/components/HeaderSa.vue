@@ -24,6 +24,7 @@
                 </svg>
             </div>
         </div>
+        <DemoModal/>
         <div class="user" @click="hightLogOutWind">
             <div class="user_name">
                 <p>Сергей Д.</p>
@@ -38,7 +39,7 @@
     import { mapGetters, mapMutations } from 'vuex';
     export default{
         computed: {
-            ...mapGetters('DemoModWin', {
+            ...mapGetters({
                 stateDemoActive: 'stateDemoActive',
             }),
         },

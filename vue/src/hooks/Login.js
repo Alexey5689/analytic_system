@@ -55,8 +55,7 @@ export function AuthValidForm(){
                 }
                 else{
                     window.location.href ='/main/';
-                    Cookies.set('XSRF-TOKEN', response.data.token);
-                    store.commit('getAuthToken', Cookies.get('XSRF-TOKEN'))
+                    store.commit('getAuthToken',response.data.token)
                 }
         }catch(err){
             console.log(err.response);

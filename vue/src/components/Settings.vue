@@ -87,21 +87,20 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
     computed: {
-        ...mapGetters('DemoModWin', {
+        ...mapGetters( {
             stateDemoActive: 'stateDemoActive',
-        }),
-        ...mapGetters('YandexModWin', {
             stateActiveYandex: 'stateActiveYandex',
         }),
+
     },
     methods: {
-        ...mapActions('DemoModWin', {
+        ...mapActions({
             ShowDemoCon: 'ShowDemoCon',
             ShowDemoDell: 'ShowDemoDell',
         }),
 
 
-        ...mapActions('YandexModWin',{
+        ...mapActions({
             ShowModelCon: 'ShowModelCon',
             continuePlug: 'continuePlug',
             ShowDell: 'ShowDell',

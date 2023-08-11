@@ -27,12 +27,12 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
     name: 'DemoCon',
     computed: {
-        ...mapGetters('DemoModWin', {
+        ...mapGetters( {
             stateDemoCon: 'stateDemoCon',
         }),
     },
     methods: {
-        ...mapActions('DemoModWin', {
+        ...mapActions({
             ShowDemoCon: 'ShowDemoCon',
             continueFull: 'continueFull',
         }),
