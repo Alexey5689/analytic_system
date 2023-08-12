@@ -1,5 +1,6 @@
-import config from "../../vue.config.js";
+import Cookies from 'js-cookie';
 import axios from "axios";
+import config from "../../vue.config.js";
 
 export const YandexModWin = {
     state: () => ({
@@ -30,7 +31,6 @@ export const YandexModWin = {
     },
     mutations:{
         changeStateShowCon(state){
-            console.log('asd');
             state.ShowCon = !state.ShowCon;
         },
         changeStateShowDell(state){
@@ -60,20 +60,32 @@ export const YandexModWin = {
     },
     actions: {
         async continuePlug({commit}){
+            const token = JSON.parse(Cookies.get('XSRF-TOKEN'));
             try{
-                commit('changeStateShowCon');
-                const response = await axios.get(
-                    config.appBackendURL + ':' + config.appBackendPort + '/api/campaigns'
-                );
-                //console.log(response);
-                const adsResponse = await axios.get(
-                    config.appBackendURL + ':' + config.appBackendPort + '/api/ads'
-                );
-                //console.log(adsResponse);
-                const keywordsResponse = await axios.get(
-                    config.appBackendURL + ':' + config.appBackendPort + '/api/keywords'
-                );
-               // console.log(keywordsResponse);
+                const response =  await axios({
+                    method:'GET',
+                    url:config.appBackendURL+ ':' + config.appBackendPort +'/api/campaigns',
+                    headers: {
+                        'Authorization': `Bearer ${token.IsAuthorisation}`,
+                    }
+                },)
+                console.log(response);
+                const adsResponse = await axios({
+                    method:'GET',
+                    url:config.appBackendURL+ ':' + config.appBackendPort +'/api/ads',
+                    headers: {
+                        'Authorization': `Bearer ${token.IsAuthorisation}`,
+                    }
+                },)
+                console.log(adsResponse);
+                const keywordsResponse = await axios({
+                    method:'GET',
+                    url:config.appBackendURL+ ':' + config.appBackendPort +'/api/keywords',
+                    headers: {
+                        'Authorization': `Bearer ${token.IsAuthorisation}`,
+                    }
+                },)
+                console.log(keywordsResponse);
                 commit('getYandexAnalytics', response.data)
                 commit('getAdsYandexAnalytics', adsResponse.data)
                 commit('getKeywordsYandexAnalytics', keywordsResponse.data)
@@ -83,7 +95,7 @@ export const YandexModWin = {
                 commit('changeStateShowErr');
             }
             finally {
-
+                commit('changeStateShowCon');
             }
          }
     },

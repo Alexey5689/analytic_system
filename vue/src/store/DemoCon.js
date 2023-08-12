@@ -1,5 +1,6 @@
-import config from "../../vue.config.js";
+import Cookies from 'js-cookie';
 import axios from "axios";
+import config from "../../vue.config.js";
 
 export const DemoModWin = {
     state: () => ({
@@ -69,28 +70,40 @@ export const DemoModWin = {
     actions: {
 
         async continueFull({ commit }) {
+            const token = JSON.parse(Cookies.get('XSRF-TOKEN'));
             try {
                 commit('changeStateDemoCon');
                 commit('changeStateDemoDataCon');
 
-                const response = await axios.get(
-                    config.appBackendURL + ':' + config.appBackendPort + '/api/test_data_campaigns'
-                );
+                const response = await axios({
+                    method:'GET',
+                    url:config.appBackendURL+ ':' + config.appBackendPort +'/api/test_data_campaigns',
+                    headers: {
+                        'Authorization': `Bearer ${token.IsAuthorisation}`,
+                    }
+                },)
+
                 console.log(response);
 
-                const adsResponse = await axios.get(
-                    config.appBackendURL + ':' + config.appBackendPort + '/api/test_data_ads'
-                );
+                const adsResponse = await axios({
+                    method:'GET',
+                    url:config.appBackendURL+ ':' + config.appBackendPort +'/api/test_data_ads',
+                    headers: {
+                        'Authorization': `Bearer ${token.IsAuthorisation}`,
+                    }
+                },)
                 console.log(adsResponse);
-                const keywordsResponse = await axios.get(
-                    config.appBackendURL + ':' + config.appBackendPort + '/api/test_data_keywords'
-                );
+                const keywordsResponse = await axios({
+                    method:'GET',
+                    url:config.appBackendURL+ ':' + config.appBackendPort +'/api/test_data_keywords',
+                    headers: {
+                        'Authorization': `Bearer ${token.IsAuthorisation}`,
+                    }
+                },)
                 console.log(keywordsResponse);
                 commit('getDemoAnalytics', response.data);
                 commit('getDemoAdsAnalytics', adsResponse.data);
                 commit('getDemoKeywordsAnalytics', keywordsResponse.data);
-
-                // commit('changeStateShowCon');
                 commit('changeDemoActive');
             } catch (err) {
                 console.log(err);

@@ -26,15 +26,15 @@
 </template>
 <script>
     import { mapGetters, mapMutations, mapActions } from 'vuex';
-    import {LogOut} from '../../hooks/LogOut';
+    // import {LogOut} from '../../hooks/LogOut';
     export default{
         name:'LogOut',
-        setup(props){
-            const{loginOut}=LogOut()
-            return{
-                loginOut,
-            }
-        },
+        // setup(props){
+        //     const{loginOut}=LogOut()
+        //     return{
+        //         loginOut,
+        //     }
+        // },
         computed:{
             ...mapGetters({
                 statelogOut:'statelogOut'

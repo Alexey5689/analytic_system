@@ -1,7 +1,6 @@
 import { createStore } from "vuex";
 import createPersistedState from 'vuex-persistedstate';
 import Cookies from 'js-cookie';
-const reg = JSON.parse(localStorage.getItem('reg'))
 import { YandexModWin } from './YanCon.js';
 import { DemoModWin } from './DemoCon.js';
 import { LogOutModWin } from './Logout.js';
@@ -24,10 +23,10 @@ export default createStore({
         getAuthToken(state, token){
             state.IsAuthorisation = token;
         },
-        logOut(){
-            state.IsAuthorisation = '';
-            window.location.href ='/login';
-        },
+        // logOut(){
+        //     state.IsAuthorisation = '';
+        //     window.location.href ='/login';
+        // },
         changeTime(state){
             if(state.minuts > 0){
                 state.minuts-=1
