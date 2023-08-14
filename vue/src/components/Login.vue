@@ -7,7 +7,7 @@
             <h1 class="card-header">Вход в РосМетрик</h1>
             <p>Рады вас видеть</p>
             <div class="card-body">
-                <div>
+                <div class="ruls">
                     {{ state.response }}
                 </div>
                 <form class="general-block" @submit.prevent="AuthForm">
@@ -34,7 +34,7 @@
                     </button>
                 </form>
                 <div class="bottom-block-register">
-                    <p class="redir" @click="$router.push('/registration')">Зарегестрироваться</p>
+                    <p class="redir" @click="$router.push('/')">Зарегестрироваться</p>
                     <p class="redir" @click="$router.push('/reset-password')">Восстановить пароль</p>
                 </div>
             </div>

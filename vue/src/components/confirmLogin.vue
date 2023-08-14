@@ -19,10 +19,10 @@
 </template>
 <script>
      import { mapActions, mapState } from 'vuex';
-    import { Repeated } from '../hooks/repeatedRequest.js';
+    import { RepeatRequest } from '../hooks/repeatedRequest.js';
     export default{
         setup(props){
-            const {  repeatRequest, state }=Repeated()
+            const {  repeatRequest, state }=RepeatRequest()
             return {
                 repeatRequest,
                 state,

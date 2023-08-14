@@ -19,6 +19,7 @@ export function confEmail(){
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             },)
+
             localStorage.removeItem('repeatEmail');
             localStorage.removeItem('reg');
             setTimeout(function(){

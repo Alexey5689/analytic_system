@@ -6,8 +6,10 @@
             {{ state.response }}
         </div>
         <div class="card-body">
-            <form class="general-block" @submit.prevent="ChangeSubmit(this.$route.params.token )">
+            <form class="general-block" @submit.prevent="ChangeSubmit">
+                <small class="ruls" v-for="errors in v$.password.$errors ">{{ errors.$message }}</small>
                 <div><input class="user-passw" v-model="state.password" type="password" placeholder="Новый пароль*"/></div>
+                <small class="ruls" v-for="errors in v$.password_confirm.$errors ">{{ errors.$message }}</small>
                 <div><input class="user-passw" v-model="state.password_confirm" type="password" placeholder="Подтверждение пароля*"/></div>
                 <button type="submit" class="button">Поменять пароль</button>
             </form>
@@ -23,11 +25,12 @@
 import {endChangePass} from '../hooks/endChangePass.js';
 export default {
     setup(props){
-        const {state, ChangeSubmit, GetEmail} = endChangePass();
+        const {state, ChangeSubmit, GetEmail, v$} = endChangePass();
         return{
             state,
             ChangeSubmit,
-            GetEmail
+            GetEmail,
+            v$
         }
     },
     created(){

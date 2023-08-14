@@ -3,6 +3,9 @@
         <div @click.stop class="modal_content">
             <div class="modal_body logout">
                 <h2>Выход из аккаунта</h2>
+                <div class="ruls">
+                    {{ state.response }}
+                </div>
                 <button class="modal_close" @click="hightLogOutWind">
                     <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37">
                         <path
@@ -26,27 +29,29 @@
 </template>
 <script>
     import { mapGetters, mapMutations, mapActions } from 'vuex';
-    // import {LogOut} from '../../hooks/LogOut';
+    import {LogOut} from '../../hooks/LogOut';
     export default{
         name:'LogOut',
-        // setup(props){
-        //     const{loginOut}=LogOut()
-        //     return{
-        //         loginOut,
-        //     }
-        // },
+        setup(props){
+            const{loginOut,state}=LogOut()
+            return{
+                loginOut,
+                state,
+            }
+        },
         computed:{
             ...mapGetters({
-                statelogOut:'statelogOut'
+                statelogOut:'statelogOut',
+                // stateResponse:'stateResponse',
             })
         },
         methods:{
             ...mapMutations({
                 changeStatelogOut:'changeStatelogOut'
             }),
-            ...mapActions({
-                loginOut:'loginOut'
-            }),
+            // ...mapActions({
+            //     loginOut:'loginOut'
+            // }),
             hightLogOutWind(){
                 this.changeStatelogOut();
             },

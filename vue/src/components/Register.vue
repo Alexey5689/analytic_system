@@ -88,7 +88,7 @@
                 type="submit">Продолжить
             </button>
             </form>
-
+            <p class="redirToLogin" @click="$router.push('/login')">Вы уже зарегистрированы</p>
         </div>
         </div>
     </div>
@@ -136,14 +136,12 @@ export default {
             this.state.cityId = city.id;
             this.optionVisible = false;
         },
-
     },
     created(){
         //блочит вызов фукции в других компонентах
         if(!this.state.isReg){
             this.getCities()
         }
-
     },
 }
 </script>

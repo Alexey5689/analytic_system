@@ -23,10 +23,12 @@ export default createStore({
         getAuthToken(state, token){
             state.IsAuthorisation = token;
         },
-        // logOut(){
-        //     state.IsAuthorisation = '';
-        //     window.location.href ='/login';
-        // },
+        logOut(state){
+            state.IsAuthorisation = '';
+            setTimeout(function(){
+                window.location = '/login';
+            }, 2000)
+        },
         changeTime(state){
             if(state.minuts > 0){
                 state.minuts-=1

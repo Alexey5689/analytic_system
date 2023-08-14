@@ -786,8 +786,14 @@ table {
   opacity: 1;
 }
 
-
-
+.ruls{
+    font-family: 'Montserrat-Regular';
+    color: rgb(201, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
  @keyframes spinnerAnimation {
     0% {
       transform: translate(-50%, -50%) rotate(0);

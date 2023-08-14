@@ -100,13 +100,11 @@ export const DemoModWin = {
                         'Authorization': `Bearer ${token.IsAuthorisation}`,
                     }
                 },)
-                console.log(keywordsResponse);
                 commit('getDemoAnalytics', response.data);
                 commit('getDemoAdsAnalytics', adsResponse.data);
                 commit('getDemoKeywordsAnalytics', keywordsResponse.data);
                 commit('changeDemoActive');
             } catch (err) {
-                console.log(err);
                 commit('changeStateDemoErr')
             } finally {
                 commit('changeStateDemoDataCon');

@@ -2,8 +2,12 @@
     <div class="container">
         <div class="card">
             <h1 class="card-header">Ошибка входа</h1>
+            <div class="ruls">
+                    {{ state.response }}
+                </div>
             <div>
                 <p>Превышено количество попыток входа</p>
+
                 <p
                     class="resend-p"
                     @click="errLog">Желаете сбросить пароль?
@@ -13,12 +17,13 @@
     </div>
 </template>
 <script>
-    import { ErrorLogin } from '../hooks/errLogin'
+    import { ErrorLogin } from '../hooks/errLogin.js'
     export default{
         setup(props){
-            const{errLog} = ErrorLogin();
+            const{errLog, state} = ErrorLogin();
             return{
-                errLog
+                errLog,
+                state,
             }
         }
     }

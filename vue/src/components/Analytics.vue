@@ -22,9 +22,6 @@
                 stateDemoActive: 'stateDemoActive',
                 stateActiveYandex: 'stateActiveYandex',
             }),
-            ...mapGetters({
-
-            })
         }
     }
 
@@ -107,7 +104,7 @@
         <template v-if="!state.toggle">
             <div v-if="!state.networkRsya" class="company">
                 <h2>Компания</h2>
-                <table v-for="company in stateYandexAnalyticsCompany">
+                <table v-for="company in (stateActiveYandex?stateYandexAnalyticsCompany:stateDemoAnalyticsCompany) ">
                     <tr @click="state.company = !state.company" :class="{ 'advertising_company_active': !state.company}">
                         <td>
                             <img v-if="state.company" class="selection_list_1" src="../assets/image/selection_list.svg"
@@ -127,7 +124,7 @@
             <template v-if="!state.networkRsya">
                 <div v-if="!state.company" class="ads">
                     <h2>Объявления</h2>
-                    <table v-for="ads in stateYandexAnalyticsAds">
+                    <table v-for="ads in (stateActiveYandex?stateYandexAnalyticsAds:stateDemoAnalyticsAds)">
                         <tr @click="state.guaranteeAds = !state.guaranteeAds" :class="{ 'advertising_company_active': !state.guaranteeAds }">
                             <td>
                                 <img v-if="state.guaranteeAds" class="selection_list_1" src="../assets/image/selection_list.svg"
@@ -147,7 +144,7 @@
 
                     <div v-if="!state.guaranteeAds" class="keyword">
                         <h2>Ключевое слово</h2>
-                        <table v-for="keyword in stateYandexAnalyticsKeywords">
+                        <table v-for="keyword in (stateActiveYandex?stateYandexAnalyticsKeywords:stateYandexAnalyticsKeywords)">
                             <tr>
                                 <td>
                                     {{ keyword.keyword_name }}

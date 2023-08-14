@@ -1,9 +1,12 @@
 import axios from 'axios';
 import config from "../../vue.config.js";
+import { reactive } from 'vue';
 
 export function ErrorLogin(){
+    const state = reactive({
+        response: "",
+    })
     const errLog = async()=> {
-
         console.log(localStorage.getItem('repeatEmail'));
         try{
             const response = await axios({
@@ -16,7 +19,11 @@ export function ErrorLogin(){
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             },)
-            window.location.replace('/confirm-login');
+            state.response = response.data.message;
+            setTimeout(function(){
+                window.location = '/confirm-login';
+            }, 2000)
+
         }catch(err){
             state.response = err.response.data
         }finally{
@@ -24,5 +31,6 @@ export function ErrorLogin(){
     }
     return{
         errLog,
+        state,
     }
 }

@@ -11,7 +11,7 @@
             <div class="bottom-block-register">
                 <p>Не пришло письмо?</p>
                 <p v-if="seconds>0" class=" ">Отправить повторно</p>
-                <p v-else class="resend-p" @click="repeatRequest" >Отправить повторно</p>
+                <p v-else class="resend-p" @click="repeatRequestRegisterEailAgain" >Отправить повторно</p>
             </div>
             <p class="time">{{minuts<1?'00':'0'+minuts}}:{{minuts===1?'00':seconds<10?'0'+seconds:seconds}}</p>
         </div>
@@ -20,7 +20,7 @@
 </template>
 <script>
     import { mapActions, mapState } from 'vuex';
-    import { Repeated } from '../hooks/repeatedRequest.js';
+    import {  RepeatRequest } from '../hooks/repeatedRequest.js';
     export default{
         data(){
             return{
@@ -29,10 +29,11 @@
         },
         setup(props){
 
-            const { repeatRequest, state }=Repeated()
+            const { repeatRequest, state, repeatRequestRegisterEailAgain } = RepeatRequest()
             return {
                 repeatRequest,
                 state,
+                repeatRequestRegisterEailAgain
             }
         },
         computed: {
