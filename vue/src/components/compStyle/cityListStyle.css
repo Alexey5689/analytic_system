@@ -5,15 +5,15 @@ ul{
 .cityListWrapper{
     position: absolute;
     display: flex;
-    width: 380px;
+    width: 390px;
     height: 240px;
     padding: 16px 4px 16px 16px ;
     flex-direction: column;
     align-items: center;
     gap: 4px;
     flex-shrink: 0;
-    left: 38.8%;
-    top: 69%;
+    left: 0px;
+    top: 57px;
     border-radius: 9px;
     border: 2px solid  #DBDEE4;
     background: #FFF;
@@ -31,24 +31,7 @@ ul{
    overflow-y: auto;
    padding-right: 3px;
 }
-/* .cityList{
-    display: flex;
-    max-width: 340px;
-    height: 268px;
-    padding: 10px 10px;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-    border-radius: 9px;
-    border: 2px solid  #DBDEE4;
-    background:  #FFF;
-    box-shadow: -3px 4px 10px 0px rgba(0, 0, 0, 0.16);
-    left: 39%;
-    top: 65%;
-    overflow-x: hidden;
-    overflow-y: auto;
-} */
+
 .city{
     display: flex;
     padding: 12px;

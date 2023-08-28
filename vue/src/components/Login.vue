@@ -20,13 +20,21 @@
                             type="email"
                             placeholder="E-mail*"/>
                     </div>
-                    <div>
+                    <div class="showPassword">
                         <small class="ruls" v-for="errors in v$.password.$errors ">{{ errors.$message }}</small>
                         <input
                             v-model.trim="state.password"
                             class="user-passw"
                             type="password"
-                            placeholder="Пароль*"/>
+                            placeholder="Пароль*"
+                            v-show="showPass"/>
+                        <input
+                            v-model.trim="state.password"
+                            class="user-passw"
+                            type="text"
+                            placeholder="Пароль*"
+                            v-show="!showPass"/>
+                        <div @click="showPass = !showPass" class="show open" :class="{hiden:!showPass}" ></div>
                     </div>
                     <button
                         type="submit"
@@ -51,6 +59,11 @@ import { AuthValidForm } from '../hooks/Login.js';
 export default {
     components:{
         ErrLog,
+    },
+    data(){
+        return{
+            showPass:true,
+        }
     },
     setup(props){
         const {state, AuthForm, logOut, v$} = AuthValidForm();

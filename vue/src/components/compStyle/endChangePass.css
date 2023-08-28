@@ -92,3 +92,25 @@ input {
     color: #005BD1;
     font-weight: bold;
 }
+.showPassword{
+    position:relative;
+}
+.show{
+    position: absolute;
+    cursor: pointer;
+    top: 14px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+
+}
+.open{
+    background-image: url('../../assets/image/bx-show.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.hiden{
+    background-image: url('../../assets/image/bx-low-vision.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

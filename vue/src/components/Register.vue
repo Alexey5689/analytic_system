@@ -36,13 +36,23 @@
                         v-model="state.email"
                         placeholder="E-mail*"/>
                     </div>
-                <div>
+                <div class="showPassword">
                     <small class="ruls" v-for="errors in v$.password.$errors ">{{ errors.$message }}</small>
                     <input
                         class="user-passw"
                         type="password"
-                        v-model="state.password"
-                        placeholder="Пароль*"/>
+                        v-model.trim="state.password"
+                        placeholder="Пароль*"
+                        v-show="showPass"
+                    />
+                    <input
+                        class="user-passw"
+                        type="text"
+                        v-model.trim="state.password"
+                        placeholder="Пароль*"
+                        v-show="!showPass"
+                    />
+                    <div @click="showPass = !showPass" class="show open" :class="{hiden:!showPass}" ></div>
                 </div>
                 <div>
                     <small class="ruls" v-for="errors in v$.conf_password.$errors ">{{ errors.$message }}</small>
@@ -52,14 +62,15 @@
                         v-model="state.conf_password"
                         placeholder="Подтвеждение пароля*"/>
                 </div>
-                <div>
+                <div class="compasImg">
+                    <div class="compas"></div>
                     <input
                         v-model="state.searchTown"
                         class="user-reg"
                         type="text"
                         autocomplete="off"
                         placeholder="Город"
-                        />
+                    />
                     <cityList
                         v-if="state.searchTown && this.optionVisible"
                         :serchCity="serchCity"
@@ -88,7 +99,7 @@
                 type="submit">Продолжить
             </button>
             </form>
-            <p class="redirToLogin" @click="$router.push('/login')">Вы уже зарегистрированы</p>
+            <p class="redirToLogin" @click="$router.push('/login')">Уже зарегистрировались?</p>
         </div>
         </div>
     </div>
@@ -108,6 +119,7 @@ export default {
     data(){
         return{
             optionVisible:true,
+            showPass:true,
         }
     },
     //импорт из composition API: состояния, функции, валидация

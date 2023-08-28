@@ -42,6 +42,7 @@ p{
 }
 .link{
     color:#005BD1;
+    cursor: pointer;
 }
 .card-body {
     margin-top: 16px;

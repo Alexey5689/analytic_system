@@ -728,11 +728,21 @@ table {
   margin-top: 0;
 }
 
-.animation svg {
-  margin: 70px auto;
-  display: block;
-  animation: spinnerAnimation 1s infinite linear;
+.animation  {
+    margin: 70px auto;
+    display: flex;
+    justify-content: center;
+    width: 100px;
 }
+.animation>svg{
+    position:relative;
+    top:50px;
+    left:50px;
+    width: 100px;
+    height: 100px;
+    animation: spinnerAnimation 1s infinite linear;
+}
+
 
 .сonnect_demo h2,
 .сonnect_demo p {

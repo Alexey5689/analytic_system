@@ -50,19 +50,29 @@ export function endChangePass(){
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
             },)
-            state.response = response.data.message;
-            console.log(response);
-            localStorage.removeItem('repeatEmailChangePass');
-            localStorage.removeItem('Pass')
-            setTimeout(function(){
-                window.location = '/login';
-            }, 2000)
+            if(response.data.status === false){
+                state.response = response.data.message;
+                setTimeout(function(){
+                    state.password = "";
+                    state.password_confirm="";
+                    state.response="";
+                }, 3000);
+            }else{
+                localStorage.removeItem('repeatEmailChangePass');
+                localStorage.removeItem('Pass')
+                setTimeout(function(){
+                    window.location = '/login';
+                }, 2000)
+            }
         }catch(err){
             state.response = err.message;
+            setTimeout(function(){
+                state.password = "";
+                state.password_confirm="";
+                state.response="";
+            }, 2000)
         }finally{
-
         }
-
     }
     function GetEmail(token){
         localStorage.removeItem('Log');

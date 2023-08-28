@@ -49,9 +49,14 @@ export function AuthValidForm(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
-                console.log(response)
+
                 if(response.data.status == false){
                     state.response = response.data.message;
+                    setTimeout(function(){
+                        state.email = "";
+                        state.password="";
+                        state.response="";
+                    }, 2000)
                 }
                 else{
                     window.location.href ='/main/';
