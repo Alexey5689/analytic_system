@@ -2,9 +2,6 @@
     <div class="container">
         <div class="card">
             <h1 class="card-header">Ошибка входа</h1>
-            <div class="ruls">
-                    {{ state.response }}
-                </div>
             <div>
                 <p>Превышено количество попыток входа</p>
 
