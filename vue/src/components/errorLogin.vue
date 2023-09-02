@@ -4,7 +4,6 @@
             <h1 class="card-header">Ошибка входа</h1>
             <div>
                 <p>Превышено количество попыток входа</p>
-
                 <p
                     class="resend-p"
                     @click="errLog">Желаете сбросить пароль?
@@ -24,8 +23,6 @@
             }
         }
     }
-
-
 </script>
 <style src="../components/compStyle/errLoginStyle.css" scoped>
 </style>

@@ -337,7 +337,8 @@ article {
 }
 
 .sw_inactive p,
-.sw_active p {
+.sw_active p,
+.sw_wrong p {
   text-align: center;
   font-weight: 500;
   line-height: 110%;
@@ -345,12 +346,16 @@ article {
 }
 
 .sw_inactive,
-.sw_active {
+.sw_active,
+.sw_wrong {
   border-radius: 8px;
 }
 
 .sw_inactive {
   border: 2px solid #DBDEE4;
+}
+.sw_wrong{
+    border: 2px solid #B51010;
 }
 
 .sw_inactive p {
@@ -360,11 +365,16 @@ article {
 .sw_active p {
   color: #10B54C;
 }
+.sw_wrong{
+    color:#B51010;
+    background: #F0C2C2;
+}
 
 .sw_active {
   border: 2px solid #10B54C;
   background: #C2F0CE;
 }
+
 
 .way_content h3 {
   padding-top: 20px;

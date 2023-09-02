@@ -42,7 +42,6 @@ export function RecForm(){
             localStorage.setItem('Pass', true);
             location.reload()
         }catch(err){
-            console.log(err);
             state.response = err.response.data.message;
         }finally{
             state.email = '';

@@ -68,7 +68,6 @@ export const DemoModWin = {
         }
     },
     actions: {
-
         async continueFull({ commit }) {
             const token = JSON.parse(Cookies.get('XSRF-TOKEN'));
             try {
@@ -104,7 +103,7 @@ export const DemoModWin = {
                 commit('getDemoAdsAnalytics', adsResponse.data);
                 commit('getDemoKeywordsAnalytics', keywordsResponse.data);
                 commit('changeDemoActive');
-            } catch (err) {
+            } catch(err) {
                 commit('changeStateDemoErr')
             } finally {
                 commit('changeStateDemoDataCon');

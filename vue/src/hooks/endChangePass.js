@@ -1,4 +1,3 @@
-
 import { reactive, computed} from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, helpers, sameAs, minLength, maxLength} from '@vuelidate/validators';
@@ -31,7 +30,6 @@ export function endChangePass(){
     const v$ = useVuelidate(rules, state);
 
     async function ChangeSubmit() {
-
         if(this.v$.$invalid){
             this.v$.$touch();
             return;

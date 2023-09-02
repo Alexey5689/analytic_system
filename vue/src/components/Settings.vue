@@ -22,10 +22,16 @@
                         <img src="../assets/image/logo_way_1.svg" alt="Logo way">
                         <div class="status_way">
                             <div
-                                v-if="!stateDemoActive"
+                                v-if="stateDemoErr"
+                                class="sw_wrong">
+                                <p>Ошибка</p>
+                            </div>
+                            <div
+                                v-else-if="!stateDemoActive"
                                 class="sw_inactive">
                                 <p>Не активно</p>
                             </div>
+
                             <div
                                 v-else
                                 class="sw_active">
@@ -52,8 +58,13 @@
                         <img src="../assets/image/logo_way_2.svg" alt="Logo way">
                         <div class="status_way">
                             <div
+                                v-if="stateShowErr"
+                                class="sw_wrong">
+                                <p>Ошибка</p>
+                            </div>
+                            <div
                                 class="sw_inactive"
-                                v-if="!stateActiveYandex">
+                                v-else-if="!stateActiveYandex">
                                 <p>Не активно</p>
                             </div>
                             <div
@@ -61,6 +72,7 @@
                                 class="sw_active">
                                 <p>Активно</p>
                             </div>
+
                         </div>
                     </div>
                     <div class="way_content">
@@ -90,6 +102,8 @@ export default {
         ...mapGetters( {
             stateDemoActive: 'stateDemoActive',
             stateActiveYandex: 'stateActiveYandex',
+            stateDemoErr:'stateDemoErr',
+            stateShowErr:'stateShowErr',
         }),
 
     },
