@@ -65,16 +65,14 @@
                 <div class="compasImg">
                     <div class="compas"></div>
                     <input
-                        v-model="state.searchTown"
+                        v-model="cities.searchTown"
                         class="user-reg"
                         type="text"
                         autocomplete="off"
                         placeholder="Город"
                     />
                     <cityList
-                        v-if="state.searchTown && this.optionVisible"
-                        :serchCity="serchCity"
-                        @select="getCity"
+                        v-if="cities.searchTown && cities.optionVisible"
                     />
 
                 </div>
@@ -102,6 +100,7 @@
             <p class="redirToLogin" @click="$router.push('/login')">Уже зарегистрировались?</p>
         </div>
         </div>
+
     </div>
 </template>
 
@@ -109,6 +108,7 @@
 </style>
 
 <script>
+import {  useCityStore } from '../stores/cities.js';
 import confReg from '../components/confirmRegister.vue' //импорт компонента
 import { RegForm } from '../hooks/Registration.js'; //импорт из composition API
 export default {
@@ -116,43 +116,29 @@ export default {
     components:{
         confReg,
     },
-    data(){
-        return{
-            optionVisible:true,
-            showPass:true,
-        }
-    },
+
     //импорт из composition API: состояния, функции, валидация
     setup(props){
-        const {state, fetchForm, v$, getCities } = RegForm();
+        const cities =  useCityStore();
+        const {state, fetchForm, v$ } = RegForm();
         return{
             state,
             fetchForm,
             v$,
-            getCities,
+            cities,
+        }
+    },
+    data(){
+        return{
+            showPass:true,
+
         }
     },
 
-    computed:{
-        //поиск города
-        serchCity() {
-                return this.state.cities.filter(elem =>{return elem.name.toLowerCase().includes(this.state.searchTown.toLowerCase())
-            })
-        },
-
-    },
-    methods:{
-        //выбор города
-        getCity(city){
-            this.state.searchTown = city.name;
-            this.state.cityId = city.id;
-            this.optionVisible = false;
-        },
-    },
     created(){
         //блочит вызов фукции в других компонентах
         if(!this.state.isReg){
-            this.getCities()
+            this.cities.citiesList();
         }
     },
 }

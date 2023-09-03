@@ -19,6 +19,14 @@ export default createStore({
             removeItem: key => Cookies.remove(key)
           }
     })],
+    getters:{
+        currentSec(state){
+            return state.seconds;
+        },
+        currentMin(state){
+            return state.minuts;
+        }
+    },
     mutations:{
         getAuthToken(state, token){
             state.IsAuthorisation = token;

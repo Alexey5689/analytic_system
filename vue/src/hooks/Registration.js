@@ -5,9 +5,7 @@ import { helpers } from '@vuelidate/validators';//валидация
 import { useVuelidate } from '@vuelidate/core';//валидация
 import { required, email, minLength, maxLength} from '@vuelidate/validators';//доп условия для проверки
 import { sameAs } from '@vuelidate/validators';//доп условия для проверки
-
-
-
+import {useCityStore} from '../stores/cities.js'
 
 const reg = JSON.parse(localStorage.getItem('reg'))
 export function RegForm(){
@@ -15,6 +13,8 @@ export function RegForm(){
     const regName = helpers.regex(/^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/);
     const regPass = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/);
     const regPhone = helpers.regex(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
+    const city = useCityStore();
+
 
     const state = reactive({
             isReg: reg ,//флаг меняющий компонент на компонент подтверждения регистрации
@@ -25,11 +25,8 @@ export function RegForm(){
             name: "",
             promo: "",
             response: " ",//ответ с бэка
-            cities:[],//массив городов
-            searchTown: "",//поле ввода города
-            cityId:"", //id города
             emailMessage:'Шаблон почты аааааа@aa.com',
-            cellMessage:'Шаблон телефона 8999 999 99 99',
+            cellMessage:'Шаблон телефона +7999 999 99 99',
             checked:"",//checkbox
     })
     const rules = computed (()=>{
@@ -84,11 +81,12 @@ export function RegForm(){
                         name:state.name,
                         tel:state.tel,
                         promo:state.promo,
-                        city:state.cityId,
+                        city:city.id,
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
+
             },)
             //смена регистрации на подтверждение
             console.log(response.data);
@@ -96,26 +94,17 @@ export function RegForm(){
             localStorage.setItem('repeatEmail', state.email);
             location.reload();
         }catch(err){
-            // state.response = err.response.data.message;
+            //state.response = err.response.data.message;
             localStorage.setItem('repeatEmail', state.email);
         }finally{
         }
     }
-    //получение массива городов
-    const getCities = async()=> {
-        try{
-            const response = await axios.get( config.appBackendURL + ':' + config.appBackendPort +'/api/city')
-            state.cities = response.data;
-        }catch(err){
-            //ошибка запроса
-            //state.response = err.response.data.message;
-        }
-    }
+
+
     return{
         state,
         fetchForm,
-        v$,
-        getCities,
+        v$
     }
 }
 

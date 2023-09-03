@@ -18,8 +18,9 @@
     </div>
 </template>
 <script>
-     import { mapActions, mapState } from 'vuex';
+    import { mapActions, mapGetters } from 'vuex';
     import { RepeatRequest } from '../hooks/repeatedRequest.js';
+
     export default{
         setup(props){
             const {  repeatRequest, state }=RepeatRequest()
@@ -29,9 +30,9 @@
             }
         },
         computed: {
-            ...mapState({
-                minuts: state => state.minuts,
-                seconds: state => state.seconds,
+            ...mapGetters({
+                minuts: 'currentMin',
+                seconds: 'currentSec',
             }),
         },
         methods:{

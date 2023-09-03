@@ -19,33 +19,32 @@
     </div>
 </template>
 <script>
-    import { mapActions, mapState } from 'vuex';
+    import { mapGetters, mapActions } from 'vuex';
     import {  RepeatRequest } from '../hooks/repeatedRequest.js';
     export default{
         data(){
             return{
-                mail:localStorage.getItem('repeatEmail')
+                mail:localStorage.getItem('repeatEmail'),
             }
         },
         setup(props){
-
             const { repeatRequest, state, repeatRequestRegisterEailAgain } = RepeatRequest()
             return {
                 repeatRequest,
                 state,
-                repeatRequestRegisterEailAgain
+                repeatRequestRegisterEailAgain,
             }
         },
         computed: {
-            ...mapState({
-                minuts: state => state.minuts,
-                seconds: state => state.seconds,
+            ...mapGetters({
+                minuts: 'currentMin',
+                seconds: 'currentSec',
             }),
         },
         methods:{
             ...mapActions({
-                changeTimeAsync: "changeTimeAsync",
-            }),
+                changeTimeAsync:'changeTimeAsync',
+            })
         },
         mounted() {
             this.changeTimeAsync();

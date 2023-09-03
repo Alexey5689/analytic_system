@@ -2,9 +2,9 @@
     <div class="cityListWrapper">
         <div class="cityList" >
             <div
-                v-for="city in serchCity"
+                v-for="city in cities.serchCity"
                 :key="city.id"
-                @click="select(city)"
+                @click="cities.select(city)"
                 class="city"
             >
                 {{ city.name }}
@@ -16,21 +16,20 @@
 </template>
 
 <script>
-
+    import {useCityStore} from '../../stores/cities.js'
     export default{
         name:'cityList',
-
-        props:{
-            serchCity:{
-                type:Array,
-                default: () => [],
-            },
+        setup(){
+            const cities = useCityStore();
+            return{
+                cities,
+            }
         },
-        methods:{
-            select(city){
-                this.$emit('select', city);
-            },
-        }
+        // methods:{
+        //     select(city){
+        //         this.$emit('select', city);
+        //     },
+        // }
 
 
     }

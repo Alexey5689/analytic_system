@@ -19,10 +19,10 @@
 </template>
 <script>
     import { Repeated } from '../hooks/repReqChangePass.js';
-    import { mapActions, mapState } from 'vuex';
+    import { mapActions, mapGetters } from 'vuex';
     export default{
         setup(props){
-            const {state, repeatRequest } = Repeated();
+            const {state, repeatRequest} = Repeated();
             return{
                 state,
                 repeatRequest
@@ -30,9 +30,9 @@
         },
 
         computed: {
-            ...mapState({
-                minuts: state => state.minuts,
-                seconds: state => state.seconds,
+            ...mapGetters({
+                minuts: 'currentMin',
+                seconds: 'currentSec',
             }),
         },
         methods:{
