@@ -46,6 +46,31 @@ export const useDemo = defineStore('Demo',{
         }
 
     },
+    persist: {
+        enabled: true,
+        strategies: [
+          {
+            key: 'demoCompaing',
+            storage: localStorage,
+            paths:['demoComp']
+          },
+          {
+            key: 'demoAds',
+            storage: localStorage,
+            paths:['demoAds']
+          },
+          {
+            key: 'demoKeywords',
+            storage: localStorage,
+            paths:['demoKeywords']
+          },
+          {
+            key: 'DemoActive',
+            storage: localStorage,
+            paths:['DemoActive']
+          },
+        ],
+    },
     actions:{
         changeStateDemoModal() {
             this.DemoModal = !this.DemoModal;

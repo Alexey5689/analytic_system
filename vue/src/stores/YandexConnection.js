@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia';
 import axios from 'axios';
 import config from '../../vue.config.js';
-import {useToken} from '../stores/useToken.js';
+import {useToken} from './useToken.js';
 
 export const useYandex = defineStore('Yandex',{
     state:()=>({
@@ -35,6 +35,31 @@ export const useYandex = defineStore('Yandex',{
         stateYandexAnalyticsKeywords() {
             return this.YandexDataKeywords;
         },
+    },
+    persist: {
+        enabled: true,
+        strategies: [
+          {
+            key: 'yandexComp',
+            storage: localStorage,
+            paths:['YandexDataComp']
+          },
+          {
+            key: 'yandexAds',
+            storage: localStorage,
+            paths:['YandexDataAds']
+          },
+          {
+            key: 'yandexKeywords',
+            storage: localStorage,
+            paths:['YandexDataKeywords']
+          },
+          {
+            key: 'ActiveYandex',
+            storage: localStorage,
+            paths:['YandexActive']
+          },
+        ],
     },
     actions:{
         changeStateYandexCon(){
@@ -87,15 +112,15 @@ export const useYandex = defineStore('Yandex',{
                 console.log(yandexAdsResp);
                 this.getAdsYandexAnalytics(yandexAdsResp);
 
-                const YandexKeywordsResp = await axios({
+                const yandexKeywordsResp = await axios({
                     method:'GET',
                     url:config.appBackendURL+ ':' + config.appBackendPort +'/api/keywords',
                     headers: {
                         'Authorization': `Bearer ${token.IsLogIn}`,
                     }
                 },)
-                console.log(YandexKeywordsResp);
-                this.getKeywordsYandexAnalytics(YandexKeywordsResp)
+                console.log(yandexKeywordsResp);
+                this.getKeywordsYandexAnalytics(yandexKeywordsResp)
                 this.changeActiveYandex();
             }catch(err){
                 console.log(err);

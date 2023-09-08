@@ -1,12 +1,9 @@
 import { createStore } from "vuex";
-import { YandexModWin } from './YanCon.js';
-import { DemoModWin } from './DemoCon.js';
 export default createStore({
     state: ()=>({
        seconds:60,
        minuts:1,
     }),
-
     getters:{
         currentSec(state){
             return state.seconds;
@@ -33,9 +30,6 @@ export default createStore({
         },
     },
     modules:{
-        YandexModWin: YandexModWin,
-        DemoModWin: DemoModWin,
-
     }
 
 })

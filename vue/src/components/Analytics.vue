@@ -1,30 +1,19 @@
 <script>
-
     import { AnalyticStates } from '../hooks/Analytics.js';
-    import { mapGetters } from 'vuex';
+    import { useDemo } from '../stores/DemoConnection';
+    import { useYandex } from '../stores/YandexConnection.js'
     export default{
         setup(props){
             const {state} = AnalyticStates();
+            const demo = useDemo();
+            const yandex = useYandex();
             return{
                 state,
+                demo,
+                yandex,
             }
         },
-        computed:{
-            ...mapGetters( {
-                stateDemoAnalyticsCompany:'stateDemoAnalyticsCompany',
-                stateDemoAnalyticsAds:'stateDemoAnalyticsAds',
-                stateDemoAnalyticsKeywords:' stateDemoAnalyticsKeywords',
-
-                stateYandexAnalyticsCompany:'stateYandexAnalyticsCompany',
-                stateYandexAnalyticsAds:'stateYandexAnalyticsAds',
-                stateYandexAnalyticsKeywords :'stateYandexAnalyticsKeywords ',
-
-                stateDemoActive: 'stateDemoActive',
-                stateActiveYandex: 'stateActiveYandex',
-            }),
-        }
     }
-
 </script>
 <style src="../components/compStyle/main.css" scoped></style>
 
@@ -104,7 +93,7 @@
         <template v-if="!state.toggle">
             <div v-if="!state.networkRsya" class="company">
                 <h2>Компания</h2>
-                <table v-for="company in (stateActiveYandex?stateYandexAnalyticsCompany:stateDemoAnalyticsCompany) ">
+                <table v-for="company in (yandex.stateYandexActive?yandex.stateYandexAnalyticsCompany:demo.stateDemoAnalyticsCompany) ">
                     <tr @click="state.company = !state.company" :class="{ 'advertising_company_active': !state.company}">
                         <td>
                             <img v-if="state.company" class="selection_list_1" src="../assets/image/selection_list.svg"
@@ -124,7 +113,7 @@
             <template v-if="!state.networkRsya">
                 <div v-if="!state.company" class="ads">
                     <h2>Объявления</h2>
-                    <table v-for="ads in (stateActiveYandex?stateYandexAnalyticsAds:stateDemoAnalyticsAds)">
+                    <table v-for="ads in (yandex.stateYandexActive?yandex.stateYandexAnalyticsAds:demo.stateDemoAnalyticsAds)">
                         <tr @click="state.guaranteeAds = !state.guaranteeAds" :class="{ 'advertising_company_active': !state.guaranteeAds }">
                             <td>
                                 <img v-if="state.guaranteeAds" class="selection_list_1" src="../assets/image/selection_list.svg"
@@ -144,7 +133,7 @@
 
                     <div v-if="!state.guaranteeAds" class="keyword">
                         <h2>Ключевое слово</h2>
-                        <table v-for="keyword in (stateActiveYandex?stateYandexAnalyticsKeywords:stateYandexAnalyticsKeywords)">
+                        <table v-for="keyword in (yandex.stateYandexActive?yandex.stateYandexAnalyticsKeywords:demo.stateDemoAnalyticsKeywords)">
                             <tr>
                                 <td>
                                     {{ keyword.keyword_name }}
