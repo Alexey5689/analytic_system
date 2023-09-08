@@ -22,7 +22,7 @@
     </div>
 </template>
 <script>
-import {useYandex} from '../../stores/YandexConnetction.js';
+import {useYandex} from '../../stores/YandexConnection.js';
 export default{
     name:'YanCon',
     setup(){

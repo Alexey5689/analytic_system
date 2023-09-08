@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-show="stateDemoDataCon" @click.stop="hideDemoWindCon">
+    <div class="modal" v-show="demo.stateDemoDataCon" @click.stop="demo.changeStateDemoDataCon">
         <div @click.stop class="modal_content">
             <div class="modal_body сonnect_demo">
                 <h2>Подключение Демо-данных</h2>
@@ -16,33 +16,22 @@
                             fill="#005BD1" />
                     </svg>
                 </div>
-                <button class="continue" @click="hideDemoWindCon">Закрыть окно</button>
+                <button class="continue" @click="demo.changeStateDemoDataCon">Закрыть окно</button>
             </div>
         </div>
     </div>
 </template>
-
 <script>
-    import { mapGetters, mapMutations } from 'vuex';
+    import { useDemo } from '../../stores/DemoConnection.js';
     export default{
         name:'DemoDataCon',
-        computed:{
-            ...mapGetters( {
-                stateDemoDataCon:'stateDemoDataCon'
-            })
-        },
-        methods:{
-            ...mapMutations({
-                changeStateDemoDataCon:'changeStateDemoDataCon'
-            }),
-            hideDemoWindCon(){
-                this.changeStateDemoDataCon()
+        setup(){
+            const demo = useDemo();
+            return{
+                demo,
             }
-
-        }
-
+        },
     }
-
 </script>
 <style src="../compStyle/main.css">
 </style>

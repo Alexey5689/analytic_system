@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div class="section"  v-if="!stateDemoActive">
+        <div class="section"  v-if="!demo.stateDemoActive">
             <div class="section_text">
                 <p>Нет подключеных проектов</p>
             </div>
@@ -16,7 +16,7 @@
             <div class="section_text">
                 <p>Демо-проект</p>
             </div>
-            <div class="section_action" @click="demoModalWind">
+            <div class="section_action" @click="demo.changeStateDemoModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="9" viewBox="0 0 15 9" fill="none">
                     <path
                         d="M7.50452 8.76693C7.25166 8.76693 7.02288 8.66759 6.81818 8.46891L0.26189 1.7591C0.183624 1.67481 0.120409 1.5815 0.0722456 1.47915C0.0240819 1.37078 0 1.25338 0 1.12695C0 0.958377 0.039133 0.807865 0.117399 0.675415C0.195665 0.536944 0.301023 0.428575 0.433474 0.350309C0.571945 0.272043 0.725467 0.23291 0.89404 0.23291C1.14088 0.23291 1.35461 0.320207 1.53522 0.494801L7.93799 7.05109H7.06201L13.4557 0.494801C13.6484 0.320207 13.8651 0.23291 14.106 0.23291C14.2745 0.23291 14.425 0.272043 14.5575 0.350309C14.696 0.428575 14.8043 0.536944 14.8826 0.675415C14.9609 0.807865 15 0.958377 15 1.12695C15 1.36777 14.9127 1.57849 14.7381 1.7591L8.17279 8.45988C8.08248 8.56223 7.98013 8.6405 7.86574 8.69468C7.75135 8.74284 7.63095 8.76693 7.50452 8.76693Z"
@@ -36,34 +36,17 @@
     </header>
 </template>
 <script>
-    import { mapGetters, mapMutations } from 'vuex';
     import {useLogOut} from '../stores/logout.js';
+    import { useDemo } from '../stores/DemoConnection.js';
     export default{
         setup(){
             const logOut = useLogOut();
+            const demo = useDemo();
             return{
                 logOut,
+                demo,
             }
         },
-        computed: {
-            ...mapGetters({
-                stateDemoActive: 'stateDemoActive',
-            }),
-        },
-        methods:{
-            ...mapMutations({
-                //changeStatelogOut:'changeStatelogOut',
-                changeStateDemoModal:'changeStateDemoModal',
-
-            }),
-            hightLogOutWind(){
-                this.changeStatelogOut();
-
-            },
-            demoModalWind() {
-                this.changeStateDemoModal();
-            }
-        }
     }
 </script>
 

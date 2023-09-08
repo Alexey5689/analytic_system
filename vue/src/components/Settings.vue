@@ -22,12 +22,12 @@
                         <img src="../assets/image/logo_way_1.svg" alt="Logo way">
                         <div class="status_way">
                             <div
-                                v-if="stateDemoErr"
+                                v-if="demo.stateDemoErr"
                                 class="sw_wrong">
                                 <p>Ошибка</p>
                             </div>
                             <div
-                                v-else-if="!stateDemoActive"
+                                v-else-if="!demo.stateDemoActive"
                                 class="sw_inactive">
                                 <p>Не активно</p>
                             </div>
@@ -45,11 +45,11 @@
                             данные можно удалить позже в настройках проекта.</p>
                         <button
                             class="btn_add"
-                            @click="fillProject"
+                            @click="plugDemo"
                         >Наполнить проект</button>
                         <button class="btn_remove"
-                                v-if="stateDemoActive"
-                                @click="deleteDemo"
+                                v-if="demo.stateDemoActive"
+                                @click="demo.changeStateDemoDell"
                         >Удалить данные</button>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                         <img src="../assets/image/logo_way_2.svg" alt="Logo way">
                         <div class="status_way">
                             <div
-                                v-if="stateShowErr"
+                                v-if="yandex.stateYandexErr"
                                 class="sw_wrong">
                                 <p>Ошибка</p>
                             </div>
@@ -81,7 +81,7 @@
                             корпоративных аккаунтов.</p>
                         <button
                             class="btn_remove"
-                            @click="yandex.changeStateYandexCon">Подключить
+                            @click="plugYandex">Подключить
                         </button>
                         <button class="btn_remove"
                                 v-if="yandex.stateYandexActive"
@@ -95,67 +95,39 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations} from 'vuex';
-import { useYandex } from '../stores/YandexConnetction.js';
+import { useYandex } from '../stores/YandexConnection.js';
+import { useDemo } from '../stores/DemoConnection.js';
 export default {
 
     setup(){
         const yandex = useYandex();
+        const demo = useDemo();
         return{
             yandex,
+            demo,
         }
-    },
-    computed: {
-        ...mapGetters( {
-            stateDemoActive: 'stateDemoActive',
-            stateActiveYandex: 'stateActiveYandex',
-            stateDemoErr:'stateDemoErr',
-            stateShowErr:'stateShowErr',
-        }),
-
     },
     methods: {
-        ...mapMutations({
-            changeStateShowCon:'changeStateShowCon',
-            changeStateShowDell:'changeStateShowDell',
-            changeStateDemoCon:'changeStateDemoCon',
-            changeStateDemoDell:'changeStateDemoDell',
-            clearDemo:'clearDemo',
-            changeDemoActive:'changeDemoActive',
-            clearStateYandex:'clearStateYandex',
-            changeActiveYandex:'changeActiveYandex',
-        }),
-        ...mapActions({
-            continuePlug:'continuePlug',
-        }),
         plugYandex() {
-            if(this.stateDemoActive){
-                this.clearDemo();
-                this.changeDemoActive();
-                this.changeStateShowCon();
+            if(this.demo.stateDemoActive){
+                this.demo.clearDemo();
+                this.demo.changeDemoActive();
+                this.yandex.changeStateYandexCon();
             }
             else{
-                this.changeStateShowCon();
+                this.yandex.changeStateYandexCon();
             }
-
         },
-        fillProject() {
-            if( this.stateActiveYandex){
-                this.clearStateYandex();
-                this.changeActiveYandex();
-                this.changeStateDemoCon();
+        plugDemo() {
+            if( this.yandex.stateYandexActive){
+                this.yandex.clearStateYandex();
+                this.yandex.changeActiveYandex();
+                this.demo.changeStateDemoCon();
             }
             else{
-                this.changeStateDemoCon();
+                this.demo.changeStateDemoCon();
             }
-
         },
-        deleteDemo() {
-            this.changeStateDemoDell();
-        },
-        deleteYandex() {
-           this.changeStateShowDell();
-        }
     },
 };
 

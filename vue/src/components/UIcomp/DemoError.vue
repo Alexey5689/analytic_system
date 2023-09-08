@@ -1,7 +1,7 @@
 <template>
-    <div class="modal" v-show="stateDemoErr" @click.stop="hideDemoWindCon">
+    <div class="modal" v-show="demo.stateDemoErr" @click.stop="demo.changeStateDemoErr">
         <div @click.stop class="modal_content">
-            <div class="modal_body" @click="hideDemoWindCon">
+            <div class="modal_body" @click="demo.changeStateDemoErr">
                 <h2>Ошибка подключения Демо данные</h2>
                 <button class="modal_close">
                     <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37">
@@ -20,22 +20,15 @@
     </div>
 </template>
 <script>
-    import { mapMutations, mapGetters } from 'vuex';
+    import { useDemo } from '../../stores/DemoConnection.js';
     export default{
         name:'DemoErr',
-        computed:{
-            ...mapGetters( {
-                stateDemoErr:'stateDemoErr'
-            })
-        },
-        methods:{
-            ...mapMutations({
-                changeStateDemoErr:'changeStateDemoErr',
-            }),
-            hideDemoWindCon(){
-                this.changeStateDemoErr();
+        setup(){
+            const demo = useDemo();
+            return{
+                demo,
             }
-        }
+        },
     }
 </script>
 
