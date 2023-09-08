@@ -74,7 +74,6 @@
                     <cityList
                         v-if="cities.searchTown && cities.optionVisible"
                     />
-
                 </div>
 
                 <div>
@@ -134,7 +133,6 @@ export default {
 
         }
     },
-
     created(){
         //блочит вызов фукции в других компонентах
         if(!this.state.isReg){

@@ -25,13 +25,6 @@
                 cities,
             }
         },
-        // methods:{
-        //     select(city){
-        //         this.$emit('select', city);
-        //     },
-        // }
-
-
     }
 
 

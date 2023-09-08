@@ -89,7 +89,7 @@ export function RegForm(){
 
             },)
             //смена регистрации на подтверждение
-            console.log(response.data);
+            //console.log(response.data);
             localStorage.setItem('reg', true);
             localStorage.setItem('repeatEmail', state.email);
             location.reload();

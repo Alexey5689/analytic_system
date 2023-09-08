@@ -25,7 +25,7 @@
             </div>
         </div>
         <DemoModal/>
-        <div class="user" @click="hightLogOutWind">
+        <div class="user" @click="logOut.changeStatelogOut()">
             <div class="user_name">
                 <p>Сергей Д.</p>
             </div>
@@ -37,7 +37,14 @@
 </template>
 <script>
     import { mapGetters, mapMutations } from 'vuex';
+    import {useLogOut} from '../stores/logout.js';
     export default{
+        setup(){
+            const logOut = useLogOut();
+            return{
+                logOut,
+            }
+        },
         computed: {
             ...mapGetters({
                 stateDemoActive: 'stateDemoActive',
@@ -45,12 +52,13 @@
         },
         methods:{
             ...mapMutations({
-                changeStatelogOut:'changeStatelogOut',
+                //changeStatelogOut:'changeStatelogOut',
                 changeStateDemoModal:'changeStateDemoModal',
 
             }),
             hightLogOutWind(){
                 this.changeStatelogOut();
+
             },
             demoModalWind() {
                 this.changeStateDemoModal();

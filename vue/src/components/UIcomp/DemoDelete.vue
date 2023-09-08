@@ -16,6 +16,7 @@
 </template>
 <script>
     import { mapMutations, mapGetters } from 'vuex';
+    import {useYandex} from '../../stores/YandexConnetction.js';
     export default{
         name:'DemoDel',
         computed:{

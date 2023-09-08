@@ -64,7 +64,7 @@
                             </div>
                             <div
                                 class="sw_inactive"
-                                v-else-if="!stateActiveYandex">
+                                v-else-if="!yandex.stateYandexActive">
                                 <p>Не активно</p>
                             </div>
                             <div
@@ -81,11 +81,11 @@
                             корпоративных аккаунтов.</p>
                         <button
                             class="btn_remove"
-                            @click="plugYandex">Подключить
+                            @click="yandex.changeStateYandexCon">Подключить
                         </button>
                         <button class="btn_remove"
-                                v-if="stateActiveYandex"
-                                @click="deleteYandex"
+                                v-if="yandex.stateYandexActive"
+                                @click="yandex.changeStateYandexDell"
                         >Удалить данные</button>
                     </div>
                 </div>
@@ -96,8 +96,15 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations} from 'vuex';
-
+import { useYandex } from '../stores/YandexConnetction.js';
 export default {
+
+    setup(){
+        const yandex = useYandex();
+        return{
+            yandex,
+        }
+    },
     computed: {
         ...mapGetters( {
             stateDemoActive: 'stateDemoActive',

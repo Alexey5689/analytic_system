@@ -4,11 +4,11 @@ import Cookies from 'js-cookie'
 import { reactive, computed} from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers} from '@vuelidate/validators'
-import { useStore } from 'vuex';
+import {useToken} from '../stores/useToken.js';
 
 const log = JSON.parse(localStorage.getItem('Log'));
 export function AuthValidForm(){
-    const store = useStore();
+    const token = useToken();
     const state = reactive({
         email: "",
         password:"",
@@ -37,7 +37,7 @@ export function AuthValidForm(){
             return;
         }
         try{
-           // const response = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie').then(async response => {
+            const resp = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie')
             const response =  await axios({
                     method: 'POST',
                     url: config.appBackendURL+':'+config.appBackendPort+'/api/login',
@@ -49,39 +49,33 @@ export function AuthValidForm(){
                         'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
                     },
                 },);
+                console.log(resp);
 
-                if(response.data.status == false){
+                if(response.data.status === false){
                     state.response = response.data.message;
                     setTimeout(function(){
                         state.email = "";
                         state.password="";
                         state.response="";
-                    }, 2000)
+                    }, 3000)
                 }
                 else{
                     window.location.href ='/main/';
-                    store.commit('getAuthToken',response.data.token)
+                    token.getToken(response.data.token);
                 }
         }catch(err){
             console.log(err.response);
-            if(err.response.status == 429){
+            if(err.response.status === 429){
                 localStorage.setItem('Log', true);
                 localStorage.setItem('repeatEmail', state.email);
                 location.reload();
             }
-
-
         }finally{
         }
-    }
-    const logOut = () =>{
-        store.commit('lostAuthToken');
-        Cookies.remove('XSRF-TOKEN');
     }
     return{
         state,
         AuthForm,
-        logOut,
         v$,
     }
 }
