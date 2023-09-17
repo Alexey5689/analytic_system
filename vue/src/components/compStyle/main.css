@@ -595,11 +595,11 @@ table {
 }
 
 .company {
-  padding-left: 52px;
+  padding-left: 31px;
 }
 
 .company table {
-  width: 778px;
+  width: 773px;
 }
 
 .company td:first-child {
@@ -607,11 +607,11 @@ table {
 }
 
 .ads {
-  padding-left: 78px;
+  padding-left: 31px;
 }
 
 .ads table {
-  width: 752px;
+  width: 740px;
 }
 
 .ads td:first-child {
@@ -619,11 +619,11 @@ table {
 }
 
 .keyword {
-  padding-left: 104px;
+  padding-left: 32px;
 }
 
 .keyword table {
-  width: 726px;
+  width: 700px;
 }
 
 .keyword td:first-child {

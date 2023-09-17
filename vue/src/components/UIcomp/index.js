@@ -8,6 +8,9 @@ import DemoDel from './DemoDelete.vue';
 import DemoDataCon from './DemoDataConnecting.vue';
 import LogOut from './logout.vue';
 import DemoModal from './DemoModal.vue';
+import Company from './companies.vue';
+import Ads  from './advertisement.vue'
+import Keyword from './keyword.vue';
 
 export default[
     cityList,
@@ -19,5 +22,9 @@ export default[
     DemoDel,
     DemoDataCon,
     LogOut,
-    DemoModal
+    DemoModal,
+    Company,
+    Ads,
+    Keyword,
+
 ]

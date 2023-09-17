@@ -32,7 +32,6 @@ export const useCityStore = defineStore('CityStore',{
             this.searchTown = city.name;
             this.id = city.id;
             this.optionVisible = false;
-
         }
     }
 })

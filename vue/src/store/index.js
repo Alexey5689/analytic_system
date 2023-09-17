@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+
 export default createStore({
     state: ()=>({
        seconds:60,
@@ -29,7 +30,4 @@ export default createStore({
             },1000);
         },
     },
-    modules:{
-    }
-
 })

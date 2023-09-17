@@ -14,6 +14,7 @@ const app = createApp(App);
 components.forEach(component => {
     app.component(component.name, component);
 });
+
 app .use(pinia)//Pinia
     .use(store)//глоб хранилище
     .use(router)//роутинг

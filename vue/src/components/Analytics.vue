@@ -4,19 +4,20 @@
     import { useYandex } from '../stores/YandexConnection.js'
     export default{
         setup(props){
-            const {state} = AnalyticStates();
+            const {state, compInfo} = AnalyticStates();
             const demo = useDemo();
             const yandex = useYandex();
             return{
                 state,
+                compInfo,
                 demo,
                 yandex,
             }
         },
     }
 </script>
-<style src="../components/compStyle/main.css" scoped></style>
-
+<style src="../components/compStyle/main.css" scoped>
+</style>
 <template>
     <article>
         <ul class="filter">
@@ -36,7 +37,6 @@
                 <img src="../assets/image/download.svg" alt="download">
             </li>
         </ul>
-
         <div class="advertising_company">
             <table>
                 <thead>
@@ -49,9 +49,8 @@
                 </thead>
                 <tr>
                     <td @click="state.toggle = !state.toggle">
-                        <img v-if="state.toggle" class="selection_list_1" src="../assets/image/selection_list.svg"
-                            alt="Selection list">
-                        <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
+                        <img v-if="state.toggle" class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
+                        <img  v-else class="selection_list_1" src="../assets/image/selection_list.svg" alt="Selection list">
                         <img class="logo_analytics" src="../assets/image/logo_analytics.svg" alt="Logo analytics">
                         Яндекс.Директ
                     </td>
@@ -61,14 +60,12 @@
                 </tr>
             </table>
         </div>
-
-        <div v-if="!state.toggle" class="network">
+        <div v-if="state.toggle" class="network">
             <h2>Сеть</h2>
             <table>
-                <tr>
+                <tr @click="state.networkSearch=!state.networkSearch" :class="{ 'advertising_company_active':state.networkSearch }">
                     <td>
-                        <img v-if="state.networkSearch" class="selection_list_1" src="../assets/image/selection_list.svg"
-                            alt="Selection list">
+                        <img v-if="!state.networkSearch" class="selection_list_1" src="../assets/image/selection_list.svg" alt="Selection list">
                         <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
                         Поиск
                     </td>
@@ -76,9 +73,14 @@
                     <td>244</td>
                     <td>1.5&#8381</td>
                 </tr>
-                <tr @click="state.networkRsya = !state.networkRsya" :class="{ 'advertising_company_active': !state.networkRsya }">
+            </table>
+                <div v-if="state.networkSearch" class="company">
+                    <h2>Поиск</h2>
+                </div>
+            <table>
+                <tr @click="state.networkRsya = !state.networkRsya" :class="{'advertising_company_active':state.networkRsya}">
                     <td>
-                        <img v-if="state.networkRsya" class="selection_list_1" src="../assets/image/selection_list.svg"
+                        <img v-if="!state.networkRsya" class="selection_list_1" src="../assets/image/selection_list.svg"
                             alt="Selection list">
                         <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
                         РСЯ
@@ -88,69 +90,9 @@
                     <td>1.3&#8381</td>
                 </tr>
             </table>
+            <Company
+                v-if="state.networkRsya"
+            />
         </div>
-
-        <template v-if="!state.toggle">
-            <div v-if="!state.networkRsya" class="company">
-                <h2>Компания</h2>
-                <table v-for="company in (yandex.stateYandexActive?yandex.stateYandexAnalyticsCompany:demo.stateDemoAnalyticsCompany) ">
-                    <tr @click="state.company = !state.company" :class="{ 'advertising_company_active': !state.company}">
-                        <td>
-                            <img v-if="state.company" class="selection_list_1" src="../assets/image/selection_list.svg"
-                                alt="Selection list">
-                            <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
-                                alt="Selection list">
-                            {{ company.campaign_name }}
-                        </td>
-                        <td>{{ company.impressions }}</td>
-                        <td>{{ company.clicks }}</td>
-                        <td>{{ company.daily_budget }} &#8381</td>
-                    </tr>
-                </table>
-            </div>
-            <div v-else >
-            </div>
-            <template v-if="!state.networkRsya">
-                <div v-if="!state.company" class="ads">
-                    <h2>Объявления</h2>
-                    <table v-for="ads in (yandex.stateYandexActive?yandex.stateYandexAnalyticsAds:demo.stateDemoAnalyticsAds)">
-                        <tr @click="state.guaranteeAds = !state.guaranteeAds" :class="{ 'advertising_company_active': !state.guaranteeAds }">
-                            <td>
-                                <img v-if="state.guaranteeAds" class="selection_list_1" src="../assets/image/selection_list.svg"
-                                    alt="Selection list">
-                                <img v-else class="selection_list_2" src="../assets/image/selection_list.svg"
-                                    alt="Selection list">
-                                {{ ads.ad_name }}
-                            </td>
-                            <td>{{ ads.impressions }}</td>
-                            <td>{{ ads.clicks }}</td>
-                            <td>{{ ads.daily_budget }} &#8381</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <template v-if="!state.company">
-
-                    <div v-if="!state.guaranteeAds" class="keyword">
-                        <h2>Ключевое слово</h2>
-                        <table v-for="keyword in (yandex.stateYandexActive?yandex.stateYandexAnalyticsKeywords:demo.stateDemoAnalyticsKeywords)">
-                            <tr>
-                                <td>
-                                    {{ keyword.keyword_name }}
-                                </td>
-                                <td>{{ keyword.impressions }}</td>
-                                <td>{{ keyword.clicks }}</td>
-                                <td>{{ keyword.daily_budget }} &#8381</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                </template>
-
-            </template>
-
-        </template>
-
-
     </article>
 </template>

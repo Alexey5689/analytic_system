@@ -64,7 +64,7 @@
                             </div>
                             <div
                                 class="sw_inactive"
-                                v-else-if="!yandex.stateYandexActive">
+                                v-else-if="!yandex.stateActiveYandex">
                                 <p>Не активно</p>
                             </div>
                             <div
@@ -84,7 +84,7 @@
                             @click="plugYandex">Подключить
                         </button>
                         <button class="btn_remove"
-                                v-if="yandex.stateYandexActive"
+                                v-if="yandex.stateActiveYandex"
                                 @click="yandex.changeStateYandexDell"
                         >Удалить данные</button>
                     </div>
@@ -98,7 +98,6 @@
 import { useYandex } from '../stores/YandexConnection.js';
 import { useDemo } from '../stores/DemoConnection.js';
 export default {
-
     setup(){
         const yandex = useYandex();
         const demo = useDemo();
@@ -109,7 +108,7 @@ export default {
     },
     methods: {
         plugYandex() {
-            if(this.demo.stateDemoActive){
+            if(this.demo.stateActiveDemo){
                 this.demo.clearDemo();
                 this.demo.changeDemoActive();
                 this.yandex.changeStateYandexCon();
@@ -119,7 +118,7 @@ export default {
             }
         },
         plugDemo() {
-            if( this.yandex.stateYandexActive){
+            if( this.yandex.stateActiveYandex){
                 this.yandex.clearStateYandex();
                 this.yandex.changeActiveYandex();
                 this.demo.changeStateDemoCon();

@@ -23,7 +23,7 @@ export const useYandex = defineStore('Yandex',{
         stateYandexErr() {
             return this.YandexErr;
         },
-        stateYandexActive(){
+        stateActiveYandex(){
             return this.YandexActive;
         },
         stateYandexAnalyticsCompany(){

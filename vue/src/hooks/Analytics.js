@@ -1,13 +1,22 @@
 import { reactive } from 'vue';
-
 export function AnalyticStates(){
     const state = reactive({
-        toggle: true,
-        networkSearch: true,
-        networkRsya: true,
-        company: true,
-        storageAds: true,
-        guaranteeAds: true,
+        toggle: false,
+        networkSearch: false,
+        networkRsya: false,
+        company: false,
+        storageAds: false,
+        guaranteeAds: false,
+        compId:'',
+        adsId:'',
     })
-    return{state}
+    function selectComp(company){
+        state.company = !state.company;
+        state.compId = company.id;
+    }
+    function selectAds(ads){
+        state.guaranteeAds = !state.guaranteeAds;
+        state.adsId = ads.id;
+    }
+    return{state, selectComp, selectAds}
 }
