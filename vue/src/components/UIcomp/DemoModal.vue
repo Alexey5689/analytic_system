@@ -1,6 +1,6 @@
 <template>
-    <div class="section" v-show="demo.stateDemoModal" @click.stop="demo.changeStateDemoModal" >
-        <div @click.stop class="section-top">
+    <div class="section" v-show="demo.stateDemoModal&&demo.DeActiveState">
+        <div class="section-top">
             <div class="section_text_top">
                 <p class="textDemo">Демо-проект</p>
             </div>

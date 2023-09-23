@@ -67,3 +67,19 @@ ul{
     border: 3px solid rgba(240, 241, 243, 1);
 
 }
+.user-list-item {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .user-list-enter-active,
+  .user-list-leave-active {
+    transition: all 1s ease;
+  }
+  .user-list-enter-from,
+  .user-list-leave-to {
+    opacity: 0;
+    transform: translateX(90px);
+  }
+  .user-list-move {
+    transition: transform 0.4s ease;
+  }

@@ -92,7 +92,7 @@ export const useYandex = defineStore('Yandex',{
         async continuePlug(){
             const token = useToken();
             try{
-                const yandexCompResp =  await axios({
+                const yandexCompResp = await axios({
                     method:'GET',
                     url:config.appBackendURL+ ':' + config.appBackendPort +'/api/campaigns',
                     headers: {

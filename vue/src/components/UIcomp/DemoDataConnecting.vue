@@ -1,6 +1,9 @@
 <template>
-    <div class="modal" v-show="demo.stateDemoDataCon" @click.stop="demo.changeStateDemoDataCon">
-        <div @click.stop class="modal_content">
+    <div class="modal" v-show="demo.DemoDataConState" >
+        <div
+            @click.stop="demo.changeStateDemoDataCon"
+            class="modal_content"
+        >
             <div class="modal_body сonnect_demo">
                 <h2>Подключение Демо-данных</h2>
                 <p>
@@ -16,7 +19,11 @@
                             fill="#005BD1" />
                     </svg>
                 </div>
-                <button class="continue" @click="demo.changeStateDemoDataCon">Закрыть окно</button>
+                <button
+                    class="continue"
+                    @click.stop="demo.changeStateDemoDataCon"
+                >   Закрыть окно
+                </button>
             </div>
         </div>
     </div>

@@ -18,7 +18,10 @@
                     <td>{{ ads.daily_budget }} &#8381</td>
                 </tr>
             </div>
-            <Keyword v-if="state.guaranteeAds&&state.adsId===ads.id"/>
+            <transition name="fade">
+                <Keyword v-if="state.guaranteeAds&&state.adsId===ads.id"/>
+            </transition>
+
         </table>
     </div>
 </template>

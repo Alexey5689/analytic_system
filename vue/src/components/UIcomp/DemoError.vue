@@ -1,7 +1,13 @@
 <template>
-    <div class="modal" v-show="demo.stateDemoErr" @click.stop="demo.changeStateDemoErr">
-        <div @click.stop class="modal_content">
-            <div class="modal_body" @click="demo.changeStateDemoErr">
+    <div class="modal" v-show="demo.stateDemoErr" >
+        <div
+            @click.stop="demo.changeStateDemoErr"
+            class="modal_content"
+        >
+            <div
+                class="modal_body"
+                @click.stop="demo.changeStateDemoErr"
+            >
                 <h2>Ошибка подключения Демо данные</h2>
                 <button class="modal_close">
                     <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37">

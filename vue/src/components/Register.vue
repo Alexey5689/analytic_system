@@ -70,10 +70,12 @@
                         type="text"
                         autocomplete="off"
                         placeholder="Город"
+                        @click="cities.optionVisible = true"
                     />
                     <cityList
                         v-if="cities.searchTown && cities.optionVisible"
                     />
+
                 </div>
 
                 <div>
@@ -139,6 +141,10 @@ export default {
             this.cities.citiesList();
         }
     },
+
+
+
+
 }
 </script>
 

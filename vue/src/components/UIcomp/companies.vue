@@ -21,9 +21,12 @@
                     <td>{{ company.daily_budget }} &#8381</td>
                 </tr>
             </div>
-            <Ads
-                v-if="state.company&&state.compId===company.id"
-            />
+            <transition name="fade">
+                <Ads
+                    v-if="state.company&&state.compId===company.id"
+                />
+            </transition>
+
         </table>
     </div>
 </template>

@@ -814,7 +814,7 @@ table {
     justify-content: center;
     align-items: center;
 }
- @keyframes spinnerAnimation {
+@keyframes spinnerAnimation {
     0% {
       transform: translate(-50%, -50%) rotate(0);
     }
@@ -822,7 +822,13 @@ table {
     100% {
       transform: translate(-50%, -50%) rotate(360deg);
     }
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
   }
+.fade-enter, .fade-leave-to  {
+    opacity: 0;
+}
 
 
 

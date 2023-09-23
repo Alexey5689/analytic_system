@@ -29,10 +29,10 @@ export const useDemo = defineStore('Demo',{
         stateDemoErr(){
             return this.DemoErr;
         },
-        stateDemoDataCon(){
+        DemoDataConState(){
             return this.IsDemoDataCon;
         },
-        stateDemoActive(){
+        DeActiveState(){
             return this.DemoActive;
         },
         stateDemoAnalyticsCompany(){
@@ -148,47 +148,3 @@ export const useDemo = defineStore('Demo',{
     }
 })
 
-//{
-//     campaign_name: "Паста «Болоньезе»",
-//     impressions: 350,
-//     clicks: 68,
-//     daily_budget: 1
-// }, {
-//     campaign_name: "Спагетти с овощами",
-//     impressions: 350,
-//     clicks: 56,
-//      daily_budget: 1
-// }, {
-//     campaign_name: "Пене с куриным филе",
-//     impressions: 400,
-//     clicks: 68,
-//      daily_budget: 1
-// }, {
-//     campaign_name: "Пицца «Куриная с ананасами»",
-//     impressions: 675,
-//     clicks: 139,
-//      daily_budget: 1
-// }, {
-//     campaign_name: "Пицца «Четыре сезона метровая»",
-//     impressions: 1600,
-//     clicks: 339,
-//      daily_budget: 1
-// }, {
-//     name: "Пицца «Итальяни»",
-//     img: "food/pizza-italyani.jpg",
-//     weight: 740,
-//     price: 159,
-//     quantity: 1
-// }, {
-//     name: "Салат «Джонатан с семгой»",
-//     img: "food/salat-dzhonotan-s-semgoj.jpg",
-//     weight: 230,
-//     price: 77,
-//     quantity: 1
-// }, {
-//     name: "Салат «Цезарь с креветкой»",
-//     img: "food/salat-czezar-s-krevetkoj.jpg",
-//     weight: 230,
-//     price: 69,
-//     quantity: 1
-// }];

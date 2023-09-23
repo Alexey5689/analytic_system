@@ -74,9 +74,12 @@
                     <td>1.5&#8381</td>
                 </tr>
             </table>
-                <div v-if="state.networkSearch" class="company">
-                    <h2>Поиск</h2>
-                </div>
+                <transition name="fade">
+                    <div v-if="state.networkSearch" class="company">
+                        <h2>Поиск</h2>
+                    </div>
+                </transition>
+
             <table>
                 <tr @click="state.networkRsya = !state.networkRsya" :class="{'advertising_company_active':state.networkRsya}">
                     <td>
@@ -90,9 +93,11 @@
                     <td>1.3&#8381</td>
                 </tr>
             </table>
-            <Company
-                v-if="state.networkRsya"
-            />
+            <transition name="fade">
+                <Company
+                    v-if="state.networkRsya"
+                />
+            </transition>
         </div>
     </article>
 </template>

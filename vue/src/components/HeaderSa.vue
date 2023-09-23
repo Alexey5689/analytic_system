@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div class="section"  v-if="!demo.stateDemoActive">
+        <div class="section"  v-if="!demo.DeActiveState">
             <div class="section_text">
                 <p>Нет подключеных проектов</p>
             </div>
@@ -24,7 +24,7 @@
                 </svg>
             </div>
         </div>
-        <DemoModal/>
+            <DemoModal/>
         <div class="user" @click="logOut.changeStatelogOut()">
             <div class="user_name">
                 <p>Сергей Д.</p>

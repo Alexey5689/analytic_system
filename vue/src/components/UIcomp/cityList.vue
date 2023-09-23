@@ -1,14 +1,16 @@
 <template>
     <div class="cityListWrapper">
         <div class="cityList" >
-            <div
-                v-for="city in cities.serchCity"
-                :key="city.id"
-                @click="cities.select(city)"
-                class="city"
-            >
-                {{ city.name }}
-            </div>
+            <transition-group name="user-list">
+                <div
+                    v-for="city in cities.serchCity"
+                    :key="city.id"
+                    @click="cities.select(city)"
+                    class="city"
+                >
+                    {{ city.name }}
+                </div>
+            </transition-group>
         </div>
     </div>
 </template>
@@ -23,6 +25,8 @@
                 cities,
             }
         },
+
+
     }
 
 

@@ -1,5 +1,4 @@
 <script setup>
-
 </script>
 <template>
     <router-view>
@@ -8,5 +7,4 @@
 </template>
 
 <style src="../src/baseStyle/style.css" >
-
 </style>

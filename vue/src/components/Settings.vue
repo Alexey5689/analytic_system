@@ -27,7 +27,7 @@
                                 <p>Ошибка</p>
                             </div>
                             <div
-                                v-else-if="!demo.stateDemoActive"
+                                v-else-if="!demo.DeActiveState"
                                 class="sw_inactive">
                                 <p>Не активно</p>
                             </div>
@@ -48,8 +48,8 @@
                             @click="plugDemo"
                         >Наполнить проект</button>
                         <button class="btn_remove"
-                                v-if="demo.stateDemoActive"
-                                @click="demo.changeStateDemoDell"
+                                v-if="demo.DeActiveState"
+                                @click="dellDemoData"
                         >Удалить данные</button>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ export default {
     },
     methods: {
         plugYandex() {
-            if(this.demo.stateActiveDemo){
+            if(this.demo.DeActiveState){
                 this.demo.clearDemo();
                 this.demo.changeDemoActive();
                 this.yandex.changeStateYandexCon();
@@ -127,6 +127,10 @@ export default {
                 this.demo.changeStateDemoCon();
             }
         },
+        dellDemoData(){
+            this.demo.changeStateDemoDell();
+            this.demo.DemoModal = false;
+        }
     },
 };
 

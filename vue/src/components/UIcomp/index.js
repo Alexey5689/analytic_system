@@ -12,6 +12,7 @@ import Company from './companies.vue';
 import Ads  from './advertisement.vue'
 import Keyword from './keyword.vue';
 
+
 export default[
     cityList,
     YanCon,

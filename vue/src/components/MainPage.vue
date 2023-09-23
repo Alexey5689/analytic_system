@@ -1,18 +1,33 @@
 <template>
-
     <div class="wrapper">
-        <YanCon/>
-        <YanDell/>
-        <YanErr/>
-        <DemoCon/>
-        <DemoErr/>
-        <DemoDel/>
-        <DemoDataCon/>
-        <LogOut/>
+        <teleport to="body">
+            <YanCon/>
+        </teleport>
+        <teleport to="body">
+            <YanDell/>
+        </teleport>
+        <teleport to="body">
+            <YanErr/>
+        </teleport>
+        <teleport to="body">
+            <DemoCon/>
+        </teleport>
+        <teleport to="body">
+            <DemoErr/>
+        </teleport>
+        <teleport to="body">
+            <DemoDel/>
+        </teleport>
+        <teleport to="body">
+            <DemoDataCon/>
+        </teleport>
+        <teleport to="body">
+            <LogOut/>
+        </teleport>
         <div class="flex_column">
             <MenuSa />
             <div class="content">
-                <HeaderSa />
+                <HeaderSa/>
                 <router-view></router-view>
                 <FooterSa />
             </div>
