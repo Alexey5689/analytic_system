@@ -36,42 +36,46 @@ export function AuthValidForm(){
             this.v$.$touch();
             return;
         }
-        try{
-            const resp = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie')
-            const response =  await axios({
-                    method: 'POST',
-                    url: config.appBackendURL+':'+config.appBackendPort+'/api/login',
-                    data: {
-                        email: state.email,
-                        password: state.password,
-                    },
-                    headers: {
-                        'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
-                    },
-                },);
-                console.log(resp);
+        const resp = await axios.get(config.appBackendURL+':'+config.appBackendPort+'/sanctum/csrf-cookie').then(
+            async authorisation =>{
+                const response = await axios({
+                        method: 'POST',
+                        url: config.appBackendURL+':'+config.appBackendPort+'/api/login',
+                        data: {
+                            email: state.email,
+                            password: state.password,
+                        },
+                        headers: {
+                            'X-CSRF-Token': Cookies.get('XSRF-TOKEN')
+                        },
+                }).then(response=>{
+                    if(response.data.status === false){
+                        state.response = response.data.message;
+                        setTimeout(function(){
+                            state.email = "";
+                            state.password="";
+                            state.response="";
+                        }, 3000)
+                    }else{
+                        state.response = response.data.message;
+                        setTimeout(()=>{
+                            token.getToken(response.data.token);
+                            window.location.href ='/main/';
+                        }, 2000);
+                    }
 
-                if(response.data.status === false){
-                    state.response = response.data.message;
-                    setTimeout(function(){
-                        state.email = "";
-                        state.password="";
-                        state.response="";
-                    }, 3000)
-                }
-                else{
-                    window.location.href ='/main/';
-                    token.getToken(response.data.token);
-                }
-        }catch(err){
+                })
+
+        }).catch(err=>{
             console.log(err.response);
-            if(err.response.status === 429){
-                localStorage.setItem('Log', true);
-                localStorage.setItem('repeatEmail', state.email);
-                location.reload();
-            }
-        }finally{
-        }
+                if(err.response.status === 429){
+                    localStorage.setItem('Log', true);
+                    localStorage.setItem('repeatEmail', state.email);
+                    location.reload();
+                }
+        }).finally(()=>{
+
+        })
     }
     return{
         state,
