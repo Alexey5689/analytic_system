@@ -60,44 +60,46 @@
                 </tr>
             </table>
         </div>
-        <div v-if="state.toggle" class="network">
-            <h2>Сеть</h2>
-            <table>
-                <tr @click="state.networkSearch=!state.networkSearch" :class="{ 'advertising_company_active':state.networkSearch }">
-                    <td>
-                        <img v-if="!state.networkSearch" class="selection_list_1" src="../assets/image/selection_list.svg" alt="Selection list">
-                        <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
-                        Поиск
-                    </td>
-                    <td>7 442</td>
-                    <td>244</td>
-                    <td>1.5&#8381</td>
-                </tr>
-            </table>
+        <transition name="fade">
+            <div v-if="state.toggle" class="network">
+                <h2>Сеть</h2>
+                <table>
+                    <tr @click="state.networkSearch=!state.networkSearch" :class="{ 'advertising_company_active':state.networkSearch }">
+                        <td>
+                            <img v-if="!state.networkSearch" class="selection_list_1" src="../assets/image/selection_list.svg" alt="Selection list">
+                            <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
+                            Поиск
+                        </td>
+                        <td>7 442</td>
+                        <td>244</td>
+                        <td>1.5&#8381</td>
+                    </tr>
+                </table>
                 <transition name="fade">
                     <div v-if="state.networkSearch" class="company">
                         <h2>Поиск</h2>
                     </div>
                 </transition>
 
-            <table>
-                <tr @click="state.networkRsya = !state.networkRsya" :class="{'advertising_company_active':state.networkRsya}">
-                    <td>
-                        <img v-if="!state.networkRsya" class="selection_list_1" src="../assets/image/selection_list.svg"
-                            alt="Selection list">
-                        <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
-                        РСЯ
-                    </td>
-                    <td>7 301</td>
-                    <td>854</td>
-                    <td>1.3&#8381</td>
-                </tr>
-            </table>
-            <transition name="fade">
-                <Company
-                    v-if="state.networkRsya"
-                />
-            </transition>
-        </div>
+                <table>
+                    <tr @click="state.networkRsya = !state.networkRsya" :class="{'advertising_company_active':state.networkRsya}">
+                        <td>
+                            <img v-if="!state.networkRsya" class="selection_list_1" src="../assets/image/selection_list.svg"
+                                alt="Selection list">
+                            <img v-else class="selection_list_2" src="../assets/image/selection_list.svg" alt="Selection list">
+                            РСЯ
+                        </td>
+                        <td>7 301</td>
+                        <td>854</td>
+                        <td>1.3&#8381</td>
+                    </tr>
+                </table>
+                <transition name="fade">
+                    <Company
+                        v-if="state.networkRsya"
+                    />
+                </transition>
+            </div>
+        </transition>
     </article>
 </template>

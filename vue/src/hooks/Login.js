@@ -63,7 +63,6 @@ export function AuthValidForm(){
                             window.location.href ='/main/';
                         }, 2000);
                     }
-
                 })
 
         }).catch(err=>{

@@ -1,10 +1,4 @@
-body {
-    display: flex;
-    justify-content: center;
-    background-color: #F0F1F3;
-    height: 100vh;
-    align-items: center;
-}
+
 .card-header {
     justify-content: center;
     text-align: center;
@@ -15,9 +9,10 @@ body {
 }
 .container {
     display: flex;
+    padding-top: 11px;
     justify-content: center;
     background-color: #F0F1F3;
-    height: 100vh;
+    height: auto;
     align-items: center;
 }
 .form {
@@ -56,6 +51,9 @@ button {
     background-color: #F0F1F3;
     height: 56px;
     background-position-x: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     padding-left: 3.5rem;
     border-radius: 9px;
     outline: none;
@@ -164,7 +162,7 @@ ul{
 .show{
     position: absolute;
     cursor: pointer;
-    top: 14px;
+    top: 13px;
     right: 20px;
     width: 30px;
     height: 30px;
@@ -183,8 +181,8 @@ ul{
 
 .compas{
     position: absolute;
-    top:27.5px;
-    left:354px;
+    top:27.8px;
+    left:356px;
     width: 24px;
     height: 24px;
     background-image: url('../../assets/image/icon_компас.svg');

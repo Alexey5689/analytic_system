@@ -13,14 +13,14 @@ import Settings from '../components/Settings.vue'
 
 export const routes = [
     {
-        name: "Login",
-        path: '/login',
-        component: Login
-    },
-    {
         name: "Registration",
         path: '/',
         component: Register
+    },
+    {
+        name: "Login",
+        path: '/login',
+        component: Login
     },
     {
         name: "EndReg",
